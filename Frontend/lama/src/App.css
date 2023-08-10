@@ -36,3 +36,63 @@
     transform: rotate(360deg);
   }
 }
+
+/* Inside src/App.css */
+
+body {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+	text-align: center;
+	padding: 2vw 1vw;
+	border-radius: 10px 10px 0 0;
+	font-size: 2rem;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.wrapper {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	/* width: 30vw; */
+	padding: 2vw 1vw;
+	/* background-color: rgb(250, 194, 194); */
+	border-radius: 10px;
+  
+  border: 1px solid rgb(78, 78, 78);
+}
+.wrapper2 {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	justify-content: center;
+	padding: 2vw 1vw;
+	/* background-color: rgb(250, 194, 194); */
+	border-radius: 10px;
+  
+  /* border: 1px solid rgb(78, 78, 78); */
+}
+
+
+input {
+	align-self: center;
+
+	border: 1px solid rgb(172, 171, 171);
+	border-radius: 10px;
+	padding: 1vw 1vw;
+	outline: none;
+	margin: 5px;
+  width: 250px;
+}
+
