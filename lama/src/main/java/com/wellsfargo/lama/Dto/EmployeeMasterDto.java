@@ -2,6 +2,7 @@ package com.wellsfargo.lama.Dto;
 
 import java.util.Date;
 
+import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -17,11 +18,12 @@ import lombok.Setter;
 public class EmployeeMasterDto {
 
 	@NotEmpty
-	private String employee_id;
+	@Id
+	private int employeeId;
 
 	@NotEmpty
 	@Size(max = 20, message = "employee's name can be maximum of 20 characters")
-	private String employee_name;
+	private String employeeName;
 	
 	@NotEmpty
 	@Size(max = 25, message = "employee's designation can be maximum of 25 characters")
@@ -35,8 +37,8 @@ public class EmployeeMasterDto {
 	private char gender;
 	
 	@NotEmpty
-	private Date date_of_birth;
+	private Date dateOfBirth;
 	
 	@NotEmpty
-	private Date date_of_joining;
+	private Date dateOfJoining;
 }

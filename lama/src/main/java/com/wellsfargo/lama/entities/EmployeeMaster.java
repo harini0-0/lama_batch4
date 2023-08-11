@@ -20,30 +20,28 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee_master {
+public class EmployeeMaster {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name = "employee_id",nullable = false)
+	private int employeeId;
 	
-	@Column(nullable = false)
-	private String employee_id;
+	@Column(name = "employee_name",nullable = false, length = 20)
+	private String employeeName;
 	
-	@Column(nullable = false, length = 20)
-	private String employee_name;
-	
-	@Column(nullable = false, length = 25)
+	@Column(name = "designation",nullable = false, length = 25)
 	private String designation;
 
-	@Column(nullable = false, length = 25)
+	@Column(name = "department",nullable = false, length = 25)
 	private String department;
 	
 	@Column(nullable = false)
 	private char gender;
 	
-	@Column(nullable = false)
-	private Date date_of_birth;
+	@Column(name = "date_of_birth",nullable = false)
+	private Date dateOfBirth;
 	
-	@Column(nullable = false)
-	private Date date_of_joining;
+	@Column(name = "date_of_joining",nullable = false)
+	private Date dateOfJoining;
 	
 }

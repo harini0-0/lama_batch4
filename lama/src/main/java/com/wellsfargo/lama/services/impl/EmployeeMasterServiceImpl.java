@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wellsfargo.lama.Dto.EmployeeMasterDto;
-import com.wellsfargo.lama.entities.Employee_master;
+import com.wellsfargo.lama.entities.EmployeeMaster;
 import com.wellsfargo.lama.repositories.EmployeeMasterRepo;
 import com.wellsfargo.lama.services.EmployeeMasterService;
 
@@ -23,7 +23,7 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 
 	@Override
 	public List<EmployeeMasterDto> getAllEmployee() {
-		List<Employee_master> employees = employeeMasterRepo.findAll();
+		List<EmployeeMaster> employees = employeeMasterRepo.findAll();
 		
 		modelMapper = new ModelMapper();
 		
@@ -34,8 +34,11 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 
 	@Override
 	public EmployeeMasterDto addEmployee(EmployeeMasterDto employeeMasterDto) {
-		// TODO Auto-generated method stub
 		return null;
+		
+//		EmployeeMasterRepo.findByEmployee_id(userId)
+//                .orElseThrow(() -> new ResourceNotFoundException("User ", "User id", userId));
+
 	}
 
 	@Override

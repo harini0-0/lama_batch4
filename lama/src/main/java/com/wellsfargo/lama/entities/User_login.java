@@ -22,12 +22,10 @@ import lombok.Setter;
 public class User_login {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(unique = true, name = "user_id", nullable = false)
+	private int userId;
 	
-	@Column(unique = true)
-	private String user_id;
-	
+	@Column(nullable = false)
 	private String password;
 	
 	private int role;
