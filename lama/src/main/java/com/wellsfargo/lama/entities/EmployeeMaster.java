@@ -1,5 +1,6 @@
 package com.wellsfargo.lama.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -51,8 +53,8 @@ public class EmployeeMaster {
 	@Column(name = "date_of_joining",nullable = false)
 	private Date dateOfJoining;
 	
-	@JsonBackReference
-	@OneToMany(mappedBy = "employee_master", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+	@JsonManagedReference
+	@OneToMany(mappedBy = "employeeMaster", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.DETACH, CascadeType.REFRESH })
 	List<EmployeeCardDetails> employeeCardDetails;
 	

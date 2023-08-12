@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -32,19 +33,17 @@ public class EmployeeCardDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@JsonManagedReference
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
 			CascadeType.REFRESH })
 	@JoinColumn(name = "employee_id")
-	@Column(name = "employee_id", nullable = false)
 	private EmployeeMaster employeeMaster;
 	
-	@JsonManagedReference
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
 			CascadeType.REFRESH })
 	@JoinColumn(name = "loan_id")
-	@Column(name = "loan_id", nullable = false)
-	private String loanId;
+	private LoanCardMaster loanCardMaster;
 	
 	@Column(name = "card_issue_date", nullable = false)
 	private Date cardIssueDate;
