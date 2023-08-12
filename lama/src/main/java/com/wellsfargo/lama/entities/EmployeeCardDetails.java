@@ -11,11 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,18 +31,21 @@ public class EmployeeCardDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name = "card_issue_date", nullable = false)
+	private Date cardIssueDate;
+	
+	
+//	Dropped the previously made employee master table, added the jsonbackreferences and built the code
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
 			CascadeType.REFRESH })
 	@JoinColumn(name = "employee_id")
 	private EmployeeMaster employeeMaster;
 	
+//	Dropped the previously made loan_card_master table, added the jsonbackreferences and built the code
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
 			CascadeType.REFRESH })
 	@JoinColumn(name = "loan_id")
 	private LoanCardMaster loanCardMaster;
-	
-	@Column(name = "card_issue_date", nullable = false)
-	private Date cardIssueDate;
 }
