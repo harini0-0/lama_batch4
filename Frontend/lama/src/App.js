@@ -1,13 +1,17 @@
 import './App.css';
-import LoginPage from './Pages/Login';
-import NavbarComponent from './Pages/Navbar';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './Pages/Home';
+import AdminPage from './Pages/AdminLandingPage';
 
 function App() {
   return (
-    <div className="App">
-      <NavbarComponent></NavbarComponent>
-      <LoginPage></LoginPage>
-    </div>
+    <BrowserRouter>
+  <Routes>
+    <Route path="/" element={<AdminPage />} />
+    <Route path="/adminpage" element={<AdminPage />} />
+    {/* <Route render={() => <Navigate to="/" />} /> */}
+  </Routes>
+</BrowserRouter>
   );
 }
 

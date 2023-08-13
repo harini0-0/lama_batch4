@@ -1,0 +1,10 @@
+.adminMenu{
+    display: flex;
+    flex-direction: column;
+}
+
+.adminOptions{
+    display: flex;
+    flex-direction: row;
+}
+
