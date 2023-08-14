@@ -1,10 +1,16 @@
 package com.wellsfargo.lama.services.impl;
 
+import java.util.ArrayList;
+
+import java.util.Arrays;
+
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.internal.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +25,13 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 	@Autowired
 	private EmployeeMasterRepo employeeMasterRepo;
 	
+	
 	private ModelMapper modelMapper;
 
 	@Override
 	public List<EmployeeMasterDto> getAllEmployee() {
 		List<EmployeeMaster> employees = employeeMasterRepo.findAll();
+//		employees.forEach(p -> System.out.println(p.getDateOfBirth()));		
 		
 		modelMapper = new ModelMapper();
 		
@@ -34,16 +42,34 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 
 	@Override
 	public EmployeeMasterDto addEmployee(EmployeeMasterDto employeeMasterDto) {
-		return null;
 		
-//		EmployeeMasterRepo.findByEmployee_id(userId)
-//                .orElseThrow(() -> new ResourceNotFoundException("User ", "User id", userId));
+		modelMapper = new ModelMapper();
+		
+		EmployeeMaster employeeMaster = modelMapper.map(employeeMasterDto, EmployeeMaster.class);
+		
+		EmployeeMaster newEmployeeMaster = employeeMasterRepo.save(employeeMaster);
+		
+		return modelMapper.map(newEmployeeMaster, EmployeeMasterDto.class);
 
 	}
 
 	@Override
-	public EmployeeMasterDto updateEmployee(EmployeeMasterDto employeeMasterDto, String employee_id) {
-		// TODO Auto-generated method stub
+	public EmployeeMasterDto updateEmployee(EmployeeMasterDto employeeMasterDto, Integer employee_id) {
+//		Optional<EmployeeMaster> opt = employeeMasterRepo.findById(employee_id);
+//		EmployeeMaster employeeMaster = opt.get();
+//		
+//		employeeMaster.setEmployeeId(employeeMasterDto.getEmployeeId());
+//		employeeMaster.setEmployeeName(employeeMasterDto.getEmployeeName());
+//		employeeMaster.setDesignation(employeeMasterDto.getDesignation());
+//		employeeMaster.setDepartment(employeeMasterDto.getDepartment());
+//		employeeMaster.setGender(employeeMasterDto.getGender());
+//		employeeMaster.setDateOfBirth(employeeMasterDto.getDateOfBirth());
+//		employeeMaster.setDateOfJoining(employeeMasterDto.getDateOfJoining());
+		
+		
+		
+		
+		
 		return null;
 	}
 
