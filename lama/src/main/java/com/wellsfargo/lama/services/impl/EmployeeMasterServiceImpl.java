@@ -54,28 +54,35 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 	}
 
 	@Override
-	public EmployeeMasterDto updateEmployee(EmployeeMasterDto employeeMasterDto, Integer employee_id) {
-//		Optional<EmployeeMaster> opt = employeeMasterRepo.findById(employee_id);
-//		EmployeeMaster employeeMaster = opt.get();
-//		
-//		employeeMaster.setEmployeeId(employeeMasterDto.getEmployeeId());
-//		employeeMaster.setEmployeeName(employeeMasterDto.getEmployeeName());
-//		employeeMaster.setDesignation(employeeMasterDto.getDesignation());
-//		employeeMaster.setDepartment(employeeMasterDto.getDepartment());
-//		employeeMaster.setGender(employeeMasterDto.getGender());
-//		employeeMaster.setDateOfBirth(employeeMasterDto.getDateOfBirth());
-//		employeeMaster.setDateOfJoining(employeeMasterDto.getDateOfJoining());
+	public EmployeeMasterDto updateEmployee(EmployeeMasterDto employeeMasterDto, int employeeId) {
+		
+		modelMapper = new ModelMapper();
+		
+		Optional<EmployeeMaster> opt = employeeMasterRepo.findByEmployeeId(employeeId);
+		EmployeeMaster employeeMaster = opt.get();
 		
 		
+		employeeMaster.setEmployeeId(employeeMasterDto.getEmployeeId());
+		employeeMaster.setEmployeeName(employeeMasterDto.getEmployeeName());
+		employeeMaster.setDesignation(employeeMasterDto.getDesignation());
+		employeeMaster.setDepartment(employeeMasterDto.getDepartment());
+		employeeMaster.setGender(employeeMasterDto.getGender());
+		employeeMaster.setDateOfBirth(employeeMasterDto.getDateOfBirth());
+		employeeMaster.setDateOfJoining(employeeMasterDto.getDateOfJoining());
 		
-		
-		
-		return null;
+		EmployeeMaster updatedEmployeeMaster = employeeMasterRepo.save(employeeMaster);
+
+//		return null;
+		return modelMapper.map(updatedEmployeeMaster, EmployeeMasterDto.class);
 	}
 
 	@Override
-	public void deleteEmployee(String employee_id) {
+	public void deleteEmployee(int employeeId) {
 		// TODO Auto-generated method stub
+		Optional<EmployeeMaster> opt = employeeMasterRepo.findByEmployeeId(employeeId);
+		EmployeeMaster employeeMaster = opt.get();
+		
+		employeeMasterRepo.delete(employeeMaster);
 		
 	}
 	
