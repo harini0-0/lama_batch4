@@ -6,6 +6,11 @@
   display: grid;
   justify-content: center;
   font-family: 'EB Garamond';
+  /* overflow: scroll; */
+  margin-top: 100px;
+  
+}
+body{
   background-image: url('https://www.itl.cat/pngfile/big/42-429842_light-grey-wallpaper.jpg');
 }
 
