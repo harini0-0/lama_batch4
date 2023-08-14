@@ -6,7 +6,7 @@ import NavbarComponent from './Navbar';
 function Home(){
     return (
         <div className="App">
-            <NavbarComponent></NavbarComponent>
+            <NavbarComponent  page='1' />
             <LoginPage></LoginPage>
     </div>
     );

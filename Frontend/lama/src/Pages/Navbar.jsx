@@ -5,14 +5,15 @@ import { Button }from "react-bootstrap";
 import { useNavigate } from "react-router";
 
 
-function NavbarComponent(){
-    const navigate = useNavigate();
+function NavbarComponent(props){
+    const navigate = useNavigate()
+    // const;
     return (
         
             <Navbar className="fixed-top nav2">
         <Container>
           <Navbar.Brand href="#home">Loan Admin Management Application</Navbar.Brand>
-          <Button variant="secondary" onClick={()=>{navigate('/');}}>Logout</Button>
+          {props.page!=='1' && <Button variant="secondary" onClick={()=>{navigate('/');}}>Logout</Button>}
         </Container>
       </Navbar>
        

@@ -29,7 +29,7 @@ function LoginPage(){
       
             // alert('Demo Form is submitted');
             // navigate('/adminpage');
-            navigate('/adminpage');
+            navigate('/adminpage', {page: '1'});
             // this.history.push('/adminpage');
         }
       }
