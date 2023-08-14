@@ -2,9 +2,13 @@ package com.wellsfargo.lama.entities;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import java.util.List;
+
+>>>>>>> b27c202016fce7390eb956e177cca01c70d77c54
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +19,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+<<<<<<< HEAD
+=======
 import com.fasterxml.jackson.annotation.JsonBackReference;
+>>>>>>> b27c202016fce7390eb956e177cca01c70d77c54
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -56,6 +63,10 @@ public class EmployeeMaster {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "employeeMaster", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.DETACH, CascadeType.REFRESH })
+<<<<<<< HEAD
+	private List<EmployeeIssueDetails> employeeIssueDetails;
+=======
 	List<EmployeeCardDetails> employeeCardDetails;
+>>>>>>> b27c202016fce7390eb956e177cca01c70d77c54
 	
 }
