@@ -18,4 +18,4 @@ function EmployeePage(){
     );
 };
 
-export default AdminPage;
+export default EmployeePage;
