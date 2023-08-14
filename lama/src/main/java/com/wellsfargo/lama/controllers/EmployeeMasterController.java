@@ -18,7 +18,7 @@ import com.wellsfargo.lama.Dto.EmployeeMasterDto;
 import com.wellsfargo.lama.services.EmployeeMasterService;
 
 @RestController
-@RequestMapping("/api/v1/employee")
+@RequestMapping("/api/v1/admin/employee")
 public class EmployeeMasterController {
 
 	@Autowired
