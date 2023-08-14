@@ -1,8 +1,16 @@
 package com.wellsfargo.lama.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +20,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "item_master")
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemMaster {
@@ -33,4 +42,9 @@ public class ItemMaster {
 	
 	@Column(nullable = false, name = "item_valuation")
 	private int itemValuation;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "itemMaster", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH })
+	private List<EmployeeIssueDetails> employeeIssueDetails;
 }
