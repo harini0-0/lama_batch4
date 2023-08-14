@@ -11,7 +11,7 @@ public interface EmployeeMasterService {
 	
 	EmployeeMasterDto addEmployee(EmployeeMasterDto employeeMasterDto);
 	
-	EmployeeMasterDto updateEmployee(EmployeeMasterDto employeeMasterDto, String employee_id);
+	EmployeeMasterDto updateEmployee(EmployeeMasterDto employeeMasterDto, Integer employee_id);
 	
 	void deleteEmployee(String employee_id);
 

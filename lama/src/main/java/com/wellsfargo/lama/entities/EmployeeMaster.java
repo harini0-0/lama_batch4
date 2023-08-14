@@ -47,10 +47,10 @@ public class EmployeeMaster {
 	private char gender;
 	
 	@Column(name = "date_of_birth",nullable = false)
-	private Date dateOfBirth;
+	private String dateOfBirth;
 	
 	@Column(name = "date_of_joining",nullable = false)
-	private Date dateOfJoining;
+	private String dateOfJoining;
 	
 	@JsonIgnore
 	@JsonManagedReference
