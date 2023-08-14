@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
   <Routes>
-    <Route path="/" element={<AdminPage />} />
+    <Route path="/" element={<Home />} />
     <Route path="/adminpage" element={<AdminPage />} />
     {/* <Route render={() => <Navigate to="/" />} /> */}
   </Routes>
