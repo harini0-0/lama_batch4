@@ -3,6 +3,7 @@ package com.wellsfargo.lama.Dto;
 import java.util.Date;
 
 import javax.persistence.Id;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -11,8 +12,9 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class EmployeeMasterDto {
 
-	@NotNull
 	@Id
+	@Valid
+	@NotNull
 	private int employeeId;
 
 	public int getEmployeeId() {

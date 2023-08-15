@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wellsfargo.lama.Dto.EmployeeMasterDto;
+import com.wellsfargo.lama.exceptions.ApiResponse;
 import com.wellsfargo.lama.services.EmployeeMasterService;
 
 @RestController
@@ -50,9 +51,9 @@ public class EmployeeMasterController {
 	}
 	
 	@DeleteMapping("/{employeeId}")
-	public String deleteEmployee(@PathVariable int employeeId) {
+	public ApiResponse deleteEmployee(@PathVariable int employeeId) {
 		employeeMasterService.deleteEmployee(employeeId);
-		return "Employee Deleted Successfully";
+		return new ApiResponse("Post is successfully deleted !!", true);
 	}
 	
 }
