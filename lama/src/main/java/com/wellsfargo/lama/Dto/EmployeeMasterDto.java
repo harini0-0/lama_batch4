@@ -91,7 +91,7 @@ public class EmployeeMasterDto {
 		this.dateOfJoining = dateOfJoining;
 	}
 
-	@NotEmpty
+	@NotEmpty(message = "employee name is empty")
 	@Size(max = 20, message = "employee's name can be maximum of 20 characters")
 	private String employeeName;
 	
