@@ -93,6 +93,14 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 		employeeMasterRepo.delete(employeeMaster);
 		
 	}
+
+	@Override
+	public EmployeeMasterDto getByEmployeeId(int EmployeeId) {
+		modelMapper = new ModelMapper();
+		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(EmployeeId).orElseThrow(() -> new ResourceNotFoundException("EmployeeId", "Employee Id", EmployeeId));
+		
+		return modelMapper.map(employeeMaster, EmployeeMasterDto.class);
+	}
 	
 	
 }

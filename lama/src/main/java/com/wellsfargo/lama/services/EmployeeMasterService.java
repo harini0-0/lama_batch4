@@ -9,6 +9,8 @@ public interface EmployeeMasterService {
 	
 	List<EmployeeMasterDto> getAllEmployee();
 	
+	EmployeeMasterDto getByEmployeeId(int EmployeeId);
+	
 	EmployeeMasterDto addEmployee(EmployeeMasterDto employeeMasterDto);
 	
 	EmployeeMasterDto updateEmployee(EmployeeMasterDto employeeMasterDto, int employeeId);

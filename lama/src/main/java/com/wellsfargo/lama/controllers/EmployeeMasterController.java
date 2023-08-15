@@ -44,6 +44,12 @@ public class EmployeeMasterController {
 		return new ResponseEntity<List<EmployeeMasterDto>>(allEmployeeDtos, HttpStatus.OK);
 	}
 	
+	@GetMapping("/{employeeId}")
+	public ResponseEntity<EmployeeMasterDto> getEmployeeId(@PathVariable int employeeId){
+		EmployeeMasterDto byEmployeeId = employeeMasterService.getByEmployeeId(employeeId);
+		return new ResponseEntity<EmployeeMasterDto>(byEmployeeId, HttpStatus.OK);
+	}
+	
 	@PutMapping("/{employeeId}")
 	public ResponseEntity<EmployeeMasterDto> updateEmployee(@Validated @RequestBody EmployeeMasterDto employeeMasterDto, @PathVariable Integer employeeId){
 		EmployeeMasterDto updateEmployeeDto = employeeMasterService.updateEmployee(employeeMasterDto, employeeId);
