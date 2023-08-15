@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import com.wellsfargo.lama.Dto.EmployeeMasterDto;
 import com.wellsfargo.lama.entities.EmployeeMaster;
+import com.wellsfargo.lama.exceptions.ResourceAlreadyExistsException;
+import com.wellsfargo.lama.exceptions.ResourceNotFoundException;
 import com.wellsfargo.lama.repositories.EmployeeMasterRepo;
 import com.wellsfargo.lama.services.EmployeeMasterService;
 
@@ -30,6 +32,7 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 
 	@Override
 	public List<EmployeeMasterDto> getAllEmployee() {
+		
 		List<EmployeeMaster> employees = employeeMasterRepo.findAll();
 //		employees.forEach(p -> System.out.println(p.getDateOfBirth()));		
 		
@@ -45,6 +48,13 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 		
 		modelMapper = new ModelMapper();
 		
+		int employeeId = employeeMasterDto.getEmployeeId();
+		
+		EmployeeMaster existedEmployeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElse(null);
+		if(existedEmployeeMaster != null) {
+			throw new ResourceAlreadyExistsException("EmployeeMaster", "Employee Id", employeeId);
+		}
+		
 		EmployeeMaster employeeMaster = modelMapper.map(employeeMasterDto, EmployeeMaster.class);
 		
 		EmployeeMaster newEmployeeMaster = employeeMasterRepo.save(employeeMaster);
@@ -58,8 +68,7 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 		
 		modelMapper = new ModelMapper();
 		
-		Optional<EmployeeMaster> opt = employeeMasterRepo.findByEmployeeId(employeeId);
-		EmployeeMaster employeeMaster = opt.get();
+		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElseThrow(() -> new ResourceNotFoundException("EmployeeMaster", "Employee Id", employeeId));
 		
 		
 		employeeMaster.setEmployeeId(employeeMasterDto.getEmployeeId());
@@ -78,12 +87,19 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 
 	@Override
 	public void deleteEmployee(int employeeId) {
-		// TODO Auto-generated method stub
-		Optional<EmployeeMaster> opt = employeeMasterRepo.findByEmployeeId(employeeId);
-		EmployeeMaster employeeMaster = opt.get();
+
+		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElseThrow(() -> new ResourceNotFoundException("EmployeeMaster", "Employee Id", employeeId));
 		
 		employeeMasterRepo.delete(employeeMaster);
 		
+	}
+
+	@Override
+	public EmployeeMasterDto getByEmployeeId(int EmployeeId) {
+		modelMapper = new ModelMapper();
+		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(EmployeeId).orElseThrow(() -> new ResourceNotFoundException("EmployeeId", "Employee Id", EmployeeId));
+		
+		return modelMapper.map(employeeMaster, EmployeeMasterDto.class);
 	}
 	
 	

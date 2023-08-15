@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wellsfargo.lama.Dto.EmployeeMasterDto;
+import com.wellsfargo.lama.exceptions.ApiResponse;
 import com.wellsfargo.lama.services.EmployeeMasterService;
 
 @RestController
@@ -43,6 +44,12 @@ public class EmployeeMasterController {
 		return new ResponseEntity<List<EmployeeMasterDto>>(allEmployeeDtos, HttpStatus.OK);
 	}
 	
+	@GetMapping("/{employeeId}")
+	public ResponseEntity<EmployeeMasterDto> getEmployeeId(@PathVariable int employeeId){
+		EmployeeMasterDto byEmployeeId = employeeMasterService.getByEmployeeId(employeeId);
+		return new ResponseEntity<EmployeeMasterDto>(byEmployeeId, HttpStatus.OK);
+	}
+	
 	@PutMapping("/{employeeId}")
 	public ResponseEntity<EmployeeMasterDto> updateEmployee(@Validated @RequestBody EmployeeMasterDto employeeMasterDto, @PathVariable Integer employeeId){
 		EmployeeMasterDto updateEmployeeDto = employeeMasterService.updateEmployee(employeeMasterDto, employeeId);
@@ -50,9 +57,9 @@ public class EmployeeMasterController {
 	}
 	
 	@DeleteMapping("/{employeeId}")
-	public String deleteEmployee(@PathVariable int employeeId) {
+	public ApiResponse deleteEmployee(@PathVariable int employeeId) {
 		employeeMasterService.deleteEmployee(employeeId);
-		return "Employee Deleted Successfully";
+		return new ApiResponse("Post is successfully deleted !!", true);
 	}
 	
 }
