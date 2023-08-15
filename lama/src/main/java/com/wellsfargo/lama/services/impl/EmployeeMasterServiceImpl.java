@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.wellsfargo.lama.Dto.EmployeeMasterDto;
 import com.wellsfargo.lama.entities.EmployeeMaster;
+import com.wellsfargo.lama.exceptions.ResourceAlreadyExistsException;
 import com.wellsfargo.lama.repositories.EmployeeMasterRepo;
 import com.wellsfargo.lama.services.EmployeeMasterService;
 
@@ -44,6 +45,13 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 	public EmployeeMasterDto addEmployee(EmployeeMasterDto employeeMasterDto) {
 		
 		modelMapper = new ModelMapper();
+		
+		int employeeId = employeeMasterDto.getEmployeeId();
+		
+		EmployeeMaster existedEmployeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElse(null);
+		if(existedEmployeeMaster != null) {
+			throw new ResourceAlreadyExistsException("EmployeeMaster", "Employee Id", employeeId);
+		}
 		
 		EmployeeMaster employeeMaster = modelMapper.map(employeeMasterDto, EmployeeMaster.class);
 		
