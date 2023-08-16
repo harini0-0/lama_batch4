@@ -11,6 +11,6 @@ import lombok.Setter;
 @Setter
 public
 class UserRequest{
-	private int userid;
+	private int userId;
 	private String password;
 }
