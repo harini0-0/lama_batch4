@@ -3,6 +3,7 @@ import NavbarComponent from "./Navbar";
 import { Table } from "react-bootstrap";
 import employeeData from "../data";
 import axios from 'axios';
+import LoadingComponent from "../Components/LoadingComponent";
 
 function CustomerMasterPage(){
     const [loaded, setLoader] = useState(false);
@@ -63,7 +64,7 @@ function CustomerMasterPage(){
                 </Table>
             </div>
         </div>
-        : <div><h1>Loading...</h1></div>
+        : <LoadingComponent></LoadingComponent>
     );
 };
 
