@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavbarComponent from "./Navbar";
 import { Table } from "react-bootstrap";
 import employeeData from "../data";
@@ -6,13 +6,20 @@ import axios from 'axios';
 
 function CustomerMasterPage(){
 
+    const [employeeList, setEmployeeList] = useState([])
+ 
     useEffect(() => {
         loadEmployeeData()
     },[])
 
     const loadEmployeeData = async () => {
-        const data = axios.get("http://localhost:8181/api/v1/admin/employee/");
-        console.log(data);
+        const data = await axios.get("http://localhost:8181/api/v1/admin/employee/")
+        .then((response) => {
+            console.log(response.data); setEmployeeList(response.data)
+        })
+
+
+        console.log("employeeList",employeeList)
     }
 
     return(
@@ -30,8 +37,11 @@ function CustomerMasterPage(){
                             <th>Date of Birth</th>
                             <th>Date of Joining</th>
                         </tr>
-                        {Array.from({length: 10}).map((_,index)=>(
+                        <h1>{employeeList[0].employeeId}</h1>
+                        
+                        {/* {Array.from({length: 2}).map((_,index)=>(
                             <tr key={index}>
+                                <td>{employeeList[index].employeeId}</td>
                                 <td>{employeeData[index].eid}</td>
                                 <td>{employeeData[index].eName}</td>
                                 <td>{employeeData[index].designation}</td>
@@ -41,7 +51,7 @@ function CustomerMasterPage(){
                                 <td>{employeeData[index].doj}</td>
 
                             </tr>
-                        ))}
+                        ))} */}
                         
                     </thead>
                 </Table>

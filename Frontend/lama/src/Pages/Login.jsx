@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import NavbarComponent from './Navbar';
 
 function LoginPage(){
     const [errors, setErrors] = useState({});
@@ -74,7 +75,10 @@ function LoginPage(){
 }
 // eslint-disable-next-line no-use-before-define
     return (
-        <div className='wrapper'>
+      
+        <div className='App'>
+          <NavbarComponent></NavbarComponent>
+          <div className='wrapper'>
          <h1 className='title' style={{fontFamily: "EB Garamond"}}>Login Form</h1>
          <form className='wrapper2' onSubmit={(event)=>{handleSubmit(event);}}>
   
@@ -109,6 +113,7 @@ function LoginPage(){
              
            <Button variant="secondary" type="submit" value={'Submit'}>Submit</Button>{''}
          </form>
+       </div>
        </div>
     );
 };
