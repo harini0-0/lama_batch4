@@ -1,4 +1,4 @@
-package com.wellsfargo.lama.Dto;
+package com.wellsfargo.lama.Ui;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserLoginDto {
-	private int userId;
-	private String passwordString;
+public
+class UserResponse{
+	private int userid;
 	private int role;
-	
 }
