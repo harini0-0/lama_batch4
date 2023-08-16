@@ -1,0 +1,5 @@
+package com.wellsfargo.lama.repositories;
+
+public interface UserLoginRepo {
+
+}

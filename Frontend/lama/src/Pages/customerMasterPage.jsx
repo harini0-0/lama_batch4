@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavbarComponent from "./Navbar";
 import { Table } from "react-bootstrap";
 import employeeData from "../data";
+import axios from 'axios';
+import LoadingComponent from "../Components/LoadingComponent";
 
 function CustomerMasterPage(){
-    return(
+    const [loaded, setLoader] = useState(false);
+    const [employeeList, setEmployeeList] = useState(null);
+ 
+
+    const loadEmployeeData = async () => {
+        try{
+        const response = await axios.get("http://localhost:8181/api/v1/admin/employee/")
+        .then((response) => {
+            console.log(response.data); 
+            setEmployeeList(response.data);
+            console.log("employeeList",employeeList);
+        })
+
+        // console.log("employeeList",employeeList);
+        setLoader(true);
+        } catch(e){
+            console.log(e);
+        }
+    };
+
+    useEffect(() => {
+        loadEmployeeData()
+    },[loaded])
+    
+    return(loaded ?
+        
         <div className="App">
-            <NavbarComponent></NavbarComponent>
+            <NavbarComponent page="1"></NavbarComponent>
             <div>
                 <Table >
                     <thead>
@@ -19,15 +46,16 @@ function CustomerMasterPage(){
                             <th>Date of Birth</th>
                             <th>Date of Joining</th>
                         </tr>
-                        {Array.from({length: 10}).map((_,index)=>(
+                        
+                        {Array.from({length: 2}).map((_,index)=>(
                             <tr key={index}>
-                                <td>{employeeData[index].eid}</td>
-                                <td>{employeeData[index].eName}</td>
-                                <td>{employeeData[index].designation}</td>
-                                <td>{employeeData[index].department}</td>
-                                <td>{employeeData[index].gender}</td>
-                                <td>{employeeData[index].dob}</td>
-                                <td>{employeeData[index].doj}</td>
+                                <td>{employeeList[index].employeeId}</td>
+                                <td>{employeeList[index].employeeName}</td>
+                                <td>{employeeList[index].designation}</td>
+                                <td>{employeeList[index].department}</td>
+                                <td>{employeeList[index].gender}</td>
+                                <td>{employeeList[index].dateOfBirth}</td>
+                                <td>{employeeList[index].dateOfJoining}</td>
 
                             </tr>
                         ))}
@@ -36,6 +64,7 @@ function CustomerMasterPage(){
                 </Table>
             </div>
         </div>
+        : <LoadingComponent></LoadingComponent>
     );
 };
 

@@ -1,13 +1,17 @@
 import { Button } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import NavbarComponent from './Navbar';
 
 function LoginPage(){
     const [errors, setErrors] = useState({});
     let [input, setInput] = useState({});
     // const [isValid, setValid] = useState(true);
+
+
     const navigate = useNavigate();
     function handleChange(event) {
+        setErrors({});
         let input1 = input;
         input1[event.target.name] = event.target.value;
       
@@ -17,7 +21,7 @@ function LoginPage(){
      function  handleSubmit(event) {
         event.preventDefault();
       
-        if(validate()){
+        let f = validate()
             // console.log(this.state);
       
             const input1 = {};
@@ -29,9 +33,9 @@ function LoginPage(){
       
             // alert('Demo Form is submitted');
             // navigate('/adminpage');
-            navigate('/adminpage', {page: '1'});
+            if(f)
+              navigate('/adminpage', {page: '1'});
             // this.history.push('/adminpage');
-        }
       }
 
     
@@ -71,7 +75,10 @@ function LoginPage(){
 }
 // eslint-disable-next-line no-use-before-define
     return (
-        <div className='wrapper'>
+      
+        <div className='App'>
+          <NavbarComponent></NavbarComponent>
+          <div className='wrapper'>
          <h1 className='title' style={{fontFamily: "EB Garamond"}}>Login Form</h1>
          <form className='wrapper2' onSubmit={(event)=>{handleSubmit(event);}}>
   
@@ -106,6 +113,7 @@ function LoginPage(){
              
            <Button variant="secondary" type="submit" value={'Submit'}>Submit</Button>{''}
          </form>
+       </div>
        </div>
     );
 };

@@ -7,7 +7,7 @@ function AdminPage(){
     const navigate = useNavigate();
     return (
         <div className="App">
-            <NavbarComponent></NavbarComponent>
+            <NavbarComponent page= '1'></NavbarComponent>
             <div className="adminMenu">
                 <h1>Admin Dashboard</h1>
                 <div className="adminOptions">
