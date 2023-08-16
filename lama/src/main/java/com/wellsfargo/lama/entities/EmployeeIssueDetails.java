@@ -45,10 +45,10 @@ public class EmployeeIssueDetails {
 	private ItemMaster itemMaster;
 	
 	@Column(nullable = false, name = "issue_date")
-	private Date issueDate;
+	private String issueDate;
 	
 	@Column(nullable = false, name = "return_date")
-	private Date returnDate;
+	private String returnDate;
 	
 	@Column(nullable = false, name = "is_approved")
 	private int isApproved;
