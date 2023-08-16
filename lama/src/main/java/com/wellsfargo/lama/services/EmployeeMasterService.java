@@ -9,10 +9,12 @@ public interface EmployeeMasterService {
 	
 	List<EmployeeMasterDto> getAllEmployee();
 	
+	EmployeeMasterDto getByEmployeeId(int EmployeeId);
+	
 	EmployeeMasterDto addEmployee(EmployeeMasterDto employeeMasterDto);
 	
-	EmployeeMasterDto updateEmployee(EmployeeMasterDto employeeMasterDto, Integer employee_id);
+	EmployeeMasterDto updateEmployee(EmployeeMasterDto employeeMasterDto, int employeeId);
 	
-	void deleteEmployee(String employee_id);
+	void deleteEmployee(int employeeId);
 
 }
