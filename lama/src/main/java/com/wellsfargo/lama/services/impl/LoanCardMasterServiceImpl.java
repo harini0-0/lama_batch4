@@ -67,8 +67,9 @@ public class LoanCardMasterServiceImpl implements LoanCardMasterService{
 		LoanCardMaster loanCardMaster = modelMapper.map(loanCardMasterDto, LoanCardMaster.class);
 		
 		LoanCardMaster newLoanCardMaster = loanCardMasterRepo.save(loanCardMaster);
+		LoanCardMasterDto loanCardDto = modelMapper.map(newLoanCardMaster, LoanCardMasterDto.class);
 		
-		return modelMapper.map(newLoanCardMaster, LoanCardMasterDto.class);
+		return loanCardDto;
 
 	}
 
