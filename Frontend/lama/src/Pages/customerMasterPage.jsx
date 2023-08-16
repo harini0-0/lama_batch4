@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavbarComponent from "./Navbar";
 import { Table } from "react-bootstrap";
 import employeeData from "../data";
+import axios from 'axios';
 
 function CustomerMasterPage(){
+
+    useEffect(() => {
+        loadEmployeeData()
+    },[])
+
+    const loadEmployeeData = async () => {
+        const data = axios.get("http://localhost:8181/api/v1/admin/employee/");
+        console.log(data);
+    }
+
     return(
         <div className="App">
             <NavbarComponent></NavbarComponent>

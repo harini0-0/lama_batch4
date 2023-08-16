@@ -1,0 +1,5 @@
+package com.wellsfargo.lama.entities;
+
+public class User_login {
+
+}

@@ -1,13 +1,16 @@
 import { Button } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 function LoginPage(){
     const [errors, setErrors] = useState({});
     let [input, setInput] = useState({});
     // const [isValid, setValid] = useState(true);
+
+
     const navigate = useNavigate();
     function handleChange(event) {
+        setErrors({});
         let input1 = input;
         input1[event.target.name] = event.target.value;
       
@@ -17,7 +20,7 @@ function LoginPage(){
      function  handleSubmit(event) {
         event.preventDefault();
       
-        if(validate()){
+        let f = validate()
             // console.log(this.state);
       
             const input1 = {};
@@ -29,9 +32,9 @@ function LoginPage(){
       
             // alert('Demo Form is submitted');
             // navigate('/adminpage');
-            navigate('/adminpage', {page: '1'});
+            if(f)
+              navigate('/adminpage', {page: '1'});
             // this.history.push('/adminpage');
-        }
       }
 
     

@@ -1,0 +1,5 @@
+package com.wellsfargo.lama.entities;
+
+public class Employee_master {
+
+}
