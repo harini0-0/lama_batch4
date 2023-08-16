@@ -11,15 +11,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name ="employee_issue_details")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,21 +31,24 @@ public class EmployeeIssueDetails {
 	@Column(nullable = false, name = "issue_id")
 	private int issueId;
 	
+	@JsonIgnore
 	@JsonBackReference
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "employee_id")
 	private EmployeeMaster employeeMaster;
 	
+	@JsonIgnore
+	@JsonProperty
 	@JsonBackReference
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "item_id")
 	private ItemMaster itemMaster;
 	
 	@Column(nullable = false, name = "issue_date")
-	private Date issueDate;
+	private String issueDate;
 	
 	@Column(nullable = false, name = "return_date")
-	private Date returnDate;
+	private String returnDate;
 	
 	@Column(nullable = false, name = "is_approved")
 	private int isApproved;
