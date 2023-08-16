@@ -4,12 +4,15 @@ import java.util.List;
 
 import com.wellsfargo.lama.Dto.LoanCardMasterDto;
 
-public class LoanCardMasterService {
+public interface LoanCardMasterService {
+
 List<LoanCardMasterDto> getAllLoan();
+	
+	LoanCardMasterDto getByLoanId(int LoanId);
 	
 	LoanCardMasterDto addLoan(LoanCardMasterDto loanCardMasterDto);
 	
-	LoanCardMasterDto updateLoan(LoanCardMasterDto loanCardMasterDto, Integer loan_id);
+	LoanCardMasterDto updateLoan(LoanCardMasterDto loanCardMasterDto, int loanId);
 	
-	void deleteLoan(String loan_id);
+	void deleteLoan(int loanId);
 }

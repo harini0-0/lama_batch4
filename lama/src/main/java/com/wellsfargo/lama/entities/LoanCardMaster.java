@@ -12,8 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.modelmapper.ModelMapper;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.wellsfargo.lama.repositories.LoanCardMasterRepo;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "loan_card_master")
 public class LoanCardMaster {
@@ -25,8 +35,10 @@ public class LoanCardMaster {
 	private String loanType;
 	
 	@Column(name = "duration_in_months", nullable = false)
-	private Date durationInMonths;
+	private String durationInMonths;
 	
+	@JsonProperty
+	@JsonIgnore
 	@JsonManagedReference
 	@OneToMany(mappedBy = "loanCardMaster", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.DETACH, CascadeType.REFRESH })

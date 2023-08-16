@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,6 +40,8 @@ public class EmployeeCardDetails {
 	
 	
 //	Dropped the previously made employee master table, added the jsonbackreferences and built the code
+	@JsonProperty
+	@JsonIgnore
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
 			CascadeType.REFRESH })
@@ -45,6 +49,8 @@ public class EmployeeCardDetails {
 	private EmployeeMaster employeeMaster;
 	
 //	Dropped the previously made loan_card_master table, added the jsonbackreferences and built the code
+	@JsonProperty
+	@JsonIgnore
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
 			CascadeType.REFRESH })
