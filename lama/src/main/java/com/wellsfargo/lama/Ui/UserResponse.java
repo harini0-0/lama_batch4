@@ -11,6 +11,6 @@ import lombok.Setter;
 @Setter
 public
 class UserResponse{
-	private int userid;
+	private int userId;
 	private int role;
 }

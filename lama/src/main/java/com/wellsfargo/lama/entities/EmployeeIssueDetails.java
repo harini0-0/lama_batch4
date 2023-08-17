@@ -31,14 +31,15 @@ public class EmployeeIssueDetails {
 	@Column(nullable = false, name = "issue_id")
 	private int issueId;
 	
+	@JsonProperty
 	@JsonIgnore
 	@JsonBackReference
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "employee_id")
 	private EmployeeMaster employeeMaster;
 	
-	@JsonIgnore
 	@JsonProperty
+	@JsonIgnore
 	@JsonBackReference
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "item_id")
