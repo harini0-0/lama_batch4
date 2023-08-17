@@ -37,7 +37,7 @@ public class EmployeeCardDetails {
 	private int id;
 	
 	@Column(name = "card_issue_date", nullable = false)
-	private Date cardIssueDate;
+	private String cardIssueDate;
 	
 	
 //	Dropped the previously made employee master table, added the jsonbackreferences and built the code

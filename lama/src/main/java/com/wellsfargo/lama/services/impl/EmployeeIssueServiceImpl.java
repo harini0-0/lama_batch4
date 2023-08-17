@@ -8,13 +8,16 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wellsfargo.lama.Dto.EmployeeCardDto;
 import com.wellsfargo.lama.Dto.EmployeeIssueDto;
 import com.wellsfargo.lama.Ui.EmployeeIssueRequest;
 import com.wellsfargo.lama.Ui.EmployeeIssueResponse;
+import com.wellsfargo.lama.entities.EmployeeCardDetails;
 import com.wellsfargo.lama.entities.EmployeeIssueDetails;
 import com.wellsfargo.lama.entities.EmployeeMaster;
 import com.wellsfargo.lama.entities.ItemMaster;
 import com.wellsfargo.lama.entities.LoanCardMaster;
+import com.wellsfargo.lama.repositories.EmployeeCardRepo;
 import com.wellsfargo.lama.repositories.EmployeeIssueRepo;
 import com.wellsfargo.lama.repositories.EmployeeMasterRepo;
 import com.wellsfargo.lama.repositories.ItemMasterRepo;
@@ -34,6 +37,8 @@ public class EmployeeIssueServiceImpl implements EmployeeIssueService{
 	private EmployeeMasterRepo employeeMasterRepo;
 	@Autowired
 	private ItemMasterRepo itemMasterRepo;
+	@Autowired
+	private EmployeeCardRepo employeeCardRepo;
 	
 	private final ModelMapper modelMapper;
 	
@@ -47,10 +52,10 @@ public class EmployeeIssueServiceImpl implements EmployeeIssueService{
 		
 		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElse(null);
 	
-//		System.out.println(employeeMaster.getDateOfBirth());
+		System.out.println(employeeMaster.getDateOfBirth());
 		ItemMaster itemMaster = itemMasterRepo.findByItemId(itemId).orElse(null);
 		
-//		System.out.println(itemMaster);
+		System.out.println(itemMaster.getIssueStatus());
 		
 		employeeIssueDto.setEmployeeMaster(employeeMaster);
 		employeeIssueDto.setItemMaster(itemMaster);
@@ -58,17 +63,25 @@ public class EmployeeIssueServiceImpl implements EmployeeIssueService{
 		LocalDate currentDate = java.time.LocalDate.now();
 		employeeIssueDto.setIssueDate(currentDate.toString());
 		
-//		System.out.println(currentDate.toString());
+		System.out.println(currentDate.toString());
 		
 		Optional<LoanCardMaster> loanObj = loanCardMasterRepo.findByLoanType(employeeIssueRequest.getLoanType());
 		String durationInMonths = loanObj.get().getDurationInMonths();
 		employeeIssueDto.setDurationInMonths(durationInMonths);
-		
+//		
 		employeeIssueDto.setIsApproved(0);
 //		
 		EmployeeIssueDetails employeeIssueDetails = modelMapper.map(employeeIssueDto, EmployeeIssueDetails.class);
 		EmployeeIssueDetails newEmployeeIssueDetails = employeeIssueRepo.save(employeeIssueDetails);
-		return modelMapper.map(newEmployeeIssueDetails, EmployeeIssueDto.class);
-//		return null;
+		
+		EmployeeCardDto employeeCardDto = new EmployeeCardDto(0, null, null, null);
+		employeeCardDto.setCardIssueDate(currentDate.toString());
+		employeeCardDto.setEmployeeMaster(employeeMaster);
+		employeeCardDto.setLoanCardMaster(loanObj.get());
+		EmployeeCardDetails employeeCardDetails = modelMapper.map(employeeCardDto, EmployeeCardDetails.class);
+		EmployeeCardDetails newEmployeeCardDetails = employeeCardRepo.save(employeeCardDetails);
+//		System.out.println(newEmployeeCardDetails);
+//		return modelMapper.map(newEmployeeIssueDetails, EmployeeIssueDto.class);
+		return null;
 	}
 }
