@@ -2,6 +2,7 @@ package com.wellsfargo.lama.security.jwt;
 
 import java.io.IOException;
 
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,13 +20,14 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.wellsfargo.lama.entities.UserLogin;
 import com.wellsfargo.lama.repositories.UserLoginRepo;
+import com.wellsfargo.lama.services.impl.UserLoginServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
 	@Autowired
 	private JwtUtils jwtUtils;
 
 	@Autowired
-	private UserLoginRepo userLoginRepo;
+	private UserLoginServiceImpl userDetailsService;
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
@@ -36,11 +38,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 			String jwt = parseJwt(request);
 			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
 				String username = jwtUtils.getUserNameFromJwtToken(jwt);
-				int userId = Integer.parseInt(username);
 
-				UserLogin userDetails = userLoginRepo.findById(userId).get();
+				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-						userDetails, null);
+						userDetails, null, userDetails.getAuthorities());
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
 				SecurityContextHolder.getContext().setAuthentication(authentication);

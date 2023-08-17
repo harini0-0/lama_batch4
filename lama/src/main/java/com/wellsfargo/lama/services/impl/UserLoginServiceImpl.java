@@ -22,13 +22,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-class UserLoginServiceImpl implements UserLoginService, UserDetailsService{
-	
-	private int userId;
-	
-	@JsonIgnore
-	private String password;
-	
+public class UserLoginServiceImpl implements UserLoginService, UserDetailsService{	
 	
 	
 	@Autowired
@@ -64,11 +58,10 @@ class UserLoginServiceImpl implements UserLoginService, UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//		int userId = Integer.parseInt(username);
-//		UserLogin user = UserLoginRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("userLogin","userId",userId));
-//		
-//		return modelMapper.map(user, null);
-		return null;
+		int userId = Integer.parseInt(username);
+		UserLogin user = UserLoginRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("userLogin","userId",userId));
+		
+		return UserDetailsImpl.build(user);
 	}
 	
 }

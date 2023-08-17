@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import com.wellsfargo.lama.Dto.UserLoginDto;
+import com.wellsfargo.lama.services.impl.UserDetailsImpl;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -27,7 +28,7 @@ public class JwtUtils {
 
   public String generateJwtToken(Authentication authentication) {
 
-    UserLoginDto userPrincipal = (UserLoginDto) authentication.getPrincipal();
+   UserDetailsImpl userPrincipal  = (UserDetailsImpl)authentication.getPrincipal();
 
     return Jwts.builder()
         .setSubject((Integer.toString(userPrincipal.getUserId())))
