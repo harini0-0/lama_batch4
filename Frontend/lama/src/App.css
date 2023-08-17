@@ -1,18 +1,18 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
   height: 100%;
   width: 100%;
-  align-items: center;
-  display: grid;
-  justify-content: center;
+  /* align-items: center; */
+  /* display: grid; */
+  /* justify-content: center; */
   font-family: 'EB Garamond';
   /* overflow: scroll; */
-  margin-top: 100px;
-  
+  margin-top: 70px;
+  margin-left: 50px;
 }
-body{
+/* body{
   background-image: url('https://www.itl.cat/pngfile/big/42-429842_light-grey-wallpaper.jpg');
-}
+} */
 
 .App-logo {
   height: 40vmin;
