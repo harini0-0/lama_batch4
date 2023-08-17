@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import NavbarComponent from "./Navbar";
-import { Table } from "react-bootstrap";
-import employeeData from "../data";
+import { Table, Button } from "react-bootstrap";
+// import employeeData from "../data";
 import axios from 'axios';
 import LoadingComponent from "../Components/LoadingComponent";
+import { PencilFill, Trash3Fill } from "react-bootstrap-icons";
+
 
 function CustomerMasterPage(){
     const [loaded, setLoader] = useState(false);
@@ -45,6 +47,7 @@ function CustomerMasterPage(){
                             <th>Gender</th>
                             <th>Date of Birth</th>
                             <th>Date of Joining</th>
+                            <th>Options</th>
                         </tr>
                         
                         {Array.from({length: 2}).map((_,index)=>(
@@ -56,7 +59,10 @@ function CustomerMasterPage(){
                                 <td>{employeeList[index].gender}</td>
                                 <td>{employeeList[index].dateOfBirth}</td>
                                 <td>{employeeList[index].dateOfJoining}</td>
-
+                                <td>
+                                    <Button variant="secondary" style={{margin:"5px"}}><Trash3Fill onClick={()=>{console.log("clicked trash")}}></Trash3Fill></Button>
+                                    <Button variant="secondary" style={{margin:"5px"}}><PencilFill></PencilFill></Button>
+                                </td>
                             </tr>
                         ))}
                         
