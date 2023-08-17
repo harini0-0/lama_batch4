@@ -5,8 +5,12 @@ import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wellsfargo.lama.Dto.UserLoginDto;
 import com.wellsfargo.lama.entities.UserLogin;
 import com.wellsfargo.lama.exceptions.PasswordNotMatchingExeption;
@@ -18,7 +22,14 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-class UserLoginServiceImpl implements UserLoginService{
+class UserLoginServiceImpl implements UserLoginService, UserDetailsService{
+	
+	private int userId;
+	
+	@JsonIgnore
+	private String password;
+	
+	
 	
 	@Autowired
 	private UserLoginRepo UserLoginRepo;
@@ -47,6 +58,17 @@ class UserLoginServiceImpl implements UserLoginService{
 		else {
 			throw new ResourceNotFoundException("userLogin","userId",userLoginDto.getUserId());
 		}
+	}
+
+
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//		int userId = Integer.parseInt(username);
+//		UserLogin user = UserLoginRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("userLogin","userId",userId));
+//		
+//		return modelMapper.map(user, null);
+		return null;
 	}
 	
 }
