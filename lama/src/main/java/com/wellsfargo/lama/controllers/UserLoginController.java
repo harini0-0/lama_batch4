@@ -3,6 +3,7 @@ package com.wellsfargo.lama.controllers;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,6 @@ import com.wellsfargo.lama.services.UserLoginService;
 
 import lombok.AllArgsConstructor;
 
-import com.wellsfargo.lama.entities.UserLogin;
 import com.wellsfargo.lama.Dto.UserLoginDto;
 import com.wellsfargo.lama.Ui.UserRequest;
 import com.wellsfargo.lama.Ui.UserResponse;
@@ -40,9 +40,11 @@ public class UserLoginController{
 	private UserLoginService userLoginService;
 
 	private ModelMapper modelMapper;
+	
 
 	@PostMapping("/")
 	public ResponseEntity<UserResponse> Login(@RequestBody UserRequest userRequest) {
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		UserLoginDto userLoginDto = modelMapper.map(userRequest, UserLoginDto.class);
 		UserLoginDto responseDto = userLoginService.checkLogin(userLoginDto);
 		UserResponse userResponse = modelMapper.map(responseDto, UserResponse.class);

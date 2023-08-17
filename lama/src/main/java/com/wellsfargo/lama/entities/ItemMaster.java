@@ -46,8 +46,8 @@ public class ItemMaster {
 	@Column(nullable = false, name = "item_valuation")
 	private int itemValuation;
 	
-	@JsonIgnore
 	@JsonProperty
+	@JsonIgnore
 	@JsonManagedReference
 	@OneToMany(mappedBy = "itemMaster", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.DETACH, CascadeType.REFRESH })

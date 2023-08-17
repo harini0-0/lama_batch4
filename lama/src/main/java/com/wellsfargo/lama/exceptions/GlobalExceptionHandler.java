@@ -21,4 +21,11 @@ public class GlobalExceptionHandler {
 		ApiResponse apiResponse = new ApiResponse(messageString, false);
 		return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.CONFLICT);
 	}
+	
+	@ExceptionHandler(PasswordNotMatchingExeption.class)
+	public ResponseEntity<ApiResponse> PasswordNotMatchingException(PasswordNotMatchingExeption ex){
+		String messageString = ex.getMsg();
+		ApiResponse apiResponse = new ApiResponse(messageString, false);
+		return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.CONFLICT);
+	}
 }
