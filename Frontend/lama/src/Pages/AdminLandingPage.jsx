@@ -28,8 +28,8 @@ function AdminPage(){
                     >
                             Customer Data Management
                     </Button>
-                    <Button variant="secondary" style={{margin: "10px", color: "black"}}>Loan Card Management</Button>
-                    <Button variant="secondary" style={{margin: "10px", color: "black"}}>Items Master Data</Button>
+                    <Button variant="secondary" style={{margin: "10px", color: "black"}}  onClick={()=>{navigate('/loan')}} >Loan Card Management</Button>
+                    <Button variant="secondary" style={{margin: "10px", color: "black"}} onClick={()=>{navigate('/item')}}>Items Master Data</Button>
                 </div>
             </div>
         </div>
