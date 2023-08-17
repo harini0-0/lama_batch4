@@ -22,11 +22,15 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "item_master")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class ItemMaster {
+	
+
 	@Id
 	@Column(nullable = false, length = 6, name = "item_id")
 	private int itemId;
