@@ -10,6 +10,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.modelmapper.internal.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,10 @@ import com.wellsfargo.lama.exceptions.ResourceNotFoundException;
 import com.wellsfargo.lama.repositories.EmployeeMasterRepo;
 import com.wellsfargo.lama.services.EmployeeMasterService;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 	
 	@Autowired
@@ -36,7 +40,7 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 		List<EmployeeMaster> employees = employeeMasterRepo.findAll();
 //		employees.forEach(p -> System.out.println(p.getDateOfBirth()));		
 		
-		modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
 		List<EmployeeMasterDto> employeesDto = employees.stream().map(employee -> modelMapper.map(employee, EmployeeMasterDto.class)).collect(Collectors.toList());
 		
@@ -46,7 +50,7 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 	@Override
 	public EmployeeMasterDto addEmployee(EmployeeMasterDto employeeMasterDto) {
 		
-		modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
 		int employeeId = employeeMasterDto.getEmployeeId();
 		
@@ -66,7 +70,7 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 	@Override
 	public EmployeeMasterDto updateEmployee(EmployeeMasterDto employeeMasterDto, int employeeId) {
 		
-		modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
 		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElseThrow(() -> new ResourceNotFoundException("EmployeeMaster", "Employee Id", employeeId));
 		
@@ -96,7 +100,7 @@ public class EmployeeMasterServiceImpl implements EmployeeMasterService{
 
 	@Override
 	public EmployeeMasterDto getByEmployeeId(int EmployeeId) {
-		modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(EmployeeId).orElseThrow(() -> new ResourceNotFoundException("EmployeeId", "Employee Id", EmployeeId));
 		
 		return modelMapper.map(employeeMaster, EmployeeMasterDto.class);
