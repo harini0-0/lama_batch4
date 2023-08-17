@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavbarComponent from "./Navbar";
 import { Table } from "react-bootstrap";
-import employeeData from "../data";
+// import employeeData from "../data";
 import axios from 'axios';
 import LoadingComponent from "../Components/LoadingComponent";
 

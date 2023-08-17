@@ -11,10 +11,10 @@ function NavbarComponent(props){
     return (
         
             <Navbar className="fixed-top nav2">
-        <Container>
-          <Navbar.Brand href="#home">Loan Admin Management Application</Navbar.Brand>
-          {props.page === '1' && <Button variant="secondary" onClick={()=>{navigate('/');}}>Logout</Button>}
-        </Container>
+              <Container>
+                <Navbar.Brand href="#home">Loan Admin Management Application</Navbar.Brand>
+                {props.page === '1' && <Button variant="secondary" onClick={()=>{navigate('/');}}>Logout</Button>}
+              </Container>
       </Navbar>
        
     );
