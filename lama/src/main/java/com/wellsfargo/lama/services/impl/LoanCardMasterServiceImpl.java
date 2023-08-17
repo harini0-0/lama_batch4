@@ -10,6 +10,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.modelmapper.internal.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,11 +28,13 @@ import com.wellsfargo.lama.repositories.EmployeeMasterRepo;
 import com.wellsfargo.lama.repositories.LoanCardMasterRepo;
 import com.wellsfargo.lama.services.LoanCardMasterService;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 
 @Service
+@AllArgsConstructor
 public class LoanCardMasterServiceImpl implements LoanCardMasterService{
 	@Autowired
 	private LoanCardMasterRepo loanCardMasterRepo;
@@ -45,7 +48,7 @@ public class LoanCardMasterServiceImpl implements LoanCardMasterService{
 		List<LoanCardMaster> loans = loanCardMasterRepo.findAll();
 //		employees.forEach(p -> System.out.println(p.getDateOfBirth()));		
 		
-		modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
 		List<LoanCardMasterDto> loansDto = loans.stream().map(loan -> modelMapper.map(loan, LoanCardMasterDto.class)).collect(Collectors.toList());
 		
@@ -55,7 +58,7 @@ public class LoanCardMasterServiceImpl implements LoanCardMasterService{
 	@Override
 	public LoanCardMasterDto addLoan(LoanCardMasterDto loanCardMasterDto) {
 		
-		modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
 		int loanId = loanCardMasterDto.getLoanId();
 		
@@ -75,7 +78,7 @@ public class LoanCardMasterServiceImpl implements LoanCardMasterService{
 	@Override
 	public LoanCardMasterDto updateLoan(LoanCardMasterDto loanCardMasterDto, int loanId) {
 		
-		modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
 		LoanCardMaster loanCardMaster = loanCardMasterRepo.findByLoanId(loanId).orElseThrow(() -> new ResourceNotFoundException("LoanCardMaster", "Loan Id", loanId));
 		
@@ -101,7 +104,7 @@ public class LoanCardMasterServiceImpl implements LoanCardMasterService{
 
 	@Override
 	public LoanCardMasterDto getByLoanId(int LoanId) {
-		modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 	LoanCardMaster loanCardMaster = loanCardMasterRepo.findByLoanId(LoanId).orElseThrow(() -> new ResourceNotFoundException("LoanId", "Loan Id", LoanId));
 		
 		return modelMapper.map(loanCardMaster, LoanCardMasterDto.class);
