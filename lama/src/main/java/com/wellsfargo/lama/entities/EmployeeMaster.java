@@ -23,16 +23,19 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "employee_master")
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
 public class EmployeeMaster {
 	
+	
+
 	@Id
 	@Column(name = "employee_id",nullable = false)
 	private int employeeId;
@@ -62,7 +65,7 @@ public class EmployeeMaster {
 			CascadeType.DETACH, CascadeType.REFRESH })
 	private List<EmployeeIssueDetails> employeeIssueDetails;
 
-	@JsonProperty
+//	@JsonProperty
 	@JsonIgnore
 	@JsonManagedReference
 	@OneToMany(mappedBy = "employeeMaster", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,

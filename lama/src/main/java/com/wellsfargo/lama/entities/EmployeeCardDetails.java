@@ -22,6 +22,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "employee_card_details")
@@ -29,7 +30,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@ToString
 public class EmployeeCardDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -26,11 +26,14 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
 @Table(name ="employee_issue_details")
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeIssueDetails {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false, name = "issue_id")
@@ -54,7 +57,7 @@ public class EmployeeIssueDetails {
 	private String issueDate;
 	
 	@Column(nullable = false, name = "return_date")
-	private String returnDate;
+	private String durationInMonths;
 	
 	@Column(nullable = false, name = "is_approved")
 	private int isApproved;
