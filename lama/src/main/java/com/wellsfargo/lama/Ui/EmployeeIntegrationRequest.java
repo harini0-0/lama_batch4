@@ -12,7 +12,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeIssueRequest {
+public class EmployeeIntegrationRequest {
 	private int employeeId;
 	private int itemId;
 	private String loanType;

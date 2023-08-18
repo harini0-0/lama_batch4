@@ -65,7 +65,7 @@ public class EmployeeMaster {
 			CascadeType.DETACH, CascadeType.REFRESH })
 	private List<EmployeeIssueDetails> employeeIssueDetails;
 
-//	@JsonProperty
+	@JsonProperty
 	@JsonIgnore
 	@JsonManagedReference
 	@OneToMany(mappedBy = "employeeMaster", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,

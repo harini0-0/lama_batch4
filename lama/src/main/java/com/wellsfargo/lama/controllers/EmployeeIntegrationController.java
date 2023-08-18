@@ -8,22 +8,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wellsfargo.lama.Ui.EmployeeIssueRequest;
-import com.wellsfargo.lama.services.EmployeeIssueService;
+import com.wellsfargo.lama.Ui.EmployeeIntegrationRequest;
+import com.wellsfargo.lama.services.EmployeeIntegrationService;
 
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("api/v1/employee/applyloan")
 @AllArgsConstructor
-public class EmployeeIssueController {
+public class EmployeeIntegrationController {
 	@Autowired
-	private EmployeeIssueService employeeIssueService;
+	private EmployeeIntegrationService employeeIntegrationService;
 	
 	@PostMapping
-	public ResponseEntity<?> applyLoan(@RequestBody EmployeeIssueRequest employeeIssueRequest) {
-		employeeIssueService.applyLoan(employeeIssueRequest);
-//		System.out.println(tEmployeeIssueDto);
+	public ResponseEntity<?> applyLoan(@RequestBody EmployeeIntegrationRequest employeeIntegrationRequest) {
+		employeeIntegrationService.applyLoan(employeeIntegrationRequest);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Created Successfully");
 	}
 	
