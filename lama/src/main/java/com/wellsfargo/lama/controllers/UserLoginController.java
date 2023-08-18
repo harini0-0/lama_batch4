@@ -1,7 +1,9 @@
 package com.wellsfargo.lama.controllers;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -39,6 +41,10 @@ import com.wellsfargo.lama.Dto.UserLoginDto;
 import com.wellsfargo.lama.Ui.JwtResponse;
 import com.wellsfargo.lama.Ui.UserRequest;
 import com.wellsfargo.lama.Ui.UserResponse;
+import com.wellsfargo.lama.entities.ERole;
+import com.wellsfargo.lama.entities.Role;
+import com.wellsfargo.lama.entities.UserLogin;
+import com.wellsfargo.lama.exceptions.ResourceNotFoundException;
 import com.wellsfargo.lama.repositories.RoleRepository;
 import com.wellsfargo.lama.repositories.UserLoginRepo;
 import com.wellsfargo.lama.security.jwt.JwtUtils;
@@ -82,6 +88,19 @@ public class UserLoginController{
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
+		
+		
+//		Set<Role> roles_add = new HashSet<>();
+//		
+//		Role userRole = roleRepository.findByName(ERole.ROLE_USER).orElseThrow(() -> new ResourceNotFoundException("ROLE_USER", "Role Name", 0));
+//		roles_add.add(userRole);
+//		
+		int userId = loginRequest.getUserId();
+		
+		UserLogin userLogin = userLoginRepo.findById(userId).orElse(null);
+		System.out.println(userLogin.getRoles());
+//		userLogin.setRoles(roles_add);
+//		userLoginRepo.save(userLogin);
 
 		return ResponseEntity.ok(
 				new JwtResponse(jwt, userDetails.getUserId(), roles));

@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.JoinColumn;
 
 import lombok.AllArgsConstructor;
@@ -38,7 +41,8 @@ public class UserLogin {
 	@Column(nullable = false)
 	private String password;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@JsonProperty
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 }

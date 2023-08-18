@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.wellsfargo.lama.entities.Role;
+
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
