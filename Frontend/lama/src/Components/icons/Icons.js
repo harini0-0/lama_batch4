@@ -1,5 +1,31 @@
 import { createIcon } from "@chakra-ui/icons";
 
+export const WindowsLogo = createIcon({
+  displayName: "WindowsLogo",
+  viewBox: "0 0 19 18",
+  path: (
+    <g width='19' height='18' fill='none' xmlns='http://www.w3.org/2000/svg'>
+      <path
+        d='m0 2.537 7.705-.994.004 7.04-7.702.042L0 2.537Zm7.701 6.858.006 7.047L.006 15.44V9.348l7.695.047Zm.935-7.982L18.852 0v8.494l-10.216.077V1.413ZM18.854 9.46l-.002 8.456L8.636 16.55l-.015-7.106 10.233.016Z'
+        fill='currentColor'
+      />
+    </g>
+  ),
+});
+
+export const PeopleFill = createIcon({
+  displayName: "PeopleFill",
+  viewBox:"0 0 16 16",
+  path: (
+    <g xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" class="bi bi-person-fill">
+      <path 
+        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+        fill="currentColor"
+      />
+    </g>
+  ),
+});
+
 export const AdobexdLogo = createIcon({
   displayName: "AdobexdLogo",
   viewBox: "0 0 24 24",
@@ -59,18 +85,7 @@ export const AndroidLogo = createIcon({
     </g>
   ),
 });
-export const WindowsLogo = createIcon({
-  displayName: "WindowsLogo",
-  viewBox: "0 0 19 18",
-  path: (
-    <g width='19' height='18' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <path
-        d='m0 2.537 7.705-.994.004 7.04-7.702.042L0 2.537Zm7.701 6.858.006 7.047L.006 15.44V9.348l7.695.047Zm.935-7.982L18.852 0v8.494l-10.216.077V1.413ZM18.854 9.46l-.002 8.456L8.636 16.55l-.015-7.106 10.233.016Z'
-        fill='currentColor'
-      />
-    </g>
-  ),
-});
+
 
 export const AtlassianLogo = createIcon({
   displayName: "AtlassianLogo",

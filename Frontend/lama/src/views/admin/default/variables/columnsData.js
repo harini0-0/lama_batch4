@@ -16,21 +16,37 @@ export const columnsDataCheck = [
     accessor: "date",
   },
 ];
-export const columnsDataComplex = [
+export const customerColumnsDataComplex = [
   {
-    Header: "NAME",
-    accessor: "name",
+    Header: "Employee Id",
+    accessor: "employeeId",
   },
   {
-    Header: "STATUS",
-    accessor: "status",
+    Header: "Employee Name",
+    accessor: "employeeName",
   },
   {
-    Header: "DATE",
-    accessor: "date",
+    Header: "Designation",
+    accessor: "designation",
   },
   {
-    Header: "PROGRESS",
-    accessor: "progress",
+    Header: "Department",
+    accessor: "department",
   },
+  {
+    Header: "Gender",
+    accessor: "gender",
+  },
+  {
+    Header: "Date of Birth",
+    accessor: "dateOfBirth",
+  },
+  {
+    Header: "Date of Joining",
+    accessor: "dateOfJoining",
+  },
+  // {
+  //   Header: "Options",
+  //   accessor: "options",
+  // },
 ];

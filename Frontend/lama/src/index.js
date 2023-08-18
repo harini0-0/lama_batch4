@@ -9,6 +9,7 @@ import RtlLayout from './layouts/rtl';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme/theme';
 import { ThemeEditorProvider } from '@hypertheme-editor/chakra-ui';
+import CustomerMasterPage from "./Pages/customerMasterPage"
 
 ReactDOM.render(
 	<ChakraProvider theme={theme}>
@@ -19,7 +20,8 @@ ReactDOM.render(
 						<Route path={`/auth`} component={AuthLayout} />
 						<Route path={`/admin`} component={AdminLayout} />
 						<Route path={`/rtl`} component={RtlLayout} />
-						<Redirect from='/' to='/admin' />
+						<Route path={`/customermap`} component={CustomerMasterPage } />
+						<Redirect from='/' to='/admin/default' />
 					</Switch>
 				</HashRouter>
 			</ThemeEditorProvider>
