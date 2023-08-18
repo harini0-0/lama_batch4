@@ -34,6 +34,7 @@ public class UserLogin {
 	@Column(unique = true, name = "user_id", nullable = false)
 	private int userId;
 	
+	
 	@Column(nullable = false)
 	private String password;
 	
