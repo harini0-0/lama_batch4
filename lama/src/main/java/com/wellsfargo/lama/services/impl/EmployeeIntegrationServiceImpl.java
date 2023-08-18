@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.wellsfargo.lama.Dto.EmployeeCardDto;
 import com.wellsfargo.lama.Dto.EmployeeIssueDto;
-import com.wellsfargo.lama.Ui.EmployeeIssueRequest;
-import com.wellsfargo.lama.Ui.EmployeeIssueResponse;
+import com.wellsfargo.lama.Ui.EmployeeIntegrationRequest;
 import com.wellsfargo.lama.entities.EmployeeCardDetails;
 import com.wellsfargo.lama.entities.EmployeeIssueDetails;
 import com.wellsfargo.lama.entities.EmployeeMaster;
@@ -22,13 +21,13 @@ import com.wellsfargo.lama.repositories.EmployeeIssueRepo;
 import com.wellsfargo.lama.repositories.EmployeeMasterRepo;
 import com.wellsfargo.lama.repositories.ItemMasterRepo;
 import com.wellsfargo.lama.repositories.LoanCardMasterRepo;
-import com.wellsfargo.lama.services.EmployeeIssueService;
+import com.wellsfargo.lama.services.EmployeeIntegrationService;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class EmployeeIssueServiceImpl implements EmployeeIssueService{
+public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationService{
 	@Autowired
 	private EmployeeIssueRepo employeeIssueRepo;
 	@Autowired
@@ -42,13 +41,13 @@ public class EmployeeIssueServiceImpl implements EmployeeIssueService{
 	
 	private final ModelMapper modelMapper;
 	
-	public EmployeeIssueDto applyLoan(EmployeeIssueRequest employeeIssueRequest) {
+	public EmployeeIssueDto applyLoan(EmployeeIntegrationRequest employeeIntegrationRequest) {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-//		EmployeeIssueDto employeeIssueDto = modelMapper.map(employeeIssueRequest, EmployeeIssueDto.class);
+//		EmployeeIssueDto employeeIssueDto = modelMapper.map(employeeIntegrationRequest, EmployeeIssueDto.class);
 		EmployeeIssueDto employeeIssueDto = new EmployeeIssueDto(0, null, null, null, null, 0);
 		
-		int employeeId = employeeIssueRequest.getEmployeeId();
-		int itemId = employeeIssueRequest.getItemId();
+		int employeeId = employeeIntegrationRequest.getEmployeeId();
+		int itemId = employeeIntegrationRequest.getItemId();
 		
 		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElse(null);
 	
@@ -65,7 +64,7 @@ public class EmployeeIssueServiceImpl implements EmployeeIssueService{
 		
 		System.out.println(currentDate.toString());
 		
-		Optional<LoanCardMaster> loanObj = loanCardMasterRepo.findByLoanType(employeeIssueRequest.getLoanType());
+		Optional<LoanCardMaster> loanObj = loanCardMasterRepo.findByLoanType(employeeIntegrationRequest.getLoanType());
 		String durationInMonths = loanObj.get().getDurationInMonths();
 		employeeIssueDto.setDurationInMonths(durationInMonths);
 //		
