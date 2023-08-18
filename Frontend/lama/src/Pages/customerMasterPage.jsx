@@ -5,11 +5,12 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import LoadingComponent from "../components/LoadingComponent";
 
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import { SimpleGrid } from "@chakra-ui/react";
 import ColumnsTable from "../components/tableComplex";
 
 import { customerColumnsDataComplex } from "../views/admin/default/variables/columnsData";
+import { NavLink } from "react-router-dom/";
 //   import tableDataComplex from "./variables/tableDataComplex.json";
 
 
@@ -36,16 +37,18 @@ function CustomerMasterPage(){
 
     useEffect(() => {
         loadEmployeeData()
-    },[loaded])
+    },[loaded, loadEmployeeData])
     
     return(loaded ?
         
-        <div >
+        <div style={{padding: "10px"}}>
+            <NavLink to="/"><Button>Back</Button></NavLink>
             <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
                 <SimpleGrid columns={{ base: 1, md: 1, xl: 1 }} gap='20px' mb='20px'>
                     <ColumnsTable
                     columnsData={customerColumnsDataComplex}
                     tableData={employeeList}
+                    header = "Customer Master Table"
                     /> 
                 </SimpleGrid>
             </Box>

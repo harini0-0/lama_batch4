@@ -27,8 +27,8 @@ import {
   
   // Assets
   import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
-  export default function ColumnsTable(props) {
-    const { columnsData, tableData } = props;
+  export default function ColumnsTable({ columnsData, tableData, header }) {
+    // const { columnsData, tableData, header } = this.props;
   
     const columns = useMemo(() => columnsData, [columnsData]);
     const data = useMemo(() => tableData, [tableData]);
@@ -67,7 +67,7 @@ import {
             fontSize='22px'
             fontWeight='700'
             lineHeight='100%'>
-            Complex Table
+            {header}
           </Text>
           <Menu />
         </Flex>
