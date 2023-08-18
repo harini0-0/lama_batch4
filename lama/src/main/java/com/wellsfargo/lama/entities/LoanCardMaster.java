@@ -19,12 +19,18 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wellsfargo.lama.repositories.LoanCardMasterRepo;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "loan_card_master")
 public class LoanCardMaster {
 	@Id

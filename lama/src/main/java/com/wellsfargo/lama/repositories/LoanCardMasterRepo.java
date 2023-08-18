@@ -7,4 +7,5 @@ import com.wellsfargo.lama.entities.LoanCardMaster;
 
 public interface LoanCardMasterRepo extends JpaRepository<LoanCardMaster, Integer> {
 	Optional<LoanCardMaster> findByLoanId(int loanId);
+	Optional<LoanCardMaster> findByLoanType(String loanType);
 }
