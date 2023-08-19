@@ -25,7 +25,7 @@ import java.rmi.ServerException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +50,7 @@ import com.wellsfargo.lama.repositories.UserLoginRepo;
 import com.wellsfargo.lama.security.jwt.JwtUtils;
 
 
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("api/v1/auth")
 @AllArgsConstructor

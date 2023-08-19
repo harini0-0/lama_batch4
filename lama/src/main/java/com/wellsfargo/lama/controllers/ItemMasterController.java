@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.AfterDomainEventPublication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import com.wellsfargo.lama.entities.ItemMaster;
 import com.wellsfargo.lama.exceptions.ApiResponse;
 import com.wellsfargo.lama.services.ItemMasterService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("api/v1/admin/items")
 public class ItemMasterController {
