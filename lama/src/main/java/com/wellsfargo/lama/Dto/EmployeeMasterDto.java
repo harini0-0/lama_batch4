@@ -10,6 +10,10 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@ToString
 public class EmployeeMasterDto {
 
 	@Id

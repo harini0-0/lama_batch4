@@ -1,10 +1,12 @@
 package com.wellsfargo.lama.Dto;
 
+import java.util.Date;
+
 import com.wellsfargo.lama.entities.EmployeeMaster;
 import com.wellsfargo.lama.entities.ItemMaster;
+import com.wellsfargo.lama.entities.LoanCardMaster;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,11 +17,9 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeIssueDto {
-	private int issueId;
+public class EmployeeCardDto {
+	private int id;
+	private String cardIssueDate;
 	private EmployeeMaster employeeMaster;
-	private ItemMaster itemMaster;
-	private String issueDate;
-	private String durationInMonths;
-	private int isApproved;
+	private LoanCardMaster loanCardMaster;
 }
