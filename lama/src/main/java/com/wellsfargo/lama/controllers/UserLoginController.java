@@ -76,6 +76,7 @@ public class UserLoginController{
 	@Autowired
 	JwtUtils jwtUtils;
 
+	@CrossOrigin("*")
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody UserRequest loginRequest) {
 
