@@ -86,7 +86,7 @@ export default function TotalSpent(props) {
             textAlign='start'
             fontWeight='700'
             lineHeight='100%'>
-            $37.5K
+            Total Issued Loan 
           </Text>
           <Flex align='center' mb='20px'>
             <Text
@@ -95,14 +95,14 @@ export default function TotalSpent(props) {
               fontWeight='500'
               mt='4px'
               me='12px'>
-              Total Spent
+              Current month
             </Text>
-            <Flex align='center'>
+            {/* <Flex align='center'>
               <Icon as={RiArrowUpSFill} color='green.500' me='2px' mt='2px' />
               <Text color='green.500' fontSize='sm' fontWeight='700'>
                 +2.45%
               </Text>
-            </Flex>
+            </Flex> */}
           </Flex>
 
           <Flex align='center'>

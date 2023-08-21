@@ -61,7 +61,7 @@ export default function UserReports() {
             />
           }
           name='Customer Data Management'
-          routeTo='/'
+          routeTo='/customermap'
           // value='$350.4'
         />
         <MiniButtonCards
@@ -90,7 +90,7 @@ export default function UserReports() {
             />
           }
           name='Loan Card Management'
-          routeTo='/customermap'
+          routeTo='/'
           // value='$350.4'
         />
         {/* <MiniStatistics
@@ -118,7 +118,7 @@ export default function UserReports() {
             />
           }
           name='Total no of Loans'
-          value='2351'
+          value='497'
         />
         <MiniStatistics
           startContent={
@@ -130,7 +130,7 @@ export default function UserReports() {
             />
           }
           name='Approved Loans'
-          value='2209'
+          value='378'
         />
         <MiniStatistics
           startContent={
@@ -144,7 +144,7 @@ export default function UserReports() {
             />
           }
           name='Unapproved'
-          value='142'
+          value='119'
         />
       </SimpleGrid>
 
