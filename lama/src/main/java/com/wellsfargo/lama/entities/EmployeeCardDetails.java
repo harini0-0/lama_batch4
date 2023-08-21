@@ -22,6 +22,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "employee_card_details")
@@ -29,14 +30,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@ToString
 public class EmployeeCardDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "card_issue_date", nullable = false)
-	private Date cardIssueDate;
+	private String cardIssueDate;
 	
 	
 //	Dropped the previously made employee master table, added the jsonbackreferences and built the code

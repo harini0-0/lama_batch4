@@ -22,11 +22,19 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "item_master")
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemMaster {
+	@Override
+	public String toString() {
+		return "ItemMaster [itemId=" + itemId + ", itemDescription=" + itemDescription + ", issueStatus=" + issueStatus
+				+ ", itemMake=" + itemMake + ", itemCategory=" + itemCategory + ", itemValuation=" + itemValuation
+				+ "]";
+	}
+
 	@Id
 	@Column(nullable = false, length = 6, name = "item_id")
 	private int itemId;

@@ -10,6 +10,9 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import lombok.ToString;
+
+@ToString
 public class LoanCardMasterDto {
 
 	@Id
