@@ -1,0 +1,9 @@
+.employeeMenu{
+    display: flex;
+    flex-direction: column;
+}
+
+.employeeOptions{
+    display: flex;
+    flex-direction: row;
+}

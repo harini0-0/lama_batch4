@@ -1,0 +1,20 @@
+.statcard{
+    /* background-color: beige; */
+    /* border-color: rgb(78, 74, 74); */
+    /* color: grey; */
+    /* width: 250px;
+    height: 250px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.simpleCard{
+    margin: 10px
+}
+
+.adminOptions{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
