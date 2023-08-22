@@ -15,6 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 // import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 // import SideBar from "./Sidebar";
 import { useHistory } from "react-router-dom";
+import { privateAxios } from "../services/helper";
 
 function AddCustomerComponent(){
 //   const dispatch = useDispatch();
@@ -28,8 +29,8 @@ function AddCustomerComponent(){
   const [designation, setDesignation] = useState("");
   const [department, setDepartment] = useState("");
   const [gender, setGender] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState(new Date());
-  const [dateOfJoining, setDateOfJoining] = useState(new Date());
+  const [dateOfBirth, setDateOfBirth] = useState();
+  const [dateOfJoining, setDateOfJoining] = useState();
   const [error, setError] = useState(null)
   const [isCreated, setIsCreated] = useState(false)
   
@@ -72,7 +73,7 @@ function AddCustomerComponent(){
       },
   };
 
-    await axios.post(`http://localhost:8181/api/v1/admin/employee/`, myForm, config)
+    await privateAxios.post(`/admin/employee/`, myForm, config)
     .then((response) => {
       console.log(response.data)
       setIsCreated(true)
@@ -179,6 +180,7 @@ function AddCustomerComponent(){
               <input
                 type="date"
                 placeholder="Date of Birth"
+                
                 value={dateOfBirth}
                 required
                 onChange={(e) => setDateOfBirth(e.target.value)}

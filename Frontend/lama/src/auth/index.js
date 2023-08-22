@@ -15,7 +15,7 @@ export const isLoggedIn = () => {
   
   //doLogout=> remove from localStorage
   
-  export const doLogout = (next) => {
+  export const doLogout = async (next) => {
     localStorage.removeItem("data");
     next()
   };
@@ -23,7 +23,7 @@ export const isLoggedIn = () => {
   //get currentUser
   export const getCurrentUserDetail = () => {
     if (isLoggedIn()) {
-      return JSON.parse(localStorage.getItem("data")).user;
+      return JSON.parse(localStorage.getItem("data")).id;
     } else {
       return undefined;
     }
@@ -31,8 +31,10 @@ export const isLoggedIn = () => {
   
   export const getToken=()=>{
     if(isLoggedIn()){
-      return JSON.parse(localStorage.getItem("data")).token
+      const token = JSON.parse(localStorage.getItem("data")).accessToken
+      return token; 
     }else{
+      console.log("Not logged In")
       return null;
     }
   }

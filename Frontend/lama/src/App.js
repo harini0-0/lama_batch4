@@ -20,7 +20,10 @@ import { ChakraProvider } from '@chakra-ui/react';
 import AddCustomerComponent from './Pages/AddCustomerComponent';
 import UpdateCustomerComponent from './Pages/UpdateCustomerComponent';
 import { ThemeEditorProvider } from '@hypertheme-editor/chakra-ui';
+import { isLoggedIn } from './auth';
 function App() {
+
+ const loggedIn = isLoggedIn()	
   return (
 	<HashRouter>
 		<Switch>
