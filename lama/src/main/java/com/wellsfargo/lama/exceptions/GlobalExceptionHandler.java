@@ -28,4 +28,13 @@ public class GlobalExceptionHandler {
 		ApiResponse apiResponse = new ApiResponse(messageString, false);
 		return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.CONFLICT);
 	}
+	
+	@ExceptionHandler(ItemNotFoundException.class)
+	public ResponseEntity<ApiResponse> itemNotFoundExceptionHandler(ItemNotFoundException ex) {
+		String messageString = ex.getMessage();
+		ApiResponse apiResponse = new ApiResponse(messageString, false);
+		return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.CONFLICT);
+	}
+	
+	
 }
