@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.wellsfargo.lama.Dto.ItemMasterDto;
 import com.wellsfargo.lama.entities.ItemMaster;
+import com.wellsfargo.lama.exceptions.ItemNotFoundException;
 import com.wellsfargo.lama.exceptions.ResourceAlreadyExistsException;
 import com.wellsfargo.lama.repositories.ItemMasterRepo;
 import com.wellsfargo.lama.services.ItemMasterService;
@@ -59,7 +60,8 @@ public class ItemMasterServiceImpl implements ItemMasterService {
 	}
 	
 	public ItemMasterDto udateItem(ItemMaster item, int itemId) {
-		ItemMaster itemMaster = itemMasterRepo.findByItemId(itemId).get();
+		ItemMaster itemMaster = itemMasterRepo.findByItemId(itemId).orElseThrow(
+				() -> new ItemNotFoundException("Item Master with Item Id not found", itemId));
 		itemMaster.setIssueStatus(item.getIssueStatus());
 		itemMaster.setItemCategory(item.getItemCategory());
 		itemMaster.setItemDescription(item.getItemDescription());
@@ -79,7 +81,7 @@ public class ItemMasterServiceImpl implements ItemMasterService {
 	}
 	
 	public void deleteItem(int itemId) {
-		ItemMaster itemMaster = itemMasterRepo.findByItemId(itemId).get();
+		ItemMaster itemMaster = itemMasterRepo.findByItemId(itemId).orElseThrow(() -> new ItemNotFoundException("Item Master with Item Id not found", itemId));
 		itemMasterRepo.delete(itemMaster);
 	}
 }
