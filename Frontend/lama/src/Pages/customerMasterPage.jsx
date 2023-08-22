@@ -11,6 +11,7 @@ import ColumnsTable from "../components/tableComplex";
 
 import { customerColumnsDataComplex } from "../views/admin/default/variables/columnsData";
 import { NavLink } from "react-router-dom/";
+import { privateAxios } from "../services/helper";
 //   import tableDataComplex from "./variables/tableDataComplex.json";
 
 
@@ -23,9 +24,9 @@ function CustomerMasterPage(){
 
         try{
         // setLoader(false)
-        const response = await axios.get("http://localhost:8181/api/v1/admin/employee/")
+        const response = await privateAxios.get("/admin/employee/")
         .then((response) => {
-            // console.log(response.data); 
+            console.log(response.data); 
             setEmployeeList(response.data);
             setLoader(true);
             // console.log("employeeList",employeeList);
