@@ -26,7 +26,7 @@ function CustomerMasterPage(){
         // setLoader(false)
         const response = await privateAxios.get("/admin/employee/")
         .then((response) => {
-            console.log(response.data); 
+            // console.log(response.data); 
             setEmployeeList(response.data);
             setLoader(true);
             // console.log("employeeList",employeeList);

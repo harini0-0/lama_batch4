@@ -13,15 +13,14 @@ export const privateAxios = axios.create({
 });
 
 privateAxios.interceptors.request.use(
-  (config) => {
+(config) => {
     const token = getToken();
-
     if (token) {
-      config.headers.common.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `Bearer ${token}`;
       // console.log(config);
     }
 
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => { console.log("Error helper"); Promise.reject(error) }
 );

@@ -32,8 +32,9 @@ export const isLoggedIn = () => {
   export const getToken=()=>{
     if(isLoggedIn()){
       const token = JSON.parse(localStorage.getItem("data")).accessToken
-      console.log("token", token)
+      return token; 
     }else{
+      console.log("Not logged In")
       return null;
     }
   }
