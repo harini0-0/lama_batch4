@@ -77,7 +77,7 @@ export default function UserReports() {
             />
           }
           name='Items Master Data'
-          routeTo='/'
+          routeTo='/itemmap'
           routeToAdd='/item/add'
         />
         <MiniButtonCards

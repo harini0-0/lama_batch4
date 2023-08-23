@@ -50,3 +50,31 @@ export const customerColumnsDataComplex = [
   //   accessor: "options",
   // },
 ];
+
+export const itemColumnsDataComplex = [
+  {
+    Header: "Item Id",
+    accessor: "itemId",
+  },
+  {
+    Header: "Item Description",
+    accessor: "itemDescription",
+  },
+  {
+    Header: "Issue Status",
+    accessor: "issueStatus",
+  },
+  {
+    Header: "Item Make",
+    accessor: "itemMake",
+  },
+  {
+    Header: "Item Category",
+    accessor: "itemCategory",
+  },
+  {
+    Header: "Item Valuation",
+    accessor: "itemValuation",
+  },
+];
+  

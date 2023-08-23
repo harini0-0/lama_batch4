@@ -8,6 +8,8 @@ import com.wellsfargo.lama.entities.ItemMaster;
 public interface ItemMasterService {
 	List<ItemMasterDto> getAllItems();
 	
+	ItemMasterDto getItem(int itemId);
+	
 	void addItems(ItemMaster item);
 	
 	ItemMasterDto udateItem(ItemMaster item, int itemId);

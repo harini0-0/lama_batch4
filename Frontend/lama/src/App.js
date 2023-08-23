@@ -3,6 +3,7 @@
 // import Home from './Pages/Home';
 // import AdminPage from './Pages/AdminLandingPage';
 import CustomerMasterPage from './Pages/customerMasterPage';
+import ItemMasterPage from './Pages/itemMasterPage';
 // import LoginPage from './Pages/Login';
 import AdminLayout from './layouts/admin/index.js';
 import AuthLayout from "./layouts/auth/index.js";
@@ -19,8 +20,10 @@ import { ChakraProvider } from '@chakra-ui/react';
 // import theme from 'theme/theme';
 import AddCustomerComponent from './Pages/AddCustomerComponent';
 import UpdateCustomerComponent from './Pages/UpdateCustomerComponent';
+import UpdateItemMasterPage from './Pages/UpdateItemMasterPage';
 import { ThemeEditorProvider } from '@hypertheme-editor/chakra-ui';
 import { isLoggedIn } from './auth';
+import AddItemMaster from './Pages/AddItemMaster';
 function App() {
 
  const loggedIn = isLoggedIn()	
@@ -33,6 +36,9 @@ function App() {
 			<Route path={`/customermap`} component={CustomerMasterPage } />
 			<Route path={`/employee/add`} component={AddCustomerComponent } />
 			<Route path="/employee/:id" component={UpdateCustomerComponent } />
+			<Route path={`/itemmap`} component={ItemMasterPage} />
+			<Route path={`/item/add`} component={AddItemMaster} />
+			<Route path="/item/:id" component={UpdateItemMasterPage} />
 			<Redirect from='/' to='/admin/default' />
 		</Switch>
 	</HashRouter>

@@ -14,6 +14,7 @@ import com.wellsfargo.lama.Dto.ItemMasterDto;
 import com.wellsfargo.lama.entities.ItemMaster;
 import com.wellsfargo.lama.exceptions.ItemNotFoundException;
 import com.wellsfargo.lama.exceptions.ResourceAlreadyExistsException;
+import com.wellsfargo.lama.exceptions.ResourceNotFoundException;
 import com.wellsfargo.lama.repositories.ItemMasterRepo;
 import com.wellsfargo.lama.services.ItemMasterService;
 
@@ -47,6 +48,23 @@ public class ItemMasterServiceImpl implements ItemMasterService {
 //		System.out.println(items);
 		return itemDtos;
 //		return null;
+	}
+	
+	public ItemMasterDto getItem(int itemId) {
+		ItemMaster item = itemMasterRepo.findByItemId(itemId).orElse(null);
+		if(item == null) {
+			throw new ResourceNotFoundException("ItemMaster", "Item Id", itemId);
+		}
+		
+		ItemMasterDto itemDto = new ItemMasterDto();
+		itemDto.setIssueStatus(item.getIssueStatus());
+		itemDto.setItemCategory(item.getItemCategory());
+		itemDto.setItemDescription(item.getItemDescription());
+		itemDto.setItemId(item.getItemId());
+		itemDto.setItemMake(item.getItemMake());
+		itemDto.setItemValuation(item.getItemValuation());
+		
+		return itemDto;
 	}
 	
 	public void addItems(ItemMaster item) {
