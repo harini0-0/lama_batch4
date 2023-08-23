@@ -18,15 +18,20 @@ import { ItemContent } from '../menu/ItemContent';
 import { SearchBar } from '../navbar/searchBar/SearchBar';
 import { SidebarResponsive } from '../sidebar/Sidebar';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 // Assets
 import navImage from '../../assets/img/layout/Navbar.png';
 import { MdNotificationsNone, MdInfoOutline } from 'react-icons/md';
 import { FaEthereum } from 'react-icons/fa';
 import routes from '../../routes.js';
 import { ThemeEditor } from './ThemeEditor';
+import { doLogout } from '../../auth';
+import { useHistory } from 'react-router-dom';
+import userContext from '../../contexts/userContext';
 export default function HeaderLinks(props) {
+	const userContextData = useContext(userContext)
 	const { secondary } = props;
+	const history = useHistory()
 	// Chakra Color Mode
 	const navbarIcon = useColorModeValue('gray.400', 'white');
 	let menuBg = useColorModeValue('white', 'navy.800');
@@ -40,6 +45,22 @@ export default function HeaderLinks(props) {
 		'14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
 		'14px 17px 40px 4px rgba(112, 144, 176, 0.06)'
 	);
+
+	const handleLogout = () => {
+		console.log("logout enters")
+		  doLogout(() => {
+			//logged out
+			// setLogin(false)
+			userContextData.setUser({
+				data: null,
+				login: false
+			})
+  
+			history.push("/auth/sign-in")
+		})
+	  }
+
+
 	const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
 	return (
 		<Flex
@@ -207,7 +228,7 @@ export default function HeaderLinks(props) {
 							borderRadius="8px"
 							px="14px">
 							{/* <Text fontSize="sm">Log out</Text> */}
-							<Button>Log out</Button>
+							<Button onClick={handleLogout}>Log out</Button>
 						</MenuItem>
 					</Flex>
 				</MenuList>

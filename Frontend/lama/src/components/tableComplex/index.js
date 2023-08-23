@@ -33,6 +33,7 @@ import {
   
   // Assets
   import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
+import { privateAxios } from "../../services/helper";
   export default function ColumnsTable({ columnsData, tableData, header }) {
 
     const history = useHistory()
@@ -74,7 +75,7 @@ import {
 
     const deleteEmployee = async (id) => {
       // console.log("http://localhost:8181/api/v1/admin/employee/"+id)
-        await axios.delete("http://localhost:8181/api/v1/admin/employee/"+id)
+        await privateAxios.delete("/admin/employee/"+id)
         .then((response) => {setIsDeleted(true); console.log(response.data)})
         .catch((err) => {setDeleteError(err.message); console.log(err.message)})
 

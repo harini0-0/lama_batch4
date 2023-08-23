@@ -25,7 +25,10 @@ import AddLoanComponent from './Pages/AddLoanComponent';
 import UpdateLoanComponent from './Pages/UpdateLoanComponent';
 
 import { ThemeEditorProvider } from '@hypertheme-editor/chakra-ui';
+import { isLoggedIn } from './auth';
 function App() {
+
+ const loggedIn = isLoggedIn()	
   return (
 	<HashRouter>
 		<Switch>
