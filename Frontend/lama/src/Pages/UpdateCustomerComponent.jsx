@@ -15,6 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 // import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 // import SideBar from "./Sidebar";
 import { useHistory, useParams } from "react-router-dom";
+import { privateAxios } from "../services/helper";
 
 function UpdateCustomerComponent(){
 //   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ function UpdateCustomerComponent(){
   ];
 
   const getEmployee = async (id) => {
-    await axios.get("http://localhost:8181/api/v1/admin/employee/"+id)
+    await privateAxios.get("http://localhost:8181/api/v1/admin/employee/"+id)
     .then((response) => {
         setEmployee(response.data)
         console.log(response.data)
@@ -98,7 +99,7 @@ function UpdateCustomerComponent(){
       },
   };
 
-    await axios.put(`http://localhost:8181/api/v1/admin/employee/`+employeeId, myForm, config)
+    await privateAxios.put(`http://localhost:8181/api/v1/admin/employee/`+employeeId, myForm, config)
     .then((response) => {
       console.log(response.data)
       setIsUpdated(true)
