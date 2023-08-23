@@ -5,6 +5,7 @@
 import CustomerMasterPage from './Pages/customerMasterPage';
 // import LoginPage from './Pages/Login';
 import AdminLayout from './layouts/admin/index.js';
+import EmployeeLayout from './layouts/employee/index.js'
 import AuthLayout from "./layouts/auth/index.js";
 import RtlLayout from "./layouts/rtl/index.js"
 // import EmployeePage from './Pages/EmployeeLandingPage';
@@ -21,6 +22,7 @@ import AddCustomerComponent from './Pages/AddCustomerComponent';
 import UpdateCustomerComponent from './Pages/UpdateCustomerComponent';
 import { ThemeEditorProvider } from '@hypertheme-editor/chakra-ui';
 import { isLoggedIn } from './auth';
+import ApplyForLoan from './Pages/ApplyForLoan';
 function App() {
 
  const loggedIn = isLoggedIn()	
@@ -28,12 +30,15 @@ function App() {
 	<HashRouter>
 		<Switch>
 			<Route path={`/auth`} component={AuthLayout} />
+			<Route path={`/loan/apply`} component={ApplyForLoan} />
+			{/* <Route path={`/apply`} component={Apply} /> */}
 			<Route path={`/admin`} component={AdminLayout} />
+			<Route path={`/employee`} component={EmployeeLayout} />
 			<Route path={`/rtl`} component={RtlLayout} />
 			<Route path={`/customermap`} component={CustomerMasterPage } />
 			<Route path={`/employee/add`} component={AddCustomerComponent } />
 			<Route path="/employee/:id" component={UpdateCustomerComponent } />
-			<Redirect from='/' to='/admin/default' />
+			<Redirect from='/' to='/employee/default' />
 		</Switch>
 	</HashRouter>
 
