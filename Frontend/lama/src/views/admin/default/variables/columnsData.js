@@ -50,3 +50,19 @@ export const customerColumnsDataComplex = [
   //   accessor: "options",
   // },
 ];
+
+export const loanColumnsDataComplex = [
+  {
+    Header: "Loan Id",
+    accessor: "loanId",
+  },
+  {
+    Header: "Loan Type",
+    accessor: "loanType",
+  },
+  {
+    Header: "Duration",
+    accessor: "duration",
+  }
+  
+];

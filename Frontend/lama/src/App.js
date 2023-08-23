@@ -3,6 +3,7 @@
 // import Home from './Pages/Home';
 // import AdminPage from './Pages/AdminLandingPage';
 import CustomerMasterPage from './Pages/customerMasterPage';
+import LoanMasterPage from './Pages/loanMasterPage';
 // import LoginPage from './Pages/Login';
 import AdminLayout from './layouts/admin/index.js';
 import AuthLayout from "./layouts/auth/index.js";
@@ -19,6 +20,10 @@ import { ChakraProvider } from '@chakra-ui/react';
 // import theme from 'theme/theme';
 import AddCustomerComponent from './Pages/AddCustomerComponent';
 import UpdateCustomerComponent from './Pages/UpdateCustomerComponent';
+
+import AddLoanComponent from './Pages/AddLoanComponent';
+import UpdateLoanComponent from './Pages/UpdateLoanComponent';
+
 import { ThemeEditorProvider } from '@hypertheme-editor/chakra-ui';
 function App() {
   return (
@@ -28,8 +33,11 @@ function App() {
 			<Route path={`/admin`} component={AdminLayout} />
 			<Route path={`/rtl`} component={RtlLayout} />
 			<Route path={`/customermap`} component={CustomerMasterPage } />
+			<Route path={`/loanmap`} component={LoanMasterPage } />
 			<Route path={`/employee/add`} component={AddCustomerComponent } />
 			<Route path="/employee/:id" component={UpdateCustomerComponent } />
+			<Route path={`/loan/add`} component={AddLoanComponent } />
+			<Route path="/loan/:id" component={UpdateLoanComponent } />
 			<Redirect from='/' to='/admin/default' />
 		</Switch>
 	</HashRouter>
