@@ -26,6 +26,7 @@ import {
   import Card from "../card/Card";
   import Menu from "../menu/MainMenu";
   import axios from 'axios';
+  import {privateAxios} from "../../services/helper";
   import { useHistory } from "react-router-dom";
   import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
   export default function ColumnsTable({ columnsData, tableData, header }) {
@@ -62,7 +63,7 @@ import {
     const [deleteError, setDeleteError] = useState("")
 
     const deleteLoan = async (id) => {
-        await axios.delete("http://localhost:8181/api/v1/admin/loan/"+id)
+        await privateAxios.delete("/admin/loan/"+id)
         .then((response) => {setIsDeleted(true); console.log(response.data)})
         .catch((err) => {setDeleteError(err.message); console.log(err.message)})
     }
@@ -138,12 +139,13 @@ import {
           </Thead>
           <Tbody {...getTableBodyProps()}>
             {page.map((row, index) => {
+                console.log("row ",row)
               prepareRow(row);
               return (
                 <Tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
-                   
+                    // console.log("cell ",cell)
                       data = (
                         <Text color={textColor} fontSize='sm' fontWeight='700'>
                           {cell.value}

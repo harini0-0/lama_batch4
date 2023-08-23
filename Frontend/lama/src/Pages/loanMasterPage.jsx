@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import LoadingComponent from "../components/LoadingComponent";
-
+import {privateAxios} from '../services/helper';
 import { Box, Button } from "@chakra-ui/react";
 import { SimpleGrid } from "@chakra-ui/react";
-import ColumnsTable from "../components/tableComplex";
+import ColumnsTable from "../components/loanTable";
 
 import { loanColumnsDataComplex } from "../views/admin/default/variables/columnsData";
 import { NavLink } from "react-router-dom/";
@@ -18,7 +18,7 @@ function LoanMasterPage(){
 
         try{
         // setLoader(false)
-        const response = await axios.get("http://localhost:8181/api/v1/admin/loan/")
+        const response = await privateAxios.get("/admin/loan/")
         .then((response) => {
             // console.log(response.data); 
             setLoanList(response.data);

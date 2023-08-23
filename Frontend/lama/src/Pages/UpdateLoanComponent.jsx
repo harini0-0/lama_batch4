@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./AddCustomerComponent.css";
 import axios from "axios";
+import {privateAxios} from '../services/helper';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css'; 
 
@@ -29,7 +30,7 @@ function UpdateLoanComponent(){
   ];
 
   const getLoan = async (id) => {
-    await axios.get("http://localhost:8181/api/v1/admin/loan/"+id)
+    await privateAxios.get("/admin/loan/"+id)
     .then((response) => {
         setLoan(response.data)
         console.log(response.data)
@@ -46,7 +47,7 @@ function UpdateLoanComponent(){
     if(loan){
         setLoanId(loan.loanId)
         setLoanType(loan.loanType)
-        setDuration(loan.duration)
+        setDuration(loan.durationInMonths)
         
     }
     if(isUpdated){
@@ -69,7 +70,7 @@ function UpdateLoanComponent(){
 
     myForm.set("loanId", loanId);
     myForm.set("loanType", loanType);
-    myForm.set("duration", duration);
+    myForm.set("durationInMonths", duration);
    
 
     const config = {
@@ -78,7 +79,7 @@ function UpdateLoanComponent(){
       },
   };
 
-    await axios.put(`http://localhost:8181/api/v1/admin/loan/`+loanId, myForm, config)
+    await privateAxios.put(`/admin/loan/`+loanId, myForm, config)
     .then((response) => {
       console.log(response.data)
       setIsUpdated(true)
@@ -133,7 +134,7 @@ function UpdateLoanComponent(){
               {/* <StorageIcon /> */}
               <input
                 type="number"
-                placeholder="Duratioh"
+                placeholder="Duration"
                 value={duration}
                 required
                 onChange={(e) => setDuration(e.target.value)}

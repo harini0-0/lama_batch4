@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./AddCustomerComponent.css";
 import axios from "axios";
+import {privateAxios} from '../services/helper';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css'; 
 
@@ -42,7 +43,7 @@ function AddLoanComponent(){
 
     myForm.set("loanId", loanId);
     myForm.set("loanType", loanType);
-    myForm.set("duration", duration);
+    myForm.set("durationInMonths", duration);
 
 
     const config = {
@@ -51,7 +52,7 @@ function AddLoanComponent(){
       },
   };
 
-    await axios.post(`http://localhost:8181/api/v1/admin/loan/`, myForm, config)
+    await privateAxios.post(`/admin/loan/`, myForm, config)
     .then((response) => {
       console.log(response.data)
       setIsCreated(true)
@@ -108,7 +109,7 @@ function AddLoanComponent(){
               {/* <StorageIcon /> */}
               <input
                 type="number"
-                placeholder="Duratioh"
+                placeholder="Duration"
                 value={duration}
                 required
                 onChange={(e) => setDuration(e.target.value)}

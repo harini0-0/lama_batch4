@@ -62,7 +62,7 @@ export const loanColumnsDataComplex = [
   },
   {
     Header: "Duration",
-    accessor: "duration",
+    accessor: "durationInMonths",
   }
   
 ];
