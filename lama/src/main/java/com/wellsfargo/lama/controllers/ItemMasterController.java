@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.AfterDomainEventPublication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wellsfargo.lama.Dto.EmployeeItemsDto;
 import com.wellsfargo.lama.Dto.ItemMasterDto;
 import com.wellsfargo.lama.entities.ItemMaster;
 import com.wellsfargo.lama.exceptions.ApiResponse;
@@ -30,7 +32,7 @@ public class ItemMasterController {
 	@Autowired
 	private ItemMasterService itemMasterService;
 	
-	@GetMapping
+	@GetMapping()
 	public ResponseEntity<List<ItemMasterDto>> getAllItems() {
 		List<ItemMasterDto> allItems = itemMasterService.getAllItems();
 //		System.out.println(allItems.size());
@@ -39,6 +41,14 @@ public class ItemMasterController {
 //		modelMapper.map()
 //		return null;
 		return new ResponseEntity<List<ItemMasterDto>>(allItems,HttpStatus.OK);
+	}
+	
+	@GetMapping("/employeeItems/{employeeId}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<List<EmployeeItemsDto>> getEmployeeItems(@PathVariable int employeeId){
+		List<EmployeeItemsDto> employeeItems = itemMasterService.getEmployeeItems(employeeId);
+		return new ResponseEntity<List<EmployeeItemsDto>>(employeeItems, HttpStatus.OK);
+		
 	}
 	
 	@PostMapping
