@@ -8,6 +8,7 @@ import javax.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,6 +32,7 @@ public class LoanCardMasterController {
 	@Autowired
 	private LoanCardMasterService loanCardMasterService;
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/")
 	public ResponseEntity<LoanCardMasterDto> createLoan(@Valid @RequestBody LoanCardMasterDto loanCardMasterDto){
 	//	
@@ -38,26 +40,26 @@ public class LoanCardMasterController {
 //		EmployeeMasterDto addEmployeeDt = null;
 		return new ResponseEntity<LoanCardMasterDto>(addLoanDt, HttpStatus.CREATED);
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/")
 	public ResponseEntity<List<LoanCardMasterDto>> getAllLoans(){
 		List<LoanCardMasterDto> allLoanDtos = loanCardMasterService.getAllLoan();
 		
 		return new ResponseEntity<List<LoanCardMasterDto>>(allLoanDtos, HttpStatus.OK);
 	}	
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/{loanId}")
 	public ResponseEntity<LoanCardMasterDto> getLoanId(@PathVariable int loanId){
 		LoanCardMasterDto byLoanId = loanCardMasterService.getByLoanId(loanId);
 		return new ResponseEntity<LoanCardMasterDto>(byLoanId, HttpStatus.OK);
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/{loanId}")
 	public ResponseEntity<LoanCardMasterDto> updateLoan(@Validated @RequestBody LoanCardMasterDto loanCardMasterDto, @PathVariable Integer loanId){
 		LoanCardMasterDto updateLoanDto = loanCardMasterService.updateLoan(loanCardMasterDto, loanId);
 		return new ResponseEntity<LoanCardMasterDto>(updateLoanDto, HttpStatus.OK);
 	}
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/{loanId}")
 	public ApiResponse deleteLoan(@PathVariable int loanId) {
 		loanCardMasterService.deleteLoan(loanId);
