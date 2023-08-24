@@ -21,18 +21,24 @@ import AddCustomerComponent from './Pages/AddCustomerComponent';
 import UpdateCustomerComponent from './Pages/UpdateCustomerComponent';
 import { ThemeEditorProvider } from '@hypertheme-editor/chakra-ui';
 import { isLoggedIn } from './auth';
+import ProtectedRoute from './services/ProtectedRotue';
+
 function App() {
 
  const loggedIn = isLoggedIn()	
+ 
   return (
 	<HashRouter>
 		<Switch>
 			<Route path={`/auth`} component={AuthLayout} />
-			<Route path={`/admin`} component={AdminLayout} />
-			<Route path={`/rtl`} component={RtlLayout} />
-			<Route path={`/customermap`} component={CustomerMasterPage } />
-			<Route path={`/employee/add`} component={AddCustomerComponent } />
-			<Route path="/employee/:id" component={UpdateCustomerComponent } />
+			<ProtectedRoute path={`/admin`} component={
+				
+				AdminLayout
+				} />
+			<ProtectedRoute path={`/rtl`} component={RtlLayout} />
+			<ProtectedRoute path={`/customermap`} component={CustomerMasterPage} />
+			<ProtectedRoute path={`/employee/add`} component={AddCustomerComponent} />
+			<ProtectedRoute path="/employee/:id" component={UpdateCustomerComponent } />
 			<Redirect from='/' to='/admin/default' />
 		</Switch>
 	</HashRouter>
