@@ -92,7 +92,7 @@ export default function UserReports() {
             />
           }
           name='Loan Card Management'
-          routeTo='/'
+          routeTo='/loanmap'
           routeToAdd='/loan/add'
           // value='$350.4'
         />
