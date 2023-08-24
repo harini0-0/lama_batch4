@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,15 +20,12 @@ import com.wellsfargo.lama.Dto.EmployeeCardDto;
 import com.wellsfargo.lama.Dto.EmployeeIssueDto;
 import com.wellsfargo.lama.services.AdminApproveService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @CrossOrigin("*")
-@Getter
-@Setter
-@AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/admin/issues")
 public class AdminApproveController {

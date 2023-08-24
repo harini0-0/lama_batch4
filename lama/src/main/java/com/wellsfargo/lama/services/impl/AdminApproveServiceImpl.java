@@ -62,15 +62,15 @@ public class AdminApproveServiceImpl implements AdminApproveService{
 		
 		int employeeId = employeeIssueDto.getEmployeeId();
 		int itemId = employeeIssueDto.getItemId();
+//		System.out.println(employeeId + " " + itemId);
 		List<EmployeeIssueDetails> employeeIssueDetails = adminApproveRepo.findByEmployeeIdAndItemId(employeeId, itemId).orElseThrow(() -> new ResourceNotFoundException("EmployeeIssueDetails", "employeeId and itemId", 0));
-		
+//		System.out.println(employeeIssueDetails.size());
 		if(employeeIssueDetails.size() > 1)
 			throw new ApiException("There exists multiple Entries of the same employee and item");
 		EmployeeIssueDetails employeeIssue = employeeIssueDetails.get(0);
 		employeeIssue.setIsApproved(employeeIssueDto.getIsApproved());
 		EmployeeIssueDetails savedIssue = adminApproveRepo.save(employeeIssue);
-		
-		
+			
 		AdminApproveDto adminApproveDto = new AdminApproveDto();
 		adminApproveDto.setIssueId(savedIssue.getIssueId());
 		adminApproveDto.setEmployeeId(savedIssue.getEmployeeMaster().getEmployeeId());
