@@ -2,11 +2,13 @@ package com.wellsfargo.lama.services;
 
 import java.util.List;
 
+import com.wellsfargo.lama.Dto.EmployeeItemsDto;
 import com.wellsfargo.lama.Dto.ItemMasterDto;
 import com.wellsfargo.lama.entities.ItemMaster;
 
 public interface ItemMasterService {
 	List<ItemMasterDto> getAllItems();
+	List<EmployeeItemsDto> getEmployeeItems(int EmployeeId);
 	
 	void addItems(ItemMaster item);
 	

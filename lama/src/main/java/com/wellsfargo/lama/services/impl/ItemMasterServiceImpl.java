@@ -10,10 +10,15 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wellsfargo.lama.Dto.EmployeeIssueDto;
+import com.wellsfargo.lama.Dto.EmployeeItemsDto;
 import com.wellsfargo.lama.Dto.ItemMasterDto;
+import com.wellsfargo.lama.entities.EmployeeIssueDetails;
 import com.wellsfargo.lama.entities.ItemMaster;
 import com.wellsfargo.lama.exceptions.ItemNotFoundException;
 import com.wellsfargo.lama.exceptions.ResourceAlreadyExistsException;
+import com.wellsfargo.lama.exceptions.ResourceNotFoundException;
+import com.wellsfargo.lama.repositories.EmployeeIssueRepo;
 import com.wellsfargo.lama.repositories.ItemMasterRepo;
 import com.wellsfargo.lama.services.ItemMasterService;
 
@@ -21,7 +26,30 @@ import com.wellsfargo.lama.services.ItemMasterService;
 public class ItemMasterServiceImpl implements ItemMasterService {
 	@Autowired
 	private ItemMasterRepo itemMasterRepo;
+	@Autowired
+	private EmployeeIssueRepo employeeIssueRepo;
 	private ModelMapper modelMapper;
+	
+	public List<EmployeeItemsDto> getEmployeeItems(int EmployeeId){
+		List<EmployeeItemsDto> itemsDtos = new ArrayList<EmployeeItemsDto>();
+		 List<EmployeeIssueDetails> findEmployeeItems = employeeIssueRepo.findEmployeeItems(EmployeeId).orElseThrow(() -> new ResourceNotFoundException("EmployeeId", "Employee Id", EmployeeId));
+		 for (int i=0;i< findEmployeeItems.size();i++) {
+			 ItemMaster itemMaster = findEmployeeItems.get(i).getItemMaster();
+			 EmployeeItemsDto issueDto = new EmployeeItemsDto();
+			 issueDto.setIssueId(findEmployeeItems.get(i).getIssueId());
+			 issueDto.setItemId(itemMaster.getItemId());
+			 issueDto.setItemDescription(itemMaster.getItemDescription());
+			 issueDto.setItemMake(itemMaster.getItemMake());
+			 issueDto.setIssueStatus(itemMaster.getIssueStatus());
+			 issueDto.setItemCategory(itemMaster.getItemCategory());
+			 issueDto.setItemValuation(itemMaster.getItemValuation());
+			 itemsDtos.add(issueDto);
+			 
+		 }
+		 
+//		List<EmployeeIssueDto> issueDtos = new ArrayList<EmployeeIssueDto>
+		return itemsDtos;
+	}
 	
 	public List<ItemMasterDto> getAllItems() {
 		List<ItemMaster> items = itemMasterRepo.findAll();
