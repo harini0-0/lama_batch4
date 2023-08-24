@@ -12,4 +12,7 @@ public interface AdminApproveRepo extends JpaRepository<EmployeeIssueDetails, In
 	
 	@Query(value = "select * from employee_issue_details u where u.employee_id = :employeeId and u.item = :itemId",nativeQuery = true)
 	Optional<List<EmployeeIssueDetails>> findByEmployeeIdAndItemId(int employeeId, int itemId);
+	
+//	@Query(value = "select * from employee_issue_details",nativeQuery = true)
+//	List<EmployeeIssueDetails> findAllIssues();
 }

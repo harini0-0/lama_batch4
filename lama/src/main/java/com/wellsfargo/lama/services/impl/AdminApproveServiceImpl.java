@@ -1,5 +1,6 @@
 package com.wellsfargo.lama.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,6 +9,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wellsfargo.lama.Dto.AdminApproveDto;
 import com.wellsfargo.lama.Dto.EmployeeIssueDto;
 import com.wellsfargo.lama.Dto.EmployeeMasterDto;
 import com.wellsfargo.lama.entities.EmployeeIssueDetails;
@@ -27,23 +29,40 @@ public class AdminApproveServiceImpl implements AdminApproveService{
 	private ModelMapper modelMapper;
 	
 	@Override
-	public List<EmployeeIssueDto> getAllIssues() {
+	public List<AdminApproveDto> getAllIssues() {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
 		List<EmployeeIssueDetails> issueDetails = adminApproveRepo.findAll();
-		List<EmployeeIssueDto> issueDtos = issueDetails.stream().map(issueDetail -> modelMapper.map(issueDetail, EmployeeIssueDto.class)).collect(Collectors.toList());
+		List<AdminApproveDto> adminApproveDtoList = new ArrayList<>();
 		
+		for(int i=0;i<issueDetails.size(); i++) {
+			EmployeeIssueDetails employeeIssueDetails = issueDetails.get(i);
+			
+			AdminApproveDto adminApproveDto = new AdminApproveDto();
+			
+			adminApproveDto.setEmployeeId(employeeIssueDetails.getEmployeeMaster().getEmployeeId());
+			adminApproveDto.setItemId(employeeIssueDetails.getItemMaster().getItemId());
+			adminApproveDto.setIssueId(employeeIssueDetails.getIssueId());
+			adminApproveDto.setDurationInMonths(employeeIssueDetails.getDurationInMonths());
+			adminApproveDto.setIssueDate(employeeIssueDetails.getIssueDate());
+			adminApproveDto.setIsApproved(employeeIssueDetails.getIsApproved());
+			
+			adminApproveDtoList.add(adminApproveDto);
+		}
 		
-		return issueDtos;
+//		System.out.println(issueDtos.get(0).getIssueDate());
+//		List<EmployeeIssueDto> issueDt = new ArrayList<>();
+		
+		return adminApproveDtoList;
 	}
 
 	@Override
-	public EmployeeIssueDto adminApproveLoan(EmployeeIssueDto employeeIssueDto) {
+	public AdminApproveDto adminApproveLoan(AdminApproveDto employeeIssueDto) {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
-		int employeeId = employeeIssueDto.getEmployeeMaster().getEmployeeId();
-		int itemId = employeeIssueDto.getItemMaster().getItemId();
-		List<EmployeeIssueDetails> employeeIssueDetails = adminApproveRepo.findByEmployeeIdAndItemId(employeeId, itemId).orElseThrow(() -> new ResourceNotFoundException("EmployeeIssueDetails", "employeeId and itemId", employeeIssueDto.getIssueId()));
+		int employeeId = employeeIssueDto.getEmployeeId();
+		int itemId = employeeIssueDto.getItemId();
+		List<EmployeeIssueDetails> employeeIssueDetails = adminApproveRepo.findByEmployeeIdAndItemId(employeeId, itemId).orElseThrow(() -> new ResourceNotFoundException("EmployeeIssueDetails", "employeeId and itemId", 0));
 		
 		if(employeeIssueDetails.size() > 1)
 			throw new ApiException("There exists multiple Entries of the same employee and item");
@@ -51,8 +70,16 @@ public class AdminApproveServiceImpl implements AdminApproveService{
 		employeeIssue.setIsApproved(employeeIssueDto.getIsApproved());
 		EmployeeIssueDetails savedIssue = adminApproveRepo.save(employeeIssue);
 		
-		EmployeeIssueDto ret = modelMapper.map(savedIssue, EmployeeIssueDto.class);
-		return ret;
+		
+		AdminApproveDto adminApproveDto = new AdminApproveDto();
+		adminApproveDto.setIssueId(savedIssue.getIssueId());
+		adminApproveDto.setEmployeeId(savedIssue.getEmployeeMaster().getEmployeeId());
+		adminApproveDto.setItemId(savedIssue.getItemMaster().getItemId());
+		adminApproveDto.setDurationInMonths(savedIssue.getDurationInMonths());
+		adminApproveDto.setIssueDate(savedIssue.getIssueDate());
+		adminApproveDto.setIsApproved(savedIssue.getIsApproved());
+		
+		return adminApproveDto;
 	}
 
 }

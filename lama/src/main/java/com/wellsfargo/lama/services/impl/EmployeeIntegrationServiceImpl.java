@@ -44,7 +44,7 @@ public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationServic
 	public EmployeeIssueDto applyLoan(EmployeeIntegrationRequest employeeIntegrationRequest) {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 //		EmployeeIssueDto employeeIssueDto = modelMapper.map(employeeIntegrationRequest, EmployeeIssueDto.class);
-		EmployeeIssueDto employeeIssueDto = new EmployeeIssueDto(0, null, null, null, null, 0);
+		EmployeeIssueDto employeeIssueDto = new EmployeeIssueDto(0,null, null, null, null, 0);
 		
 		int employeeId = employeeIntegrationRequest.getEmployeeId();
 		int itemId = employeeIntegrationRequest.getItemId();
