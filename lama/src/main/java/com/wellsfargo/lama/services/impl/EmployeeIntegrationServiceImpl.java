@@ -16,6 +16,7 @@ import com.wellsfargo.lama.entities.EmployeeIssueDetails;
 import com.wellsfargo.lama.entities.EmployeeMaster;
 import com.wellsfargo.lama.entities.ItemMaster;
 import com.wellsfargo.lama.entities.LoanCardMaster;
+import com.wellsfargo.lama.exceptions.EmployeeAndItemExist;
 import com.wellsfargo.lama.repositories.EmployeeCardRepo;
 import com.wellsfargo.lama.repositories.EmployeeIssueRepo;
 import com.wellsfargo.lama.repositories.EmployeeMasterRepo;
@@ -48,6 +49,12 @@ public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationServic
 		
 		int employeeId = employeeIntegrationRequest.getEmployeeId();
 		int itemId = employeeIntegrationRequest.getItemId();
+		
+		int isPresent = employeeIssueRepo.employeeItemQuery(employeeId, itemId);
+		if (isPresent > 0) {
+//			System.out.println("Successful " + isPresent);
+			throw new EmployeeAndItemExist("You have already applied for this item with item id: ", itemId);
+		}
 		
 		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElse(null);
 	
