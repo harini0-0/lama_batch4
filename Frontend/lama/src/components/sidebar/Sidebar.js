@@ -26,7 +26,7 @@ import PropTypes from "prop-types";
 import { IoMenuOutline } from "react-icons/io5";
 
 function Sidebar(props) {
-  const { routes } = props;
+  const { routes, dashboardName } = props;
 
   let variantChange = "0.2s linear";
   let shadow = useColorModeValue(

@@ -30,7 +30,7 @@ function NavbarComponent(props){
         
             <Navbar className="fixed-top nav2">
               <Container>
-                <Navbar.Brand href="#home">Loan Admin Management Application</Navbar.Brand>
+                <Navbar.Brand href="#home">Loan Employee Management Application</Navbar.Brand>
                 {props.page === '1' && <Button variant="secondary" onClick={handleLogout} >Logout</Button>}
               </Container>
       </Navbar>
