@@ -68,7 +68,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 		http.csrf(csrf -> csrf.disable())
 				.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeHttpRequests(auth -> auth.antMatchers("/api/v1/auth/**").permitAll()
+				.authorizeHttpRequests(auth -> auth.antMatchers("/api/v1/auth/**","/api/v1/admin/issues/**").permitAll()
 						.antMatchers("/api/v1/admin/employee/**").permitAll().anyRequest().authenticated());
 
 		http.authenticationProvider(authenticationProvider());
