@@ -2,7 +2,7 @@
 import { Portal, Box, useDisclosure, Text, Button, Link } from '@chakra-ui/react';
 import Footer from '../../components/footer/FooterAdmin.js';
 // Layout components
-import Navbar from '../../components/navbar/NavbarAdmin.js';
+import Navbar from '../../components/navbar/NavbarEmployee.js';
 import Sidebar from '../../components/sidebar/Sidebar.js';
 import { SidebarContext } from '../../contexts/SidebarContext';
 import React, { useState } from 'react';
@@ -11,14 +11,13 @@ import routes from '../../routes.js';
 
 // Custom Chakra theme
 export default function Dashboard(props) {
-	
 	const { ...rest } = props;
 	// states and functions
 	const [ fixed ] = useState(false);
 	const [ toggleSidebar, setToggleSidebar ] = useState(false);
 	// functions for changing the states from components
 	const getRoute = () => {
-		return window.location.pathname !== '/admin/full-screen-maps';
+		return window.location.pathname !== '/employee/full-screen-maps';
 	};
 	const getActiveRoute = (routes) => {
 		let activeRoute = 'Default Brand Text';
@@ -85,7 +84,7 @@ export default function Dashboard(props) {
 	};
 	const getRoutes = (routes) => {
 		return routes.map((prop, key) => {
-			if (prop.layout === '/admin') {
+			if (prop.layout === '/employee') {
 				return <Route path={prop.layout + prop.path} component={prop.component} key={key} />;
 			}
 			if (prop.collapse) {
@@ -109,7 +108,7 @@ export default function Dashboard(props) {
 						toggleSidebar,
 						setToggleSidebar
 					}}>
-					<Sidebar routes={routes} display='none' {...rest} dashboardName ="Admin" />
+					<Sidebar routes={routes} display='none' {...rest} dashboardName = "Employee" />
 					<Box
 						float='right'
 						minHeight='100vh'
@@ -141,7 +140,7 @@ export default function Dashboard(props) {
 							<Box mx='auto' p={{ base: '20px', md: '30px' }} pe='20px' minH='100vh' pt='50px'>
 								<Switch>
 									{getRoutes(routes)}
-									<Route from="/" to='/admin/default' />
+									<Route from="/" to='/employee/default' />
 								</Switch>
 							</Box>
 						) : null}

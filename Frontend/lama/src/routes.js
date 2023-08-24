@@ -11,6 +11,7 @@ import {
 
 // Admin Imports
 import MainDashboard from "./views/admin/default";
+import EmployeeDashboard from "./views/employee/default";
 // import NFTMarketplace from "./views/admin/marketplace";
 // import Profile from "./views/admin/profile";
 // import DataTables from "./views/admin/dataTables";
@@ -26,6 +27,13 @@ const routes = [
     path: "/default",
     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
     component: MainDashboard,
+  },
+  {
+    name: "Employee Dashboard",
+    layout: "/employee",
+    path: "/default",
+    icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
+    component: EmployeeDashboard,
   },
   // {
   //   name: "NFT Marketplace",
