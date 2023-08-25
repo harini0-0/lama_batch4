@@ -31,8 +31,7 @@ import { isLoggedIn } from './auth';
 
 import ApplyForLoan from './Pages/ApplyForLoan';
 import ProtectedRoute from './services/ProtectedRotue';
-import EmployeeItemPage from './Pages/EmployeeItemPage';
-import { BrowserRouter } from 'react-router-dom';
+import EmployeeItemPage from './Pages/EmployeeItemPage'
 import ProtectedRouteUser from './services/ProtectedRouteUser';
 import UpdateItemMasterPage from './Pages/UpdateItemMasterPage';
 import AddItemMaster from './Pages/AddItemMaster';

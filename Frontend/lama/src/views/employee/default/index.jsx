@@ -99,7 +99,7 @@ import {
             }
             name='View Items purchased'
             buttonName = 'View'
-            routeTo='/'
+            routeTo={route}
             //routeToAdd='/loan/add'
             // value='$350.4'
           />
