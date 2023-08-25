@@ -3,7 +3,7 @@ import { Redirect, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 
-function ProtectedRoute({ component: Component, ...restOfProps }) {
+function ProtectedRouteUser({ component: Component, ...restOfProps }) {
     const history = useHistory();
   const isAuthenticated = localStorage.getItem('data');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,7 +11,7 @@ function ProtectedRoute({ component: Component, ...restOfProps }) {
 //   islogin = false;
       const checkUserToken = () => {
         const userToken = JSON.parse(localStorage.getItem("data"));
-        if (!userToken || userToken === 'undefined'|| userToken.roles[0] != "ROLE_ADMIN") {
+        if (!userToken || userToken === 'undefined'|| userToken.roles[0] != "ROLE_USER") {
             setIsLoggedIn(false);
             history.push("/auth/sign-in");
         }
@@ -35,4 +35,4 @@ function ProtectedRoute({ component: Component, ...restOfProps }) {
   );
 }
 
-export default ProtectedRoute;
+export default ProtectedRouteUser;

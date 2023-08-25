@@ -31,6 +31,8 @@ import { isLoggedIn } from './auth';
 import ApplyForLoan from './Pages/ApplyForLoan';
 import ProtectedRoute from './services/ProtectedRotue';
 import EmployeeItemPage from './Pages/EmployeeItemPage';
+import { BrowserRouter } from 'react-router-dom';
+import ProtectedRouteUser from './services/ProtectedRouteUser';
 function App() {
 
  const loggedIn = isLoggedIn()	
@@ -40,29 +42,24 @@ function App() {
 		<Switch>
 			<Route path={`/auth`} component={AuthLayout} />
 
-			<Route path={`/loan/apply`} component={ApplyForLoan} />
+			
 			{/* <Route path={`/apply`} component={Apply} /> */}
-{/* // 			<Route path={`/admin`} component={AdminLayout} /> */}
-			<Route path={`/employee`} component={EmployeeLayout} />
-{/* // 			<Route path={`/rtl`} component={RtlLayout} />
-// 			<Route path={`/customermap`} component={CustomerMasterPage } />
-// 			<Route path={`/loanmap`} component={LoanMasterPage } />
-// 			<Route path={`/employee/add`} component={AddCustomerComponent } />
-// 			<Route path="/employee/:id" component={UpdateCustomerComponent } /> */}
-
-			{/* <Redirect from='/' to='/employee/default' /> */}
+ 			
+			<ProtectedRouteUser path={`/employee`} component={EmployeeLayout} />
+			
 
 			<ProtectedRoute path={`/admin`} component={AdminLayout} />
 			<ProtectedRoute path={`/rtl`} component={RtlLayout} />
 			<ProtectedRoute path={`/customermap`} component={CustomerMasterPage} />
-			<ProtectedRoute path={`/user/Add`} component={AddCustomerComponent} />
-			<ProtectedRoute path="/employee/:id" component={UpdateCustomerComponent } />
-			<Route path={`/loanmap`} component={LoanMasterPage } />
-			<Route path = {'/user/item/:id'} component = {EmployeeItemPage}/>
 
-			<Route path={`/loan/add`} component={AddLoanComponent } />
-			<Route path="/loan/:id" component={UpdateLoanComponent } />
- 			<Redirect from='/' to='/admin/default' />
+			<ProtectedRouteUser path = {'/user/item/:id'} component = {EmployeeItemPage}/>
+
+			<ProtectedRoute path={`/user/add`} component={AddCustomerComponent} />
+			<ProtectedRoute path="/user/:id" component={UpdateCustomerComponent } />
+			<ProtectedRoute path={`/loanmap`} component={LoanMasterPage } />
+			<ProtectedRoute path={`/loan/apply`} component={ApplyForLoan} />
+			<ProtectedRoute path={`/loan/add`} component={AddLoanComponent } />
+			<ProtectedRoute path="/loan/:id" component={UpdateLoanComponent } />
 		</Switch>
 	</BrowserRouter>
 

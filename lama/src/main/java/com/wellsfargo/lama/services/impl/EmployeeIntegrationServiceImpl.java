@@ -18,6 +18,10 @@ import com.wellsfargo.lama.entities.ItemMaster;
 import com.wellsfargo.lama.entities.LoanCardMaster;
 import com.wellsfargo.lama.exceptions.ItemNotFoundException;
 import com.wellsfargo.lama.exceptions.ResourceAlreadyExistsException;
+<<<<<<< HEAD
+=======
+import com.wellsfargo.lama.exceptions.ResourceNotFoundException;
+>>>>>>> 3c39b6ecd77f7705ce94e7783d02aa0b9a79d590
 import com.wellsfargo.lama.repositories.EmployeeCardRepo;
 import com.wellsfargo.lama.repositories.EmployeeIssueRepo;
 import com.wellsfargo.lama.repositories.EmployeeMasterRepo;
@@ -48,11 +52,12 @@ public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationServic
 		
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 //		EmployeeIssueDto employeeIssueDto = modelMapper.map(employeeIntegrationRequest, EmployeeIssueDto.class);
-		EmployeeIssueDto employeeIssueDto = new EmployeeIssueDto(0, null, null, null, null, 0);
+		EmployeeIssueDto employeeIssueDto = new EmployeeIssueDto(0,null, null, null, null, 0);
 		
 		int employeeId = employeeIntegrationRequest.getEmployeeId();
 		int itemId = employeeIntegrationRequest.getItemId();
 		
+<<<<<<< HEAD
 		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElse(null);;
 		if(employeeMaster != null) {
 			throw new ResourceAlreadyExistsException("EmployeeMaster", "Employee Id", employeeId);
@@ -62,6 +67,20 @@ public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationServic
 		ItemMaster itemMaster = itemMasterRepo.findByItemId(itemId).orElseThrow(
 				() -> new ItemNotFoundException("Item Master with Item Id not found", itemId));
 	
+=======
+
+		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElse(null);
+		if(employeeMaster == null) {
+			throw new ResourceNotFoundException("EmployeeMaster", "Employee Id", employeeId);
+		}
+		System.out.println(employeeMaster.getDateOfBirth());
+		ItemMaster itemMaster = itemMasterRepo.findByItemId(itemId).orElse(null);
+		if(itemMaster == null) {
+			throw new ItemNotFoundException("Item not found", itemId);
+		}
+
+
+>>>>>>> 3c39b6ecd77f7705ce94e7783d02aa0b9a79d590
 		System.out.println(itemMaster.getIssueStatus());
 		
 		employeeIssueDto.setEmployeeMaster(employeeMaster);
