@@ -66,3 +66,39 @@ export const loanColumnsDataComplex = [
   }
   
 ];
+
+
+export const employeeItemColumnDataComplex = [
+  {
+    Header: "Issue Id",
+    accessor: "issueId",
+  },
+  {
+    Header: "Item Id",
+    accessor: "itemId",
+  },
+  {
+    Header: "Item Description",
+    accessor: "itemDescription",
+  },
+  {
+    Header: "issue Status",
+    accessor: "issueStatus",
+  },
+  {
+    Header: "item Make",
+    accessor: "itemMake",
+  },
+  {
+    Header: "item Category",
+    accessor: "itemCategory",
+  },
+  {
+    Header: "item Valuation",
+    accessor: "itemValuation",
+  },
+  // {
+  //   Header: "Options",
+  //   accessor: "options",
+  // },
+];
