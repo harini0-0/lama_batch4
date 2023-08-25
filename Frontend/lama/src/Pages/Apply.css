@@ -1,0 +1,76 @@
+.App {
+    text-align: center;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .blank {
+    color:blue;
+  }
+  #f1{
+    padding: 10px;
+    margin: 200px;
+    margin-top: 50px;
+    border-style: inset;
+    /*background-image: url("C:\Users\91911\Downloads\react_learning\src\components\images\appl.jpeg");
+    background-size: 200%;*/
+  }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  .nav{
+    background-color: rgb(103, 99, 94);
+    padding-left:10px;
+    margin:5px;
+    text-align: center;
+    text-decoration: #23272f bold;
+    font-size:xx-large;
+    font-family: 'Times New Roman', Times, serif;
+    padding-top: 15px;
+    margin: 20px;
+  }
+  .mb3{
+    font-size: larger;
+  }

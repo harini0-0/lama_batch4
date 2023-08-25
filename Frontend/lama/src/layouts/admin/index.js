@@ -11,6 +11,7 @@ import routes from '../../routes.js';
 
 // Custom Chakra theme
 export default function Dashboard(props) {
+	
 	const { ...rest } = props;
 	// states and functions
 	const [ fixed ] = useState(false);
@@ -108,7 +109,7 @@ export default function Dashboard(props) {
 						toggleSidebar,
 						setToggleSidebar
 					}}>
-					<Sidebar routes={routes} display='none' {...rest} />
+					<Sidebar routes={routes} display='none' {...rest} dashboardName ="Admin" />
 					<Box
 						float='right'
 						minHeight='100vh'
