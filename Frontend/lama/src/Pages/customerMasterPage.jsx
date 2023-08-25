@@ -39,6 +39,7 @@ function CustomerMasterPage(){
     };
 
     useEffect(() => {
+        console.log("useEffect !!!")
         loadEmployeeData()
     },[loaded,loadEmployeeData])
     

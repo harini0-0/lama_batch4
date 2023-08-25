@@ -4,6 +4,7 @@
 // import AdminPage from './Pages/AdminLandingPage';
 import CustomerMasterPage from './Pages/customerMasterPage';
 import LoanMasterPage from './Pages/loanMasterPage';
+import ItemMasterPage from './Pages/itemMasterPage';
 // import LoginPage from './Pages/Login';
 import AdminLayout from './layouts/admin/index.js';
 import EmployeeLayout from './layouts/employee/index.js'
@@ -32,6 +33,8 @@ import ApplyForLoan from './Pages/ApplyForLoan';
 import ProtectedRoute from './services/ProtectedRotue';
 import { BrowserRouter } from 'react-router-dom';
 import ProtectedRouteUser from './services/ProtectedRouteUser';
+import UpdateItemMasterPage from './Pages/UpdateItemMasterPage';
+import AddItemMaster from './Pages/AddItemMaster';
 function App() {
 
  const loggedIn = isLoggedIn()	
@@ -56,6 +59,11 @@ function App() {
 			<ProtectedRoute path={`/loan/apply`} component={ApplyForLoan} />
 			<ProtectedRoute path={`/loan/add`} component={AddLoanComponent } />
 			<ProtectedRoute path="/loan/:id" component={UpdateLoanComponent } />
+			
+			<Route path={`/itemmap`} component={ItemMasterPage} />
+			<Route path={`/item/add`} component={AddItemMaster} />
+			<Route path="/item/:id" component={UpdateItemMasterPage} />
+			<Redirect from='/' to='/admin/default' />
 		</Switch>
 	</BrowserRouter>
 
