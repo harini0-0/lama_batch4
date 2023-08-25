@@ -16,7 +16,7 @@ function ProtectedRoute({ component: Component, ...restOfProps }) {
             history.push("/auth/sign-in");
         }
         setIsLoggedIn(true);
-        console.log("this",userToken.roles[0]);
+
     }
     useEffect(() => {
             checkUserToken();
