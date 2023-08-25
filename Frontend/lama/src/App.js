@@ -14,7 +14,7 @@ import RtlLayout from "./layouts/rtl/index.js"
 import React from 'react';
 // import ReactDOM from 'react-dom';
 import './assets/css/App.css';
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 // import AuthLayout from 'layouts/auth';
 // import AdminLayout from 'layouts/admin';
 // import RtlLayout from 'layouts/rtl';
@@ -31,6 +31,7 @@ import { isLoggedIn } from './auth';
 
 import ApplyForLoan from './Pages/ApplyForLoan';
 import ProtectedRoute from './services/ProtectedRotue';
+import EmployeeItemPage from './Pages/EmployeeItemPage';
 import { BrowserRouter } from 'react-router-dom';
 import ProtectedRouteUser from './services/ProtectedRouteUser';
 import UpdateItemMasterPage from './Pages/UpdateItemMasterPage';
@@ -53,6 +54,9 @@ function App() {
 			<ProtectedRoute path={`/admin`} component={AdminLayout} />
 			<ProtectedRoute path={`/rtl`} component={RtlLayout} />
 			<ProtectedRoute path={`/customermap`} component={CustomerMasterPage} />
+
+			<ProtectedRouteUser path = {'/user/item/:id'} component = {EmployeeItemPage}/>
+
 			<ProtectedRoute path={`/user/add`} component={AddCustomerComponent} />
 			<ProtectedRoute path="/user/:id" component={UpdateCustomerComponent } />
 			<ProtectedRoute path={`/loanmap`} component={LoanMasterPage } />

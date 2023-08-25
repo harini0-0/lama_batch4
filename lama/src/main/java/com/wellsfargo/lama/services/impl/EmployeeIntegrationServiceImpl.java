@@ -55,13 +55,6 @@ public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationServic
 		int employeeId = employeeIntegrationRequest.getEmployeeId();
 		int itemId = employeeIntegrationRequest.getItemId();
 		
-
-		int isPresent = employeeIssueRepo.employeeItemQuery(employeeId, itemId);
-		if (isPresent > 0) {
-//			System.out.println("Successful " + isPresent);
-			throw new EmployeeAndItemExist("You have already applied for this item with item id: ", itemId);
-		}
-		
 		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElse(null);
 		if(employeeMaster == null) {
 			throw new ResourceNotFoundException("EmployeeMaster", "Employee Id", employeeId);

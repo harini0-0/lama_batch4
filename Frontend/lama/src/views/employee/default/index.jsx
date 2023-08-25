@@ -38,11 +38,14 @@ import {
   } from "../../admin/default/variables/columnsData";
   import tableDataCheck from "../../admin/default/variables/tableDataCheck.json";
   import tableDataComplex from "../../admin/default/variables/tableDataComplex.json";
+  import { getCurrentUserDetail } from "../../../auth";
   
   export default function UserReports() {
     // Chakra Color Mode
     const brandColor = useColorModeValue("brand.500", "white");
     const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
+    const id = getCurrentUserDetail();
+    const route = '/user/item/'+id;
     return (
       <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
         <SimpleGrid
@@ -63,7 +66,7 @@ import {
             }
             name='View Loans'
             buttonName = 'View'
-            routeTo='/customermap'
+            routeTo = {route}
             // routeToAdd='/employee/add'
             // value='$350.4'
           />
