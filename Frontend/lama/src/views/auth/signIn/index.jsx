@@ -83,7 +83,7 @@ function SignIn() {
             login: true,
           });
           toast.success("Login Success");
-          history.push("/")
+          history.push("/admin/default")
         });
       })
       .catch((error) => {
