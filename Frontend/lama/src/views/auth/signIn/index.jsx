@@ -79,11 +79,16 @@ function SignIn() {
           console.log("login detail is saved to localstorage");
           //redirect to user dashboard page
           userContxtData.setUser({
-            data: data.user,
+            data: data,
             login: true,
           });
           toast.success("Login Success");
-          history.push("/")
+          if(data.roles[0]=='ROLE_USER'){
+            history.push("/employee/default")
+          }
+          else
+            history.push("/admin/default")
+          // history.push("/")
         });
       })
       .catch((error) => {
