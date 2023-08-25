@@ -18,10 +18,6 @@ import com.wellsfargo.lama.entities.ItemMaster;
 import com.wellsfargo.lama.entities.LoanCardMaster;
 import com.wellsfargo.lama.exceptions.ItemNotFoundException;
 import com.wellsfargo.lama.exceptions.ResourceAlreadyExistsException;
-<<<<<<< HEAD
-import com.wellsfargo.lama.exceptions.ResourceNotFoundException;
-=======
->>>>>>> Prasann_backend
 import com.wellsfargo.lama.repositories.EmployeeCardRepo;
 import com.wellsfargo.lama.repositories.EmployeeIssueRepo;
 import com.wellsfargo.lama.repositories.EmployeeMasterRepo;
@@ -57,17 +53,6 @@ public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationServic
 		int employeeId = employeeIntegrationRequest.getEmployeeId();
 		int itemId = employeeIntegrationRequest.getItemId();
 		
-<<<<<<< HEAD
-		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElse(null);
-		if(employeeMaster == null) {
-			throw new ResourceNotFoundException("EmployeeMaster", "Employee Id", employeeId);
-		}
-		System.out.println(employeeMaster.getDateOfBirth());
-		ItemMaster itemMaster = itemMasterRepo.findByItemId(itemId).orElse(null);
-		if(itemMaster == null) {
-			throw new ItemNotFoundException("Item not found", itemId);
-		}
-=======
 		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElse(null);;
 		if(employeeMaster != null) {
 			throw new ResourceAlreadyExistsException("EmployeeMaster", "Employee Id", employeeId);
@@ -77,7 +62,6 @@ public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationServic
 		ItemMaster itemMaster = itemMasterRepo.findByItemId(itemId).orElseThrow(
 				() -> new ItemNotFoundException("Item Master with Item Id not found", itemId));
 	
->>>>>>> Prasann_backend
 		System.out.println(itemMaster.getIssueStatus());
 		
 		employeeIssueDto.setEmployeeMaster(employeeMaster);
