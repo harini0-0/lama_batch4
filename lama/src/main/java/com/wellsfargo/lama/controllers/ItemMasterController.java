@@ -28,7 +28,7 @@ import com.wellsfargo.lama.services.ItemMasterService;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("api/v1/admin/items")
-public class ItemMasterController {
+public class ItemMasterController{
 	@Autowired
 	private ItemMasterService itemMasterService;
 	
@@ -49,6 +49,7 @@ public class ItemMasterController {
 	public ResponseEntity<List<EmployeeItemsDto>> getEmployeeItems(@PathVariable int employeeId){
 		List<EmployeeItemsDto> employeeItems = itemMasterService.getEmployeeItems(employeeId);
 		return new ResponseEntity<List<EmployeeItemsDto>>(employeeItems, HttpStatus.OK);
+	}
 		
 	@GetMapping("/{itemId}")
 	@PreAuthorize("hasRole('ADMIN')")
