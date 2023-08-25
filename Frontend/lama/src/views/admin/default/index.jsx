@@ -62,7 +62,7 @@ export default function UserReports() {
           }
           name='Customer Data Management'
           routeTo='/customermap'
-          routeToAdd='/employee/add'
+          routeToAdd='/user/add'
           // value='$350.4'
         />
         <MiniButtonCards
