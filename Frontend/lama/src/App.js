@@ -59,7 +59,7 @@ function App() {
 			<ProtectedRoute path={`/user/add`} component={AddCustomerComponent} />
 			<ProtectedRoute path="/user/:id" component={UpdateCustomerComponent } />
 			<ProtectedRoute path={`/loanmap`} component={LoanMasterPage } />
-			<ProtectedRoute path={`/loan/apply`} component={ApplyForLoan} />
+			<ProtectedRouteUser path={`/loan/apply`} component={ApplyForLoan} />
 			<ProtectedRoute path={`/loan/add`} component={AddLoanComponent } />
 			<ProtectedRoute path="/loan/:id" component={UpdateLoanComponent } />
 			
