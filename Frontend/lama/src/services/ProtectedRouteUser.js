@@ -13,6 +13,7 @@ function ProtectedRouteUser({ component: Component, ...restOfProps }) {
         const userToken = JSON.parse(localStorage.getItem("data"));
         if (!userToken || userToken === 'undefined'|| userToken.roles[0] != "ROLE_USER") {
             setIsLoggedIn(false);
+            console.log('test');
             history.push("/auth/sign-in");
         }
         setIsLoggedIn(true);
