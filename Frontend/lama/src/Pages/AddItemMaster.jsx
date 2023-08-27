@@ -10,12 +10,12 @@ import { privateAxios } from "../services/helper";
 function AddItemMaster(){
   const history = useHistory()
 
-  const [itemId, setItemId] = useState(0);
+  const [itemId, setItemId] = useState("");
   const [itemDescription, setItemDescription] = useState("");
   const [issueStatus, setIssueStatus] = useState('');
   const [itemMake, setItemMake] = useState("");
   const [itemCategory, setItemCategory] = useState("");
-  const [itemValuation, setItemValuation] = useState(0);
+  const [itemValuation, setItemValuation] = useState("");
   const [error, setError] = useState(null)
   const [isCreated, setIsCreated] = useState(false)
 
