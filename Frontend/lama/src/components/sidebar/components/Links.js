@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 // chakra imports
 import { Box, Flex, HStack, Text, useColorModeValue } from "@chakra-ui/react";
@@ -17,6 +17,10 @@ export function SidebarLinks(props) {
   let brandColor = useColorModeValue("brand.500", "brand.400");
 
   const { routes } = props;
+  const userToken = JSON.parse(localStorage.getItem("data"));
+  // useEffect(()=>{
+    
+  // },[])
 
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {

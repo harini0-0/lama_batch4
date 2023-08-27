@@ -50,7 +50,7 @@ function SignIn() {
   );
 
   const userContxtData = useContext(userContext);
-
+  const userToken = JSON.parse(localStorage.getItem("data"));
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   const [userId, setUserId] = useState("")
@@ -83,7 +83,7 @@ function SignIn() {
             login: true,
           });
           toast.success("Login Success");
-          history.push("/admin/default")
+          userToken.roles[0] === "ROLE_ADMIN" ? history.push("/admin/default"): history.push("/employee/default")
         });
       })
       .catch((error) => {

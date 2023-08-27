@@ -51,6 +51,33 @@ export const customerColumnsDataComplex = [
   // },
 ];
 
+export const pendingLoansDataComplex = [
+  {
+    Header: "Issue Id",
+    accessor: "issueId",
+  },
+  {
+    Header: "Employee Id",
+    accessor: "employeeId",
+  },
+  {
+    Header: "Item Id",
+    accessor: "itemId",
+  },
+  {
+    Header: "Issue Date",
+    accessor: "issueDate",
+  },
+  {
+    Header: "Duration (in months)",
+    accessor: "durationInMonths",
+  },
+  {
+    Header: "Approve Status",
+    accessor: "isApproved",
+  },
+]
+
 export const loanColumnsDataComplex = [
   {
     Header: "Loan Id",

@@ -6,7 +6,7 @@ import { Box, Button } from "@chakra-ui/react";
 import { SimpleGrid } from "@chakra-ui/react";
 import ColumnsTable from "../components/tableComplex";
 
-import { customerColumnsDataComplex } from "../views/admin/default/variables/columnsData";
+import { pendingLoansDataComplex } from "../views/admin/default/variables/columnsData";
 import { NavLink } from "react-router-dom/";
 import { privateAxios } from "../services/helper";
 
@@ -18,20 +18,21 @@ export default function PendingLoansAdmin(){
 
     const loadPendingData = async () => {
 
-        // try{
-        // // setLoader(false)
-        // const response = await privateAxios.get("/admin/issues/")
-        // .then((response) => {
-        //     console.log(response.data); 
-        //     setLoanList(response.data);
-        //     setLoader(true);
-        //     // console.log("employeeList",employeeList);
-        // })
-
-        // // console.log("employeeList",employeeList);
-        // } catch(e){
-        //     console.log(e);
-        // }
+        try{
+        // setLoader(false)
+        const response = await privateAxios.get("/admin/issues/unapproved")
+        .then((response) => {
+            console.log(response.data); 
+            setLoanList(response.data);
+            setLoader(true);
+            // console.log("employeeList",employeeList);
+        })
+        // loadPendingData();
+        // console.log("employeeList",employeeList);
+        } catch(e){
+            console.log(e);
+        }
+        ;
     };
 
     useEffect(() => {
@@ -45,11 +46,12 @@ export default function PendingLoansAdmin(){
             <NavLink to="/"><Button>Back</Button></NavLink>
             <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
                 <SimpleGrid columns={{ base: 1, md: 1, xl: 1 }} gap='20px' mb='20px'>
-                    {/* <ColumnsTable
-                    columnsData={customerColumnsDataComplex}
+                    <ColumnsTable
+                    columnsData={pendingLoansDataComplex}
                     tableData={pendingLoansList}
                     header = "Pending Loans Table"
-                    />  */}
+                    flagUnapproved= {true}
+                    /> 
                 </SimpleGrid>
             </Box>
         </div>

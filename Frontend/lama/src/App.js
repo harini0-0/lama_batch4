@@ -4,6 +4,7 @@
 // import AdminPage from './Pages/AdminLandingPage';
 import CustomerMasterPage from './Pages/customerMasterPage';
 import LoanMasterPage from './Pages/loanMasterPage';
+import PendingLoansAdmin from './Pages/PendingLoansAdmin';
 // import LoginPage from './Pages/Login';
 import AdminLayout from './layouts/admin/index.js';
 import EmployeeLayout from './layouts/employee/index.js'
@@ -31,10 +32,11 @@ import { isLoggedIn } from './auth';
 import ApplyForLoan from './Pages/ApplyForLoan';
 import ProtectedRoute from './services/ProtectedRotue';
 import { BrowserRouter } from 'react-router-dom';
+import ItemsPage from './Pages/ItemsPage';
 function App() {
 
  const loggedIn = isLoggedIn()	
- 
+ const userToken = JSON.parse(localStorage.getItem("data"));
   return (
 	<BrowserRouter>
 		<Switch>
@@ -47,15 +49,17 @@ function App() {
 			
 
 			<ProtectedRoute path={`/admin`} component={AdminLayout} />
+			<ProtectedRoute path={'/itemsPage'} component={ItemsPage} />
 			<ProtectedRoute path={`/rtl`} component={RtlLayout} />
 			<ProtectedRoute path={`/customermap`} component={CustomerMasterPage} />
 			<ProtectedRoute path={`/user/add`} component={AddCustomerComponent} />
+			<ProtectedRoute path={'/pendingLoans'} component={PendingLoansAdmin}/>
 			<ProtectedRoute path="/user/:id" component={UpdateCustomerComponent } />
 			<Route path={`/loanmap`} component={LoanMasterPage } />
 
 			<Route path={`/loan/add`} component={AddLoanComponent } />
 			<Route path="/loan/:id" component={UpdateLoanComponent } />
- 			<Redirect from='/' to='/admin/default' />
+ 			<Redirect from='/' to= {userToken.roles[0] === "ROLE_ADMIN" ? '/admin/default' : '/employee/default'} />
 		</Switch>
 	</BrowserRouter>
 

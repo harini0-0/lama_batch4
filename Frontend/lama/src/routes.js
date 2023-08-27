@@ -20,6 +20,8 @@ import EmployeeDashboard from "./views/employee/default";
 // Auth Imports
 import SignInCentered from "./views/auth/signIn";
 
+
+const userToken = JSON.parse(localStorage.getItem("data"));
 const routes = [
   {
     name: "Admin Dashboard",
@@ -35,7 +37,29 @@ const routes = [
     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
     component: EmployeeDashboard,
   },
-  // {
+  {
+    name: "Sign Out",
+    layout: "/auth",
+    path: "/sign-in",
+    icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
+    component: SignInCentered,
+  },
+  
+];
+
+export default routes;
+
+
+
+
+// {
+  //   name: "RTL Admin",
+  //   layout: "/rtl",
+  //   path: "/rtl-default",
+  //   icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
+  //   component: RTL,
+  // },
+// {
   //   name: "NFT Marketplace",
   //   layout: "/admin",
   //   path: "/nft-marketplace",
@@ -64,20 +88,3 @@ const routes = [
   //   icon: <Icon as={MdPerson} width='20px' height='20px' color='inherit' />,
   //   component: Profile,
   // },
-  {
-    name: "Sign In",
-    layout: "/auth",
-    path: "/sign-in",
-    icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
-    component: SignInCentered,
-  },
-  // {
-  //   name: "RTL Admin",
-  //   layout: "/rtl",
-  //   path: "/rtl-default",
-  //   icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
-  //   component: RTL,
-  // },
-];
-
-export default routes;

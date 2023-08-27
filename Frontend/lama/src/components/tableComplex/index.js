@@ -34,13 +34,61 @@ import {
   // Assets
   import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
 import { privateAxios } from "../../services/helper";
-  export default function ColumnsTable({ columnsData, tableData, header }) {
+  export default function ColumnsTable({ columnsData, tableData, header, flagUnapproved=false }) {
 
     const history = useHistory()
     // const { columnsData, tableData, header } = this.props;
   
     const columns = useMemo(() => columnsData, [columnsData]);
     const data = useMemo(() => tableData, [tableData]);
+    const [error, setError] = useState(null)
+    const [isCreated, setIsCreated] = useState(false)
+
+    useEffect(() => {
+      if(isCreated){
+        toast("Loan Approved Successfully",
+           {position: toast.POSITION.BOTTOM_CENTER})
+        setIsCreated(false)
+        // history.push("/customermap")
+      }
+      if(error){
+        toast.error(error,
+        {position: toast.POSITION.BOTTOM_CENTER})
+        setError(null)
+      }
+    },[isCreated,error])
+  
+    const approveLoan = async (row, approveState) => {
+      // e.preventDefault();
+  
+      const myForm = new FormData();
+  
+      myForm.set("employeeId", row.employeeId);
+      myForm.set("issueId", row.issueId);
+      myForm.set("itemId", row.itemId);
+      myForm.set("issueDate", row.issueDate);
+      myForm.set("durationInMonths", row.durationInMonths);
+      myForm.set("isApproved", approveState);
+      
+  
+      const config = {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+  
+      await privateAxios.post(`/admin/issues/`, myForm, config)
+      .then((response) => {
+        console.log(response.data)
+        setIsCreated(true)
+      })
+      .catch((err) => {
+        console.log(err.message)
+        setError(err.message)
+      })
+      
+      // dispatch(createProduct(myForm));
+    };
 
     // console.log("tableComplex" ,data.length)
   
@@ -165,56 +213,6 @@ import { privateAxios } from "../../services/helper";
                           {cell.value}
                         </Text>
                       );
-                    // } else if (cell.column.Header === "STATUS") {
-                    //   data = (
-                    //     <Flex align='center'>
-                    //       <Icon
-                    //         w='24px'
-                    //         h='24px'
-                    //         me='5px'
-                    //         color={
-                    //           cell.value === "Approved"
-                    //             ? "green.500"
-                    //             : cell.value === "Disable"
-                    //             ? "red.500"
-                    //             : cell.value === "Error"
-                    //             ? "orange.500"
-                    //             : null
-                    //         }
-                    //         as={
-                    //           cell.value === "Approved"
-                    //             ? MdCheckCircle
-                    //             : cell.value === "Disable"
-                    //             ? MdCancel
-                    //             : cell.value === "Error"
-                    //             ? MdOutlineError
-                    //             : null
-                    //         }
-                    //       />
-                    //       <Text color={textColor} fontSize='sm' fontWeight='700'>
-                    //         {cell.value}
-                    //       </Text>
-                    //     </Flex>
-                    //   );
-                    // } else if (cell.column.Header === "DATE") {
-                    //   data = (
-                    //     <Text color={textColor} fontSize='sm' fontWeight='700'>
-                    //       {cell.value}
-                    //     </Text>
-                    //   );
-                    // } else if (cell.column.Header === "PROGRESS") {
-                    //   data = (
-                    //     <Flex align='center'>
-                    //       <Progress
-                    //         variant='table'
-                    //         colorScheme='brandScheme'
-                    //         h='8px'
-                    //         w='108px'
-                    //         value={cell.value}
-                    //       />
-                    //     </Flex>
-                    //   );
-                    // }
                     return (
                       <Td
                         {...cell.getCellProps()}
@@ -236,8 +234,17 @@ import { privateAxios } from "../../services/helper";
                         py='8px'
                         minW={{ sm: "150px", md: "200px", lg: "auto" }}
                         borderColor='transparent'>
-                        <Button variant="secondary" style={{margin:"5px"}}><Trash3Fill onClick={()=>{deleteEmployee(row.original.employeeId)}}></Trash3Fill></Button>
-                        <Button variant="secondary" style={{margin:"5px"}}><PencilFill onClick={() => {updateEmployee(row.original.employeeId)}}></PencilFill></Button>
+                        {flagUnapproved? 
+                        <div>
+                          <Button variant="variant" style={{margin:"0px", backgroundColor:"black"}} onClick={()=>{approveLoan(row.original, 1)}}>Approve</Button>
+                          <Button variant="variant" style={{margin:"0px", backgroundColor:"black"}} onClick={()=>{approveLoan(row.original, 2)}}>Reject</Button> 
+                        </div>
+                        :
+                        <div>
+                          <Button variant="secondary" style={{margin:"5px"}}><Trash3Fill onClick={()=>{deleteEmployee(row.original.employeeId)}}></Trash3Fill></Button>
+                          <Button variant="secondary" style={{margin:"5px"}}><PencilFill onClick={() => {updateEmployee(row.original.employeeId)}}></PencilFill></Button>
+                        </div>
+            }
                         {/* deleteEmployee(row.cells.row.original.employeeId) */}
                     </Td>
                 </Tr>
