@@ -35,6 +35,8 @@ import EmployeeItemPage from './Pages/EmployeeItemPage'
 import ProtectedRouteUser from './services/ProtectedRouteUser';
 import UpdateItemMasterPage from './Pages/UpdateItemMasterPage';
 import AddItemMaster from './Pages/AddItemMaster';
+import EmployeeLoanPage from './Pages/EmployeeLoanPage';
+
 function App() {
 
  const loggedIn = isLoggedIn()	
@@ -59,9 +61,10 @@ function App() {
 			<ProtectedRoute path={`/user/add`} component={AddCustomerComponent} />
 			<ProtectedRoute path="/user/:id" component={UpdateCustomerComponent } />
 			<ProtectedRoute path={`/loanmap`} component={LoanMasterPage } />
-			<ProtectedRoute path={`/loan/apply`} component={ApplyForLoan} />
+			<ProtectedRouteUser path={`/loan/apply`} component={ApplyForLoan} />
 			<ProtectedRoute path={`/loan/add`} component={AddLoanComponent } />
 			<ProtectedRoute path="/loan/:id" component={UpdateLoanComponent } />
+			<ProtectedRouteUser path="/viewloan" component={EmployeeLoanPage} />
 			
 			<Route path={`/itemmap`} component={ItemMasterPage} />
 			<Route path={`/item/add`} component={AddItemMaster} />
