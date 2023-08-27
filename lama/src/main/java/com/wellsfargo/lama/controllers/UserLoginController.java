@@ -44,6 +44,8 @@ import com.wellsfargo.lama.Ui.UserResponse;
 import com.wellsfargo.lama.entities.ERole;
 import com.wellsfargo.lama.entities.Role;
 import com.wellsfargo.lama.entities.UserLogin;
+import com.wellsfargo.lama.exceptions.ApiException;
+import com.wellsfargo.lama.exceptions.ApiResponse;
 import com.wellsfargo.lama.exceptions.ResourceNotFoundException;
 import com.wellsfargo.lama.repositories.RoleRepository;
 import com.wellsfargo.lama.repositories.UserLoginRepo;
@@ -79,7 +81,8 @@ public class UserLoginController{
 	@CrossOrigin("*")
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody UserRequest loginRequest) {
-
+		
+		try {
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUserId(), loginRequest.getPassword()));
 
@@ -105,6 +108,10 @@ public class UserLoginController{
 
 		return ResponseEntity.ok(
 				new JwtResponse(jwt, userDetails.getUserId(), roles));
+		}
+		catch(Exception e) {
+			throw new ApiException("Invalid User Id or Password");
+		}
 	}
 
 
