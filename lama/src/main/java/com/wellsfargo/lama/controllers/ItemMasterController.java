@@ -45,7 +45,7 @@ public class ItemMasterController{
 	}
 	
 	@GetMapping("/employeeItems/{employeeId}")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public ResponseEntity<List<EmployeeItemsDto>> getEmployeeItems(@PathVariable int employeeId){
 		List<EmployeeItemsDto> employeeItems = itemMasterService.getEmployeeItems(employeeId);
 		return new ResponseEntity<List<EmployeeItemsDto>>(employeeItems, HttpStatus.OK);

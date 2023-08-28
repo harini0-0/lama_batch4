@@ -26,6 +26,7 @@ import { privateAxios } from "../../services/helper.js";
 import 'react-toastify/dist/ReactToastify.css'; 
 import React, { useState, useEffect } from "react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
+import { getCurrentUserDetail, getToken } from "../../auth/index.js";
 
 export default function ItemCard(props) {
   const { itemName, category, itemValuation, itemStatus, itemId, itemMake } = props;
@@ -35,6 +36,7 @@ export default function ItemCard(props) {
   const history = useHistory()
   const [error, setError] = useState(null)
   const [isCreated, setIsCreated] = useState(false)
+  const id = getCurrentUserDetail();
 
   useEffect(() => {
     if(isCreated){
@@ -49,13 +51,13 @@ export default function ItemCard(props) {
       setError(null)
     }
   },[isCreated,error])
-  const userToken = JSON.parse(localStorage.getItem("data"));
+  
   const applyLoan = async (row, approveState) => {
     // e.preventDefault();
-    // console.log(userToken)
+    console.log("Id -> ",id)
     const myForm = new FormData();
 
-    myForm.set("employeeId", userToken.id);
+    myForm.set("employeeId", id);
     myForm.set("itemId", itemId);
     myForm.set("loanType",category);
     
@@ -65,8 +67,7 @@ export default function ItemCard(props) {
           "Content-Type": "application/json",
       },
   };
-
-    await privateAxios.post(`/employee/applyloan/`, myForm, config)
+    await privateAxios.post(`/employee/applyloan`, myForm, config)
     .then((response) => {
       console.log(response.data)
       setIsCreated(true)
@@ -168,7 +169,7 @@ export default function ItemCard(props) {
                 borderRadius='70px'
                 px='24px'
                 py='5px'
-                onClick={(itemId, category)=>{ }}
+                onClick={(itemId, category)=>{applyLoan(itemId, category)}}
                 >
                 Apply Loan
               </Button>
