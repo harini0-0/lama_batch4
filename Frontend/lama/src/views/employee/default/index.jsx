@@ -35,6 +35,7 @@ import {
   import tableDataCheck from "../../admin/default/variables/tableDataCheck.json";
   import tableDataComplex from "../../admin/default/variables/tableDataComplex.json";
   import { getCurrentUserDetail } from "../../../auth";
+import Banner from "../../../components/banner/Banner";
   
   export default function UserReports() {
     // Chakra Color Mode
@@ -45,6 +46,12 @@ import {
   
     return (
       <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
+        <Flex
+          mb={"20px"}
+          flexDirection='column'
+          gridArea={{ xl: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2" }}>
+            <Banner />
+          </Flex>
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 3, "2xl": 6 }}
           gap='20px'
@@ -116,7 +123,7 @@ import {
             value='$642.39'
           />
           <MiniStatistics growth='+23%' name='Sales' value='$574.34' /> */}
-          <MiniStatistics
+          {/* <MiniStatistics
             startContent={
               <IconBox
                 w='56px'
@@ -153,7 +160,7 @@ import {
             }
             name='Unapproved'
             value='9'
-          />
+          /> */}
         </SimpleGrid>
   
         {/* <SimpleGrid columns={{ base: 1, md: 2, xl: 1 }} gap='20px' mb='20px'>

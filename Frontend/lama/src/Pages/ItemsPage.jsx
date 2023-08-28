@@ -61,7 +61,7 @@ import ItemCard from "../components/card/ItemCard";
 
     return (loaded?
       <Box ms='24px' pt={{ base: "130px", md: "80px", xl: "80px" }}>
-        <NavLink to="/"><Button>Back</Button></NavLink>
+        <NavLink to="/employee/default"><Button>Back</Button></NavLink>
         <Text 
               mb='20px' 
               mt='40px'

@@ -1,16 +1,28 @@
 // Chakra imports
-import { Portal, Box, useDisclosure, Text, Button, Link } from '@chakra-ui/react';
+import { Portal, Box, useDisclosure, Text, Button, Link, useColorMode } from '@chakra-ui/react';
 import Footer from '../../components/footer/FooterAdmin.js';
 // Layout components
 import Navbar from '../../components/navbar/NavbarEmployee.js';
 import Sidebar from '../../components/sidebar/Sidebar.js';
 import { SidebarContext } from '../../contexts/SidebarContext';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate, Route, Switch} from 'react-router-dom';
 import routes from '../../routes.js';
 
 // Custom Chakra theme
 export default function Dashboard(props) {
+	const {colorMode, toggleColorMode} = useColorMode();
+	const setTheme = () => {
+		// localStorage.setItem("chakra-ui-color-mode", "light");
+		if(colorMode=== "light"){
+			toggleColorMode()
+		}
+		// next()
+	  };
+	
+	  useEffect(()=>{
+		setTheme();
+	  },[setTheme])
 	const { ...rest } = props;
 	// states and functions
 	const [ fixed ] = useState(false);
