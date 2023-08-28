@@ -18,7 +18,7 @@ import MiniButtonCards from "../../../components/card/MiniButtonCards";
 import EmployeeButtonCard from "../../../components/card/EmployeeButtonCard";
 import IconBox from "../../../components/icons/IconBox";
 import { PeopleFill } from "../../../components/icons/Icons";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   MdAddTask,
   MdAttachMoney,
@@ -38,11 +38,38 @@ import {
 } from "./variables/columnsData";
 import tableDataCheck from "./variables/tableDataCheck.json";
 import tableDataComplex from "./variables/tableDataComplex.json";
+import axios from "axios";
+import { privateAxios } from "../../../services/helper";
+import { useState } from "react";
 
 export default function UserReports() {
   // Chakra Color Mode
   const brandColor = useColorModeValue("brand.500", "white");
   const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
+
+
+  let [approvedRequests, setApprovedRequests] = useState(0);
+  let [allRequests, setAllRequests] = useState(0);
+  
+
+  const loanCount = async() => {
+    await privateAxios.get("/dashboard/")
+      .then((response) => {
+        setApprovedRequests(response.data[0])
+        setAllRequests(response.data[1])
+        console.log(response.data)
+        console.log("Approved Requests", approvedRequests)
+        console.log("All Requests", allRequests)
+      })
+      .catch((err) => {
+        console.log(err.message)
+    })
+  }
+
+  useEffect(() => {
+    loanCount();
+  },[allRequests, loanCount, approvedRequests])
+  
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       <SimpleGrid
@@ -112,6 +139,8 @@ export default function UserReports() {
           value='$642.39'
         />
         <MiniStatistics growth='+23%' name='Sales' value='$574.34' /> */}
+
+        
         <MiniStatistics
           startContent={
             <IconBox
@@ -122,7 +151,7 @@ export default function UserReports() {
             />
           }
           name='Total no of Loans'
-          value='497'
+          value={allRequests}
         />
         <MiniStatistics
           startContent={
@@ -134,7 +163,7 @@ export default function UserReports() {
             />
           }
           name='Approved Loans'
-          value='378'
+          value={approvedRequests}
         />
         <EmployeeButtonCard
           startContent={
