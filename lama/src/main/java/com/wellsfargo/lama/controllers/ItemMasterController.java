@@ -33,7 +33,7 @@ public class ItemMasterController{
 	private ItemMasterService itemMasterService;
 	
 	@GetMapping
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public ResponseEntity<List<ItemMasterDto>> getAllItems() {
 		List<ItemMasterDto> allItems = itemMasterService.getAllItems();
 //		System.out.println(allItems.size());
