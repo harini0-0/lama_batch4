@@ -15,6 +15,7 @@ import Usa from "../../../assets/img/dashboards/usa.png";
 import MiniCalendar from "../../../components/calendar/MiniCalendar";
 import MiniStatistics from "../../../components/card/MiniStatistics";
 import MiniButtonCards from "../../../components/card/MiniButtonCards";
+import EmployeeButtonCard from "../../../components/card/EmployeeButtonCard";
 import IconBox from "../../../components/icons/IconBox";
 import { PeopleFill } from "../../../components/icons/Icons";
 import React from "react";
@@ -135,7 +136,7 @@ export default function UserReports() {
           name='Approved Loans'
           value='378'
         />
-        <MiniStatistics
+        <EmployeeButtonCard
           startContent={
             <IconBox
               w='56px'
@@ -146,8 +147,9 @@ export default function UserReports() {
               }
             />
           }
-          name='Unapproved'
-          value='119'
+          name='Unapproved Loans'
+          buttonName="View pending"
+          routeTo="/pendingLoans"
         />
       </SimpleGrid>
 

@@ -4,6 +4,7 @@
 // import AdminPage from './Pages/AdminLandingPage';
 import CustomerMasterPage from './Pages/customerMasterPage';
 import LoanMasterPage from './Pages/loanMasterPage';
+import PendingLoansAdmin from './Pages/PendingLoansAdmin';
 import ItemMasterPage from './Pages/itemMasterPage';
 // import LoginPage from './Pages/Login';
 import AdminLayout from './layouts/admin/index.js';
@@ -31,6 +32,8 @@ import { isLoggedIn } from './auth';
 
 import ApplyForLoan from './Pages/ApplyForLoan';
 import ProtectedRoute from './services/ProtectedRotue';
+import { BrowserRouter } from 'react-router-dom';
+import ItemsPage from './Pages/ItemsPage';
 import EmployeeItemPage from './Pages/EmployeeItemPage'
 import ProtectedRouteUser from './services/ProtectedRouteUser';
 import UpdateItemMasterPage from './Pages/UpdateItemMasterPage';
@@ -40,7 +43,7 @@ import EmployeeLoanPage from './Pages/EmployeeLoanPage';
 function App() {
 
  const loggedIn = isLoggedIn()	
- 
+ const userToken = JSON.parse(localStorage.getItem("data"));
   return (
 	<BrowserRouter>
 		<Switch>
@@ -53,13 +56,16 @@ function App() {
 			
 
 			<ProtectedRoute path={`/admin`} component={AdminLayout} />
+			<ProtectedRoute path={'/itemsPage'} component={ItemsPage} />
 			<ProtectedRoute path={`/rtl`} component={RtlLayout} />
 			<ProtectedRoute path={`/customermap`} component={CustomerMasterPage} />
 
 			<ProtectedRouteUser path = {'/user/item/:id'} component = {EmployeeItemPage}/>
 
 			<ProtectedRoute path={`/user/add`} component={AddCustomerComponent} />
+			<ProtectedRoute path={'/pendingLoans'} component={PendingLoansAdmin}/>
 			<ProtectedRoute path="/user/:id" component={UpdateCustomerComponent } />
+
 			<ProtectedRoute path={`/loanmap`} component={LoanMasterPage } />
 			<ProtectedRouteUser path={`/loan/apply`} component={ApplyForLoan} />
 			<ProtectedRoute path={`/loan/add`} component={AddLoanComponent } />
@@ -70,6 +76,7 @@ function App() {
 			<Route path={`/item/add`} component={AddItemMaster} />
 			<Route path="/item/:id" component={UpdateItemMasterPage} />
 			<Redirect from='/' to='/admin/default' />
+
 		</Switch>
 	</BrowserRouter>
 

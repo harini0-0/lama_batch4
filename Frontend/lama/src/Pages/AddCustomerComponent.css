@@ -24,6 +24,7 @@
     width: 60vh;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
+    color: black
   }
   
   .createProductForm > div {
@@ -42,6 +43,8 @@
     border-radius: 4px;
     font: 300 0.9vmax cursive;
     outline: none;
+    background-color: white;
+    color: black;
   }
   
   .createProductForm > div > svg {
@@ -55,8 +58,14 @@
     display: flex;
     padding: 0%;
   }
-  
-  #createProductFormFile > input::file-selector-button {
+input::placeholder{
+    color: black;
+  }
+
+  #createProductFormFile > input::-ms-input-placeholder{
+    color: black;
+  }
+ input::file-selector-button {
     cursor: pointer;
     width: 100%;
     z-index: 2;

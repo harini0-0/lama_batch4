@@ -81,7 +81,7 @@ import {
             }
             name='Apply For Loan'
             buttonName = 'Apply'
-            routeTo='/loan/apply'
+            routeTo='/itemsPage'
             //routeToAdd='/loan/apply'
           />
           <EmployeeButtonCard

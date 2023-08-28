@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 // import './assets/css/App.css';
 import "./assets/css/App.css";
 import { HashRouter, Route, Switch, Redirect, Link } from 'react-router-dom';
@@ -14,9 +14,10 @@ import AddCustomerComponent from './Pages/AddCustomerComponent';
 import UpdateCustomerComponent from './Pages/UpdateCustomerComponent';
 import UserProvider from './contexts/UserProvider';
 import App from './App';
+import { createRoot } from 'react-dom/client';
 
-
-ReactDOM.render(
+const root = createRoot(document.getElementById("root"));
+root.render(
 	<UserProvider>
 		<ChakraProvider theme={theme}>
 		<ThemeEditorProvider>
@@ -24,7 +25,7 @@ ReactDOM.render(
 		</ThemeEditorProvider>
 		</ChakraProvider>
 	</UserProvider>,
-	document.getElementById('root')
+	// document.getElementById('root')
 );
 
 

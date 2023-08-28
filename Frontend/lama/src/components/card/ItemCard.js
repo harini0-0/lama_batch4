@@ -14,47 +14,81 @@ import {
 // Custom components
 import Card from "./Card.js";
 // Assets
-import React, { useState } from "react";
+import Nft1 from "../../assets/img/nfts/Nft1.png";
+import Nft2 from "../../assets/img/nfts/Nft2.png";
+import Nft3 from "../../assets/img/nfts/Nft3.png";
+import Nft4 from "../../assets/img/nfts/Nft4.png";
+import Nft5 from "../../assets/img/nfts/Nft5.png";
+import Nft6 from "../../assets/img/nfts/Nft6.png";
+import { ToastContainer, toast } from 'react-toastify';
+import { useHistory } from "react-router-dom";
+import { privateAxios } from "../../services/helper.js";
+import 'react-toastify/dist/ReactToastify.css'; 
+import React, { useState, useEffect } from "react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 
-export default function NFT(props) {
-  const { image, name, author, bidders, download, currentbid } = props;
-  const [like, setLike] = useState(false);
+export default function ItemCard(props) {
+  const { itemName, category, itemValuation, itemStatus, itemId, itemMake } = props;
+  const imageArray = [Nft1, Nft2, Nft3, Nft4, Nft5, Nft6];
   const textColor = useColorModeValue("navy.700", "white");
   const textColorBid = useColorModeValue("brand.500", "white");
+  const history = useHistory()
+  const [error, setError] = useState(null)
+  const [isCreated, setIsCreated] = useState(false)
+
+  useEffect(() => {
+    if(isCreated){
+      toast("Item Loan Applied Successfully",
+         {position: toast.POSITION.BOTTOM_CENTER})
+      setIsCreated(false)
+      history.push("/employee/default")
+    }
+    if(error){
+      toast.error(error,
+      {position: toast.POSITION.BOTTOM_CENTER})
+      setError(null)
+    }
+  },[isCreated,error])
+  const userToken = JSON.parse(localStorage.getItem("data"));
+  const applyLoan = async (row, approveState) => {
+    // e.preventDefault();
+    // console.log(userToken)
+    const myForm = new FormData();
+
+    myForm.set("employeeId", userToken.id);
+    myForm.set("itemId", itemId);
+    myForm.set("loanType",category);
+    
+
+    const config = {
+      headers: {
+          "Content-Type": "application/json",
+      },
+  };
+
+    await privateAxios.post(`/employee/applyloan/`, myForm, config)
+    .then((response) => {
+      console.log(response.data)
+      setIsCreated(true)
+    })
+    .catch((err) => {
+      console.log(err.message)
+      setError(err.message)
+    })
+    
+    // dispatch(createProduct(myForm));
+  };
+
   return (
     <Card p='20px'>
       <Flex direction={{ base: "column" }} justify='center'>
         <Box mb={{ base: "20px", "2xl": "20px" }} position='relative'>
           <Image
-            src={image}
+            src={imageArray[itemId%6]}
             w={{ base: "100%", "3xl": "100%" }}
             h={{ base: "100%", "3xl": "100%" }}
             borderRadius='20px'
           />
-          <Button
-            position='absolute'
-            bg='white'
-            _hover={{ bg: "whiteAlpha.900" }}
-            _active={{ bg: "white" }}
-            _focus={{ bg: "white" }}
-            p='0px !important'
-            top='14px'
-            right='14px'
-            borderRadius='50%'
-            minW='36px'
-            h='36px'
-            onClick={() => {
-              setLike(!like);
-            }}>
-            <Icon
-              transition='0.2s linear'
-              w='20px'
-              h='20px'
-              as={like ? IoHeart : IoHeartOutline}
-              color='brand.500'
-            />
-          </Button>
         </Box>
         <Flex flexDirection='column' justify='space-between' h='100%'>
           <Flex
@@ -81,7 +115,7 @@ export default function NFT(props) {
                 mb='5px'
                 fontWeight='bold'
                 me='14px'>
-                {name}
+                {itemName}
               </Text>
               <Text
                 color='secondaryGray.600'
@@ -90,25 +124,18 @@ export default function NFT(props) {
                 }}
                 fontWeight='400'
                 me='14px'>
-                {author}
+                Category: {category}
+              </Text>
+              <Text
+                color='secondaryGray.600'
+                fontSize={{
+                  base: "sm",
+                }}
+                fontWeight='400'
+                me='14px'>
+                Item Make: {itemMake}
               </Text>
             </Flex>
-            <AvatarGroup
-              max={3}
-              color={textColorBid}
-              size='sm'
-              mt={{
-                base: "0px",
-                md: "10px",
-                lg: "0px",
-                xl: "10px",
-                "2xl": "0px",
-              }}
-              fontSize='12px'>
-              {bidders.map((avt, key) => (
-                <Avatar key={key} src={avt} />
-              ))}
-            </AvatarGroup>
           </Flex>
           <Flex
             align='start'
@@ -122,10 +149,10 @@ export default function NFT(props) {
             }}
             mt='25px'>
             <Text fontWeight='700' fontSize='sm' color={textColorBid}>
-              Current Bid: {currentbid}
+              Item Valuation: {itemValuation}
             </Text>
             <Link
-              href={download}
+              href={""}
               mt={{
                 base: "0px",
                 md: "10px",
@@ -140,8 +167,10 @@ export default function NFT(props) {
                 fontWeight='500'
                 borderRadius='70px'
                 px='24px'
-                py='5px'>
-                Place Bid
+                py='5px'
+                onClick={(itemId, category)=>{ }}
+                >
+                Apply Loan
               </Button>
             </Link>
           </Flex>

@@ -50,7 +50,7 @@ function SignIn() {
   );
 
   const userContxtData = useContext(userContext);
-
+  const userToken = JSON.parse(localStorage.getItem("data"));
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   const [userId, setUserId] = useState("")
