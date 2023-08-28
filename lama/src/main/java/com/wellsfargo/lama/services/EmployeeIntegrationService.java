@@ -5,4 +5,8 @@ import com.wellsfargo.lama.Ui.EmployeeIntegrationRequest;
 
 public interface EmployeeIntegrationService {
 	 EmployeeIssueDto applyLoan(EmployeeIntegrationRequest employeeIntegrationRequest);
+	 
+	 int approvedRequests();
+	 
+	 int allRequests();
 }
