@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 // Chakra imports
 import {
@@ -56,6 +56,7 @@ function SignIn() {
   const [userId, setUserId] = useState("")
   const [password, setPassword] = useState("")
   const history = useHistory()
+  const [error, setError] = useState(null)
 
   const loginSubmitHandler = async (event) => {
     console.log("Form submitted")
@@ -72,6 +73,7 @@ function SignIn() {
     //submit the data to server to generate token
     await loginUser(userId, password)
       .then((data) => {
+        setError(null)
         console.log("data user",data);
 
         //save the data to localstorage
@@ -79,22 +81,28 @@ function SignIn() {
           console.log("login detail is saved to localstorage");
           //redirect to user dashboard page
           userContxtData.setUser({
-            data: data.user,
+            data: data,
             login: true,
           });
           toast.success("Login Success");
-          userToken.roles[0] === "ROLE_ADMIN" ? history.push("/admin/default"): history.push("/employee/default")
+          if(data.roles[0]=='ROLE_USER'){
+            history.push("/employee/default")
+          }
+          else
+            history.push("/admin/default")
+          // history.push("/")
         });
       })
       .catch((error) => {
         console.log(error);
+        setError(error.response.data.message)
         if (error.response.status == 400 || error.response.status == 404) {
           toast.error(error.response.data.message);
         } else {
           toast.error("Something went wrong  on sever !!");
         }
       });
-  }  
+  } 
 
   return (
     <DefaultAuth>
@@ -208,32 +216,21 @@ function SignIn() {
                 />
               </InputRightElement>
             </InputGroup>
-            <Flex justifyContent='space-between' align='center' mb='24px'>
-              <FormControl display='flex' alignItems='center'>
-                <Checkbox
-                  id='remember-login'
-                  colorScheme='brandScheme'
-                  me='10px'
-                />
-                <FormLabel
-                  htmlFor='remember-login'
-                  mb='0'
-                  fontWeight='normal'
-                  color={textColor}
-                  fontSize='sm'>
-                  Keep me logged in
-                </FormLabel>
+            {error && <Flex align='center' mb='24px'>
+              <FormControl alignItems='center'>
+                <div
+                style={{
+                  mb:'0',
+                  fontWeight:'normal',
+                  background:"pink",
+                  color:"red",
+                  border:"1px solid red",
+                  borderRadius:"4px",
+                  fontSize:'sm'}}>
+                  {error}
+                </div>
               </FormControl>
-              <NavLink to='/auth/forgot-password'>
-                <Text
-                  color={textColorBrand}
-                  fontSize='sm'
-                  w='124px'
-                  fontWeight='500'>
-                  Forgot password?
-                </Text>
-              </NavLink>
-            </Flex>
+            </Flex>}
             <Button
               type="submit"
               fontSize='sm'

@@ -77,6 +77,23 @@ public class ItemMasterServiceImpl implements ItemMasterService {
 //		return null;
 	}
 	
+	public ItemMasterDto getItem(int itemId) {
+		ItemMaster item = itemMasterRepo.findByItemId(itemId).orElse(null);
+		if(item == null) {
+			throw new ResourceNotFoundException("ItemMaster", "Item Id", itemId);
+		}
+		
+		ItemMasterDto itemDto = new ItemMasterDto();
+		itemDto.setIssueStatus(item.getIssueStatus());
+		itemDto.setItemCategory(item.getItemCategory());
+		itemDto.setItemDescription(item.getItemDescription());
+		itemDto.setItemId(item.getItemId());
+		itemDto.setItemMake(item.getItemMake());
+		itemDto.setItemValuation(item.getItemValuation());
+		
+		return itemDto;
+	}
+	
 	public void addItems(ItemMaster item) {
 		int itemId = item.getItemId();
 		ItemMaster addItem = itemMasterRepo.findByItemId(itemId).orElse(null);

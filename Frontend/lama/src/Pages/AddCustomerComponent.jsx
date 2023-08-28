@@ -176,6 +176,7 @@ function AddCustomerComponent(){
             </div>
 
             <div>
+            <label style={{font: "300 1.1vmax cursive", marginRight: "3vh"}}>DOB: </label>
               {/* <StorageIcon /> */}
               <input
                 type="date"
@@ -190,6 +191,7 @@ function AddCustomerComponent(){
 
             <div>
               {/* <StorageIcon /> */}
+              <label style={{font: "300 1.1vmax cursive", marginRight: "3vh"}}>DOJ: </label>
               <input
                 type="date"
                 placeholder="Date of Joining"

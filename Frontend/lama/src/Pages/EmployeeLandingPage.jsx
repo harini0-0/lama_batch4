@@ -9,7 +9,7 @@ function EmployeePage(){
             <div className="employeeMenu">
                 <h1>Employee Dashboard</h1>
                 <div className="employeeOptions">
-                    <Button variant="secondary" style={{margin: "10px"}}>View Loans</Button>
+                    <Button variant="secondary" style={{margin: "10px"}}>View All Loan Cards</Button>
                     <Button variant="secondary" style={{margin: "10px"}}>Apply for loan</Button>
                     <Button variant="secondary" style={{margin: "10px"}}>View Items Purchased</Button>
                 </div>

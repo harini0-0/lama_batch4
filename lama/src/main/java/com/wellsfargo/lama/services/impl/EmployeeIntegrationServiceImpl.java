@@ -19,6 +19,7 @@ import com.wellsfargo.lama.entities.LoanCardMaster;
 import com.wellsfargo.lama.exceptions.ItemNotFoundException;
 import com.wellsfargo.lama.exceptions.ResourceAlreadyExistsException;
 import com.wellsfargo.lama.exceptions.ResourceNotFoundException;
+import com.wellsfargo.lama.exceptions.EmployeeAndItemExist;
 import com.wellsfargo.lama.repositories.EmployeeCardRepo;
 import com.wellsfargo.lama.repositories.EmployeeIssueRepo;
 import com.wellsfargo.lama.repositories.EmployeeMasterRepo;
@@ -54,7 +55,6 @@ public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationServic
 		int employeeId = employeeIntegrationRequest.getEmployeeId();
 		int itemId = employeeIntegrationRequest.getItemId();
 		
-
 		EmployeeMaster employeeMaster = employeeMasterRepo.findByEmployeeId(employeeId).orElse(null);
 		if(employeeMaster == null) {
 			throw new ResourceNotFoundException("EmployeeMaster", "Employee Id", employeeId);
