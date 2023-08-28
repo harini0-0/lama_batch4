@@ -29,12 +29,12 @@ function EmployeeItemPage(){
         try{
         // setLoader(false)
         const intId = parseInt(id)
-        const response = await privateAxios.get("http://localhost:8181/api/v1/admin/items/employeeItems/" + intId)
+        const response = await privateAxios.get(`/admin/items/employeeItems/${intId}`)
         .then((response) => {
-            console.log(response.data); 
+            // console.log(response.data); 
             setItemList(response.data);
             setLoader(true);
-            console.log("employeeList",ItemList);
+            // console.log("employeeList",ItemList);
         })
 
         // console.log("employeeList",employeeList);
