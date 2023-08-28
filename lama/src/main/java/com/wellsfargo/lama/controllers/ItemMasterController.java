@@ -33,7 +33,7 @@ public class ItemMasterController{
 	private ItemMasterService itemMasterService;
 	
 	@GetMapping
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public ResponseEntity<List<ItemMasterDto>> getAllItems() {
 		List<ItemMasterDto> allItems = itemMasterService.getAllItems();
 //		System.out.println(allItems.size());
@@ -45,7 +45,7 @@ public class ItemMasterController{
 	}
 	
 	@GetMapping("/employeeItems/{employeeId}")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	public ResponseEntity<List<EmployeeItemsDto>> getEmployeeItems(@PathVariable int employeeId){
 		List<EmployeeItemsDto> employeeItems = itemMasterService.getEmployeeItems(employeeId);
 		return new ResponseEntity<List<EmployeeItemsDto>>(employeeItems, HttpStatus.OK);

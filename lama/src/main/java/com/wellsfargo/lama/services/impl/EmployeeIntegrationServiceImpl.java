@@ -64,7 +64,12 @@ public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationServic
 		if(itemMaster == null) {
 			throw new ItemNotFoundException("Item not found", itemId);
 		}
-
+		
+		int isPresent = employeeIssueRepo.employeeItemQuery(employeeId, itemId);
+		if (isPresent > 0) {
+//			System.out.println("Successful " + isPresent);
+			throw new EmployeeAndItemExist("You have already applied for this item with item id: ", itemId);
+		}
 
 		System.out.println(itemMaster.getIssueStatus());
 		
@@ -76,8 +81,12 @@ public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationServic
 		
 		System.out.println(currentDate.toString());
 		
-		Optional<LoanCardMaster> loanObj = loanCardMasterRepo.findByLoanType(employeeIntegrationRequest.getLoanType());
-		String durationInMonths = loanObj.get().getDurationInMonths();
+		LoanCardMaster loanObj = loanCardMasterRepo.findByLoanType(employeeIntegrationRequest.getLoanType()).orElseGet(null);
+		if(loanObj == null) {
+			throw new ResourceNotFoundException("loanCardMaster", "loanType", employeeIntegrationRequest.getLoanType());
+		}
+		
+		String durationInMonths = loanObj.getDurationInMonths();
 		employeeIssueDto.setDurationInMonths(durationInMonths);
 		
 	
@@ -90,7 +99,7 @@ public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationServic
 		EmployeeCardDto employeeCardDto = new EmployeeCardDto(0, null, null, null);
 		employeeCardDto.setCardIssueDate(currentDate.toString());
 		employeeCardDto.setEmployeeMaster(employeeMaster);
-		employeeCardDto.setLoanCardMaster(loanObj.get());
+		employeeCardDto.setLoanCardMaster(loanObj);
 		EmployeeCardDetails employeeCardDetails = modelMapper.map(employeeCardDto, EmployeeCardDetails.class);
 		EmployeeCardDetails newEmployeeCardDetails = employeeCardRepo.save(employeeCardDetails);
 //		System.out.println(newEmployeeCardDetails);

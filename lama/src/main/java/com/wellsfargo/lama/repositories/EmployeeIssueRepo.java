@@ -13,7 +13,6 @@ public interface EmployeeIssueRepo extends JpaRepository<EmployeeIssueDetails, I
 	Optional<List<EmployeeIssueDetails>> findEmployeeItems(int employeeId);
 	@Query(value = "select count(*) from Employee_Issue_Details empIss where empIss.employee_Id = :empId and empIss.item_Id = :itemId",
 			nativeQuery = true)
-
 	int employeeItemQuery(int empId, int itemId);
 	
 	
