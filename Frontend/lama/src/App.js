@@ -38,6 +38,7 @@ import ProtectedRouteUser from './services/ProtectedRouteUser';
 import UpdateItemMasterPage from './Pages/UpdateItemMasterPage';
 import AddItemMaster from './Pages/AddItemMaster';
 import EmployeeLoanPage from './Pages/EmployeeLoanPage';
+import LoansViewAdmin from './Pages/LoansViewPage';
 
 function App() {
 
@@ -58,6 +59,7 @@ function App() {
 			<ProtectedRouteUser path={'/itemsPage'} component={ItemsPage} />
 			<ProtectedRoute path={`/rtl`} component={RtlLayout} />
 			<ProtectedRoute path={`/customermap`} component={CustomerMasterPage} />
+			<ProtectedRoute path={'/loanviewmap'} component={LoansViewAdmin} />
 
 			<ProtectedRouteUser path = {'/user/item/:id'} component = {EmployeeItemPage}/>
 

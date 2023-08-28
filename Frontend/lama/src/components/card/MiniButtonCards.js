@@ -17,7 +17,7 @@ import {
 import { NavLink } from "react-router-dom";
   
   export default function Default(props) {
-    const { startContent, endContent, name, growth, routeTo, routeToAdd } = props;
+    const { startContent, endContent, name, growth, routeTo, routeToAdd, flagLoan } = props;
     const textColor = useColorModeValue("secondaryGray.900", "white");
     const textColorSecondary = "secondaryGray.600";
   
@@ -40,9 +40,17 @@ import { NavLink } from "react-router-dom";
               {name}
             </StatLabel>
             <div style={{margin:"5px", padding:"5px"}}>
-                <NavLink to={routeToAdd} ><Button style={{margin:"5px", padding:"5px"}} size="lg" onClick={()=>{console.log("clicked add")}}>Add</Button></NavLink>
-                
-                <NavLink to={routeTo} ><Button style={{margin:"5px", padding:"5px"}} size="lg" onClick={()=>{console.log("clicked add")}}>View</Button></NavLink>
+              {
+                flagLoan==="Y"? <div>
+                  <NavLink to={routeToAdd} ><Button style={{margin:"5px", padding:"5px"}} size="lg" onClick={()=>{console.log("clicked add")}}>View All Loans</Button></NavLink>
+                  <NavLink to={routeTo} ><Button style={{margin:"5px", padding:"5px"}} size="lg" onClick={()=>{console.log("clicked add")}}>View Pending</Button></NavLink>
+                </div>:
+              
+                <div>
+                  <NavLink to={routeToAdd} ><Button style={{margin:"5px", padding:"5px"}} size="lg" onClick={()=>{console.log("clicked add")}}>Add</Button></NavLink>
+                  <NavLink to={routeTo} ><Button style={{margin:"5px", padding:"5px"}} size="lg" onClick={()=>{console.log("clicked add")}}>View</Button></NavLink>
+                </div>
+              }
             </div>
             {growth ? (
               <Flex align='center'>

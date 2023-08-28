@@ -64,6 +64,7 @@ export default function UserReports() {
           name='Customer Data Management'
           routeTo='/customermap'
           routeToAdd='/user/add'
+          flagLoan = "N"
           // value='$350.4'
         />
         <MiniButtonCards
@@ -80,6 +81,7 @@ export default function UserReports() {
           name='Items Master Data'
           routeTo='/itemmap'
           routeToAdd='/item/add'
+          flagLoan ="N"
         />
         <MiniButtonCards
           startContent={
@@ -95,6 +97,7 @@ export default function UserReports() {
           name='Loan Card Management'
           routeTo='/loanmap'
           routeToAdd='/loan/add'
+          flagLoan = "N"
           // value='$350.4'
         />
         {/* <MiniStatistics
@@ -136,7 +139,7 @@ export default function UserReports() {
           name='Approved Loans'
           value='378'
         />
-        <EmployeeButtonCard
+        <MiniButtonCards
           startContent={
             <IconBox
               w='56px'
@@ -147,8 +150,9 @@ export default function UserReports() {
               }
             />
           }
-          name='Unapproved Loans'
-          buttonName="View pending"
+          name='Applied Loans'
+          routeToAdd='/loanviewmap'
+          flagLoan = "Y"
           routeTo="/pendingLoans"
         />
       </SimpleGrid>

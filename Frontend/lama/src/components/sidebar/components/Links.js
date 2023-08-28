@@ -21,6 +21,8 @@ export function SidebarLinks(props) {
 
   const { routes } = props;
   const userToken = JSON.parse(localStorage.getItem("data"));
+  const userContextData = useContext(userContext)
+    const history = useHistory()
   // useEffect(()=>{
     
   // },[])
@@ -29,33 +31,40 @@ export function SidebarLinks(props) {
   const activeRoute = (routeName) => {
     return location.pathname.includes(routeName);
   };
-  const handleRouteClick = (routeLayout) => {
-    const userContextData = useContext(userContext)
-    const history = useHistory()
-    if(routeLayout === "/auth"){
+  const handleRouteClick = () => {
+    
+    // if(routeLayout === "/auth"){
       console.log("logout enters")
-		  doLogout(() => {
-			//logged out
-			// setLogin(false)
-			userContextData.setUser({
-				data: null,
-				login: false
-			})
+      doLogout(() => {
+      //logged out
+      // setLogin(false)
+      userContextData.setUser({
+        data: null,
+        login: false
+      })
   
-			history.push("/auth/sign-in")
-		})
-    }
+      history.push("/auth/sign-in")
+    })
+    // }
   }
+
 
   // this function creates the links from the secondary accordions (for example auth -> sign-in -> default)
   const createLinks = (routes) => {
-
+    
     console.log(routes)
     return routes.map((route, index)=>{
-      return <NavLink key={index} to={route.layout + route.path} >
+      if(route.layout === "/admin" && userToken.roles[0]==="ROLE_USER"){
+        return 
+      }
+      else if(route.layout === "/employee" && userToken.roles[0]==="ROLE_ADMIN"){
+        return 
+      }
+      else
+        return <NavLink key={index} to={route.layout + route.path} >
              {/* {route.icon ? ( */}
-             {/* <div onClick={handleRouteClick(route.layout)}>  */}
-             <div>
+             <div onClick={() =>{if(route.layout === "/auth"){ handleRouteClick()}}}> 
+             {/* <div> */}
               <Box>
                 <HStack
                   spacing={
