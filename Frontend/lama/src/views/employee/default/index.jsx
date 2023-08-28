@@ -41,7 +41,7 @@ import {
     const brandColor = useColorModeValue("brand.500", "white");
     const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
     const id = getCurrentUserDetail();
- //  const route = '/user/item/'+id;
+  const route = '/user/item/'+id;
   
     return (
       <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
@@ -97,7 +97,7 @@ import {
             }
             name='View Items purchased'
             buttonName = 'View'
-            routeTo=""
+            routeTo={route}
             //routeToAdd='/loan/add'
             // value='$350.4'
           />
