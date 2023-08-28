@@ -32,7 +32,6 @@ import { isLoggedIn } from './auth';
 
 import ApplyForLoan from './Pages/ApplyForLoan';
 import ProtectedRoute from './services/ProtectedRotue';
-import { BrowserRouter } from 'react-router-dom';
 import ItemsPage from './Pages/ItemsPage';
 import EmployeeItemPage from './Pages/EmployeeItemPage'
 import ProtectedRouteUser from './services/ProtectedRouteUser';
@@ -56,7 +55,7 @@ function App() {
 			
 
 			<ProtectedRoute path={`/admin`} component={AdminLayout} />
-			<ProtectedRoute path={'/itemsPage'} component={ItemsPage} />
+			<ProtectedRouteUser path={'/itemsPage'} component={ItemsPage} />
 			<ProtectedRoute path={`/rtl`} component={RtlLayout} />
 			<ProtectedRoute path={`/customermap`} component={CustomerMasterPage} />
 
@@ -72,9 +71,9 @@ function App() {
 			<ProtectedRoute path="/loan/:id" component={UpdateLoanComponent } />
 			<ProtectedRouteUser path="/viewloan" component={EmployeeLoanPage} />
 			
-			<Route path={`/itemmap`} component={ItemMasterPage} />
-			<Route path={`/item/add`} component={AddItemMaster} />
-			<Route path="/item/:id" component={UpdateItemMasterPage} />
+			<ProtectedRoute path={`/itemmap`} component={ItemMasterPage} />
+			<ProtectedRoute path={`/item/add`} component={AddItemMaster} />
+			<ProtectedRoute path="/item/:id" component={UpdateItemMasterPage} />
 			<Redirect from='/' to='/admin/default' />
 
 		</Switch>
