@@ -85,7 +85,7 @@ export default function ItemCard(props) {
       <Flex direction={{ base: "column" }} justify='center'>
         <Box mb={{ base: "20px", "2xl": "20px" }} position='relative'>
           <Image
-            src={imageArray[itemId%6]}
+            src={"https://th.bing.com/th?id=OIP.7i__XQnnlSyGtQcnel5g8QHaHC&w=256&h=243&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"}
             w={{ base: "100%", "3xl": "100%" }}
             h={{ base: "100%", "3xl": "100%" }}
             borderRadius='20px'

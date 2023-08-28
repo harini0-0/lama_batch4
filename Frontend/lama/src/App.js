@@ -12,7 +12,7 @@ import EmployeeLayout from './layouts/employee/index.js'
 import AuthLayout from "./layouts/auth/index.js";
 import RtlLayout from "./layouts/rtl/index.js"
 // import EmployeePage from './Pages/EmployeeLandingPage';
-import React from 'react';
+import React, { useEffect } from 'react';
 // import ReactDOM from 'react-dom';
 import './assets/css/App.css';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
@@ -32,12 +32,14 @@ import { isLoggedIn } from './auth';
 
 import ApplyForLoan from './Pages/ApplyForLoan';
 import ProtectedRoute from './services/ProtectedRotue';
+// import { BrowserRouter } from 'react-router-dom';
 import ItemsPage from './Pages/ItemsPage';
 import EmployeeItemPage from './Pages/EmployeeItemPage'
 import ProtectedRouteUser from './services/ProtectedRouteUser';
 import UpdateItemMasterPage from './Pages/UpdateItemMasterPage';
 import AddItemMaster from './Pages/AddItemMaster';
 import EmployeeLoanPage from './Pages/EmployeeLoanPage';
+import LoansViewAdmin from './Pages/LoansViewPage';
 
 function App() {
 
@@ -58,6 +60,7 @@ function App() {
 			<ProtectedRouteUser path={'/itemsPage'} component={ItemsPage} />
 			<ProtectedRoute path={`/rtl`} component={RtlLayout} />
 			<ProtectedRoute path={`/customermap`} component={CustomerMasterPage} />
+			<ProtectedRoute path={'/loanviewmap'} component={LoansViewAdmin} />
 
 			<ProtectedRouteUser path = {'/user/item/:id'} component = {EmployeeItemPage}/>
 

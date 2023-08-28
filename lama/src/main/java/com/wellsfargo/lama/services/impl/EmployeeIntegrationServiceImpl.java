@@ -106,4 +106,12 @@ public class EmployeeIntegrationServiceImpl implements EmployeeIntegrationServic
 //		return modelMapper.map(newEmployeeIssueDetails, EmployeeIssueDto.class);
 		return null;
 	}
+	
+	public int approvedRequests() {
+		return employeeIssueRepo.approvedRequests();
+	}
+	
+	public int allRequests() {
+		return employeeIssueRepo.allRequests();
+	}
 }
