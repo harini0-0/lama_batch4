@@ -28,11 +28,12 @@ import com.wellsfargo.lama.services.ItemMasterService;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("api/v1/admin/items")
-public class ItemMasterController {
+public class ItemMasterController{
 	@Autowired
 	private ItemMasterService itemMasterService;
 	
-	@GetMapping()
+	@GetMapping
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<List<ItemMasterDto>> getAllItems() {
 		List<ItemMasterDto> allItems = itemMasterService.getAllItems();
 //		System.out.println(allItems.size());
@@ -48,21 +49,30 @@ public class ItemMasterController {
 	public ResponseEntity<List<EmployeeItemsDto>> getEmployeeItems(@PathVariable int employeeId){
 		List<EmployeeItemsDto> employeeItems = itemMasterService.getEmployeeItems(employeeId);
 		return new ResponseEntity<List<EmployeeItemsDto>>(employeeItems, HttpStatus.OK);
+	}
 		
+	@GetMapping("/{itemId}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<ItemMasterDto> getItem(@PathVariable int itemId) {
+		ItemMasterDto Item = itemMasterService.getItem(itemId);
+		return new ResponseEntity<ItemMasterDto>(Item,HttpStatus.OK);
 	}
 	
 	@PostMapping
+	@PreAuthorize("hasRole('ADMIN')")
 	public ApiResponse createItems(@RequestBody ItemMaster item) {
 		itemMasterService.addItems(item);
 		return new ApiResponse("Post is successfully posted !!", true);
 	}
 	
 	@PutMapping("/{itemId}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<ItemMasterDto> updateItem(@Validated @RequestBody ItemMaster item, @PathVariable Integer itemId) {
 		return ResponseEntity.status(HttpStatus.OK).body(itemMasterService.udateItem(item, itemId));
 	}
 	
 	@DeleteMapping("/{itemId}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ApiResponse deleteItem(@PathVariable int itemId) {
 		itemMasterService.deleteItem(itemId);
 		return new ApiResponse("Post is successfully deleted !!", true);

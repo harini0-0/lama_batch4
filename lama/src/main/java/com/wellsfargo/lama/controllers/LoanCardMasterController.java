@@ -40,7 +40,9 @@ public class LoanCardMasterController {
 //		EmployeeMasterDto addEmployeeDt = null;
 		return new ResponseEntity<LoanCardMasterDto>(addLoanDt, HttpStatus.CREATED);
 	}
-	@PreAuthorize("hasRole('ADMIN')")
+	
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+	//@PreAuthorize("hasRole('USER')")
 	@GetMapping("/")
 	public ResponseEntity<List<LoanCardMasterDto>> getAllLoans(){
 		List<LoanCardMasterDto> allLoanDtos = loanCardMasterService.getAllLoan();

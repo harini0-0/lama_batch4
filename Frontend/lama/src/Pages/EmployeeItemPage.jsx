@@ -7,29 +7,34 @@ import LoadingComponent from "../components/LoadingComponent";
 
 import { Box, Button } from "@chakra-ui/react";
 import { SimpleGrid } from "@chakra-ui/react";
-import ColumnsTable from "../components/tableComplex";
+import ColumnsTable from "../components/employeeItemTabel";
 
 import { customerColumnsDataComplex } from "../views/admin/default/variables/columnsData";
 import { NavLink } from "react-router-dom/";
 import { privateAxios } from "../services/helper";
+import { useParams } from "react-router-dom/cjs/react-router-dom";
+import { employeeItemColumnDataComplex } from "../views/admin/default/variables/columnsData";
 //   import tableDataComplex from "./variables/tableDataComplex.json";
 
 
-function CustomerMasterPage(){
+function EmployeeItemPage(){
     const [loaded, setLoader] = useState(false);
-    const [employeeList, setEmployeeList] = useState(null);
- 
+    const [ItemList, setItemList] = useState(null);
 
-    const loadEmployeeData = async () => {
+    const empId = useParams()
+    const id = empId.id
+
+    const loadItemData = async (id) => {
 
         try{
         // setLoader(false)
-        const response = await privateAxios.get("/admin/employee/")
+        const intId = parseInt(id)
+        const response = await privateAxios.get("http://localhost:8181/api/v1/admin/items/employeeItems/" + intId)
         .then((response) => {
-            // console.log(response.data); 
-            setEmployeeList(response.data);
+            console.log(response.data); 
+            setItemList(response.data);
             setLoader(true);
-            // console.log("employeeList",employeeList);
+            console.log("employeeList",ItemList);
         })
 
         // console.log("employeeList",employeeList);
@@ -39,9 +44,8 @@ function CustomerMasterPage(){
     };
 
     useEffect(() => {
-        console.log("useEffect !!!")
-        loadEmployeeData()
-    },[loaded,loadEmployeeData])
+        loadItemData(id)
+    },[loaded,loadItemData])
     
     return(loaded ?
         
@@ -51,9 +55,9 @@ function CustomerMasterPage(){
             <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
                 <SimpleGrid columns={{ base: 1, md: 1, xl: 1 }} gap='20px' mb='20px'>
                     <ColumnsTable
-                    columnsData={customerColumnsDataComplex}
-                    tableData={employeeList}
-                    header = "Customer Master Table"
+                    columnsData={employeeItemColumnDataComplex}
+                    tableData={ItemList}
+                    header = "Employee items tables"
                     /> 
                 </SimpleGrid>
             </Box>
@@ -62,7 +66,7 @@ function CustomerMasterPage(){
     );
 };
 
-export default CustomerMasterPage;
+export default EmployeeItemPage;
 
 
 

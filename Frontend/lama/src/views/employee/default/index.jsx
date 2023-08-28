@@ -25,24 +25,24 @@ import {
     MdBarChart,
     MdFileCopy,
   } from "react-icons/md";
-//   import CheckTable from "./components/CheckTable";
-//   import ComplexTable from "./components/ComplexTable";
-//   import DailyTraffic from "./components/DailyTraffic";
-//   import PieCard from "./components/PieCard";
-//   import Tasks from "./components/Tasks";
+
   import TotalSpent from "../../admin/default/components/TotalSpent";
-//   import WeeklyRevenue from "./components/WeeklyRevenue";
+
   import {
     columnsDataCheck,
     columnsDataComplex,
   } from "../../admin/default/variables/columnsData";
   import tableDataCheck from "../../admin/default/variables/tableDataCheck.json";
   import tableDataComplex from "../../admin/default/variables/tableDataComplex.json";
+  import { getCurrentUserDetail } from "../../../auth";
   
   export default function UserReports() {
     // Chakra Color Mode
     const brandColor = useColorModeValue("brand.500", "white");
     const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
+    const id = getCurrentUserDetail();
+ //  const route = '/user/item/'+id;
+  
     return (
       <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
         <SimpleGrid
@@ -61,9 +61,10 @@ import {
                 }
               />
             }
-            name='View Loans'
+            name='View All Loan Card'
             buttonName = 'View'
-            routeTo='/customermap'
+            routeTo =  '/viewloan'
+          
             // routeToAdd='/employee/add'
             // value='$350.4'
           />
@@ -96,7 +97,7 @@ import {
             }
             name='View Items purchased'
             buttonName = 'View'
-            routeTo='/'
+            routeTo=""
             //routeToAdd='/loan/add'
             // value='$350.4'
           />

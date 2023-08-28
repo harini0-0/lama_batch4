@@ -10,6 +10,8 @@ public interface ItemMasterService {
 	List<ItemMasterDto> getAllItems();
 	List<EmployeeItemsDto> getEmployeeItems(int EmployeeId);
 	
+	ItemMasterDto getItem(int itemId);
+	
 	void addItems(ItemMaster item);
 	
 	ItemMasterDto udateItem(ItemMaster item, int itemId);
