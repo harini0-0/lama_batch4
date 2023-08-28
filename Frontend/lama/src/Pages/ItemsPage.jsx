@@ -35,11 +35,12 @@ import ItemCard from "../components/card/ItemCard";
     const [loaded, setLoader] = useState(false);
     const [itemList, setItemList] = useState(null);
     
+    
     const loadItemData = async () => {
 
         try{
         // setLoader(false)
-        const response = await privateAxios.get("/admin/items/")
+        const response = await privateAxios.get("/admin/items")
         .then((response) => {
             // console.log(response.data); 
             setItemList(response.data);
@@ -86,6 +87,7 @@ import ItemCard from "../components/card/ItemCard";
                     itemMake = {data.itemMake}
                     
                     itemId = {data.itemId}
+
                   />
                 })
             }
