@@ -47,7 +47,7 @@ function CustomerMasterPage(){
         
         <div style={{padding: "10px"}}>
             {/* {console.log(employeeList.length)} */}
-            <NavLink to="/"><Button>Back</Button></NavLink>
+            <NavLink to="/admin/default"><Button>Back</Button></NavLink>
             <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
                 <SimpleGrid columns={{ base: 1, md: 1, xl: 1 }} gap='20px' mb='20px'>
                     <ColumnsTable

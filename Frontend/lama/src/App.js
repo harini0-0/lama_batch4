@@ -12,7 +12,7 @@ import EmployeeLayout from './layouts/employee/index.js'
 import AuthLayout from "./layouts/auth/index.js";
 import RtlLayout from "./layouts/rtl/index.js"
 // import EmployeePage from './Pages/EmployeeLandingPage';
-import React from 'react';
+import React, { useEffect } from 'react';
 // import ReactDOM from 'react-dom';
 import './assets/css/App.css';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
