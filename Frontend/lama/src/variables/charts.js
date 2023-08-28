@@ -209,10 +209,10 @@ export const barChartOptionsConsumption = {
 };
 
 export const pieChartOptions = {
-  labels: ["Your files", "System", "Empty"],
-  colors: ["#4318FF", "#6AD2FF", "#EFF4FB"],
+  labels: ["Total Loans", "Approved", "Unapproved"],
+  colors: ["#4318FF", "#6AD2FF", "#8FF4FB"],
   chart: {
-    width: "50px",
+    width: "100px",
   },
   states: {
     hover: {
@@ -239,7 +239,7 @@ export const pieChartOptions = {
     },
   },
   fill: {
-    colors: ["#4318FF", "#6AD2FF", "#EFF4FB"],
+    colors: ["#4318FF", "#6AD2FF", "#8FF4FB"],
   },
   tooltip: {
     enabled: true,
@@ -247,7 +247,7 @@ export const pieChartOptions = {
   },
 };
 
-export const pieChartData = [63, 25, 12];
+export const pieChartData = [2,1,1];
 
 // Total Spent Default
 
