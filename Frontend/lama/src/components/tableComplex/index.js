@@ -34,7 +34,7 @@ import {
   // Assets
   import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
 import { privateAxios } from "../../services/helper";
-  export default function ColumnsTable({ columnsData, tableData, header, flagUnapproved=false }) {
+  export default function ColumnsTable({ columnsData, tableData, header, flagUnapproved=false, showOptions=true }) {
 
     const history = useHistory()
     // const { columnsData, tableData, header } = this.props;
@@ -183,7 +183,7 @@ import { privateAxios } from "../../services/helper";
                     </Flex>
                   </Th>
                 ))}
-                <Th
+                {showOptions ?<Th
                     // {...column.getHeaderProps(column.getSortByToggleProps())}
                     pe='10px'
                     key={index}
@@ -195,7 +195,7 @@ import { privateAxios } from "../../services/helper";
                       color='gray.400'>
                       Options
                     </Flex>
-                  </Th>
+                  </Th>:null}
               </Tr>
             ))}
           </Thead>
@@ -234,7 +234,7 @@ import { privateAxios } from "../../services/helper";
                       </Td>
                     );
                   })}
-                  <Td
+                  {showOptions?<Td
                         
                         key={index}
                         fontSize={{ sm: "14px" }}
@@ -254,7 +254,7 @@ import { privateAxios } from "../../services/helper";
                         </div>
             }
                         {/* deleteEmployee(row.cells.row.original.employeeId) */}
-                    </Td>
+                    </Td>:null}
                 </Tr>
               );
             })}
