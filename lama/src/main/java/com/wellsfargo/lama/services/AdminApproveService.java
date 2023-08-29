@@ -11,6 +11,7 @@ import com.wellsfargo.lama.Dto.EmployeeIssueDto;
 
 public interface AdminApproveService{
 	List<AdminApproveDto> getAllIssues();
+	List<AdminApproveDto> getUnapprovedIssueDetails();
 	
 	AdminApproveDto adminApproveLoan(AdminApproveDto employeeIssueDto);
 }

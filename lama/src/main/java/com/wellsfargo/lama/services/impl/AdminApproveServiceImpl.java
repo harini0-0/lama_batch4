@@ -29,6 +29,36 @@ public class AdminApproveServiceImpl implements AdminApproveService{
 	private ModelMapper modelMapper;
 	
 	@Override
+	public List<AdminApproveDto> getUnapprovedIssueDetails() {
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		
+		List<EmployeeIssueDetails> issueDetails = adminApproveRepo.findAll();
+		List<AdminApproveDto> adminApproveDtoList = new ArrayList<>();
+		
+		for(int i=0;i<issueDetails.size(); i++) {
+			EmployeeIssueDetails employeeIssueDetails = issueDetails.get(i);
+			
+			if(employeeIssueDetails.getIsApproved()==0) {
+				AdminApproveDto adminApproveDto = new AdminApproveDto();
+				
+				adminApproveDto.setEmployeeId(employeeIssueDetails.getEmployeeMaster().getEmployeeId());
+				adminApproveDto.setItemId(employeeIssueDetails.getItemMaster().getItemId());
+				adminApproveDto.setIssueId(employeeIssueDetails.getIssueId());
+				adminApproveDto.setDurationInMonths(employeeIssueDetails.getDurationInMonths());
+				adminApproveDto.setIssueDate(employeeIssueDetails.getIssueDate());
+				adminApproveDto.setIsApproved(employeeIssueDetails.getIsApproved());
+				
+				adminApproveDtoList.add(adminApproveDto);
+			}
+		}
+		
+//		System.out.println(issueDtos.get(0).getIssueDate());
+//		List<EmployeeIssueDto> issueDt = new ArrayList<>();
+		
+		return adminApproveDtoList;
+	}
+	
+	@Override
 	public List<AdminApproveDto> getAllIssues() {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
