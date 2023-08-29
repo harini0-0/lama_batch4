@@ -43,8 +43,16 @@ public class AdminApproveController {
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<List<AdminApproveDto>> getAllIssueDetails(){
 		List<AdminApproveDto> allIssues = adminApproveService.getAllIssues();
-		System.out.println(allIssues.get(0).getIssueDate());
+//		System.out.println(allIssues.get(0).getIssueDate());
 //		List<EmployeeIssueDto> allIssu = new ArrayList<>();
 		return new ResponseEntity<List<AdminApproveDto>>(allIssues, HttpStatus.OK);
+	}
+	
+	@GetMapping("/unapproved")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<List<AdminApproveDto>> getUnapprovedIssueDetails(){
+		List<AdminApproveDto> allIssues = adminApproveService.getUnapprovedIssueDetails();
+		return new ResponseEntity<List<AdminApproveDto>>(allIssues, HttpStatus.OK);
+		
 	}
 }
