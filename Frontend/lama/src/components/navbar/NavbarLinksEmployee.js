@@ -192,7 +192,7 @@ export default function HeaderLinks(props) {
 					<Avatar
 						_hover={{ cursor: 'pointer' }}
 						color="white"
-						name="Adela Parkson"
+						name="Employee"
 						bg="#11047A"
 						size="sm"
 						w="40px"
