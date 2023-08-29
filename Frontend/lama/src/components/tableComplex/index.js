@@ -110,7 +110,7 @@ import { privateAxios } from "../../services/helper";
       prepareRow,
       initialState,
     } = tableInstance;
-    initialState.pageSize = data.length;
+    initialState.pageSize = data ? data.length: 0;
 
     // console.log(page.length)
 
@@ -206,13 +206,21 @@ import { privateAxios } from "../../services/helper";
                 <Tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
-                    // console.log("Header name",cell.row.original.employeeId)
-                    // if (cell.column.Header === "NAME") {
-                      data = (
-                        <Text color={textColor} fontSize='sm' fontWeight='700'>
-                          {cell.value}
-                        </Text>
-                      );
+                    // console.log("Header name",cell.column.Header)
+                    if (cell.column.Header === "Approve Status") {
+                        data = (
+                          <Text color={textColor} fontSize='sm' fontWeight='700'>
+                            {cell.value === 1 ? "Approve" : cell.value===2 ? "Rejected": "Pending"}
+                          </Text>
+                        )
+                      }
+                      else{
+                        data = (
+                          <Text color={textColor} fontSize='sm' fontWeight='700'>
+                            {cell.value}
+                          </Text>
+                        );
+                      }
                     return (
                       <Td
                         {...cell.getCellProps()}
