@@ -51,7 +51,6 @@ export default function LoansViewAdmin(){
                     tableData={pendingLoansList}
                     header = "Loans Table"
                     flagUnapproved= {true}
-                    showOptions = {false}
                     /> 
                 </SimpleGrid>
             </Box>
