@@ -12,20 +12,12 @@ code {
     monospace;
 }
 .App {
-  /* text-align: center; */
   height: 100%;
   width: 100%;
-  /* align-items: center; */
-  /* display: grid; */
-  /* justify-content: center; */
   font-family: 'EB Garamond';
-  /* overflow: scroll; */
   margin-top: 70px;
   margin-left: 50px;
 }
-/* body{
-  background-image: url('https://www.itl.cat/pngfile/big/42-429842_light-grey-wallpaper.jpg');
-} */
 
 .App-logo {
   height: 40vmin;
@@ -69,7 +61,6 @@ code {
 	margin: auto;
 	width:fit-content;
 	padding: 2vw 1vw;
-	/* background-color: rgb(250, 194, 194); */
 	border-radius: 10px;
   
   border: 1px solid rgb(78, 78, 78);
@@ -81,15 +72,11 @@ code {
 	margin: auto;
 	justify-content: center;
 	padding: 2vw 2vw;
-	/* background-color: rgb(250, 194, 194); */
 	border-radius: 10px;
-  
-  /* border: 1px solid rgb(78, 78, 78); */
 }
 
 .nav2{
   background-color: rgb(41, 41, 41);
-  /* color: aliceblue */
 }
 a.navbar-brand{
   color: aliceblue;
