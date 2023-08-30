@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.wellsfargo.lama.entities.EmployeeIssueDetails;
 
 public interface EmployeeIssueRepo extends JpaRepository<EmployeeIssueDetails, Integer> {
-	@Query("Select t from EmployeeIssueDetails t where t.employeeMaster.employeeId=?1 and t.isApproved=?1")
+	@Query(value = "Select * from Employee_Issue_Details t where t.employee_Id = :employeeId and t.is_approved = 1", nativeQuery = true)
 	Optional<List<EmployeeIssueDetails>> findEmployeeItems(int employeeId);
 	
 	@Query(value = "select count(*) from Employee_Issue_Details empIss where empIss.employee_Id = :empId and empIss.item_Id = :itemId",
